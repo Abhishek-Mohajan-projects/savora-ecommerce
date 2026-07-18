@@ -536,11 +536,15 @@
       font-weight: 500;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
       z-index: 9999;
-      transition: transform 0.35s ease;
+      transition: transform 0.35s ease, visibility 0.35s ease, opacity 0.35s ease;
       pointer-events: none;
+      visibility: hidden;
+      opacity: 0;
     }
     .profile-toast.show {
       transform: translateX(-50%) translateY(0);
+      visibility: visible;
+      opacity: 1;
     }
 
     /* ─── Mobile ─── */
