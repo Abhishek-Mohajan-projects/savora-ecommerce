@@ -14,15 +14,21 @@
      ---------------------------------------------------------- */
   function initPreloader() {
     var preloader = document.getElementById("preloader");
-    var bar = document.getElementById("preloaderBar");
     if (!preloader) return;
+
+    // Only show preloader on first visit of the session
+    if (sessionStorage.getItem("savoro_preloaded")) {
+      preloader.parentNode.removeChild(preloader);
+      return;
+    }
+
+    var bar = document.getElementById("preloaderBar");
 
     // Prevent scrolling
     document.body.style.overflow = "hidden";
 
     var progress = 0;
     var interval = setInterval(function () {
-      // Slow down as it approaches 100
       var increment = progress < 60 ? 8 : progress < 85 ? 3 : 1;
       progress = Math.min(progress + increment, 100);
       if (bar) bar.style.width = progress + "%";
@@ -34,6 +40,7 @@
     }, 80);
 
     function hidePreloader() {
+      sessionStorage.setItem("savoro_preloaded", "1");
       preloader.classList.add("is-hidden");
       document.body.style.overflow = "";
       setTimeout(function () {
