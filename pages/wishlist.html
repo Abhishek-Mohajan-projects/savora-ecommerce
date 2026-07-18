@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist – Savoro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+
+  <style>
+    .wish-hero {
+      text-align: center;
+      padding: 4rem 1.5rem 2rem;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #fff;
+    }
+    .wish-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .wish-hero p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      opacity: 0.8;
+    }
+
+    .wish-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .wish-summary {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.8rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      position: sticky;
+      top: 100px;
+    }
+    .wish-summary h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #1a1a2e;
+    }
+    .wish-summary .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #555;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .wish-summary .summary-row:last-of-type {
+      border-bottom: none;
+      font-weight: 600;
+      color: #1a1a2e;
+      font-size: 1.05rem;
+    }
+    .wish-summary .btn-move-all {
+      width: 100%;
+      margin-top: 1.2rem;
+      padding: 0.9rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #e94560, #c23152);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wish-summary .btn-move-all:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233, 69, 96, 0.35);
+    }
+
+    .wish-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .wish-card {
+      display: flex;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wish-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+    }
+
+    .wish-card-img {
+      width: 140px;
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      flex-shrink: 0;
+    }
+    .wish-card-img.gradient-cake {
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+    }
+    .wish-card-img.gradient-juice {
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    }
+    .wish-card-img.gradient-icecream {
+      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+    }
+    .wish-card-img.gradient-pasta {
+      background: linear-gradient(135deg, #fff9c4, #fff176);
+    }
+    .wish-card-img.gradient-sushi {
+      background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
+    }
+    .wish-card-img.gradient-default {
+      background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+    }
+
+    .wish-card-info {
+      flex: 1;
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    .wish-card-info h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 0.3rem;
+    }
+    .wish-card-info .price {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #e94560;
+      margin-bottom: 0.4rem;
+    }
+    .wish-card-info .desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      color: #777;
+      line-height: 1.4;
+      margin-bottom: 0.9rem;
+    }
+    .wish-card-actions {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+    .wish-card-actions .btn-add-cart {
+      padding: 0.55rem 1.2rem;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #e94560, #c23152);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wish-card-actions .btn-add-cart:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(233, 69, 96, 0.3);
+    }
+    .wish-card-actions .btn-remove {
+      width: 34px;
+      height: 34px;
+      border: none;
+      border-radius: 50%;
+      background: #f5f5f5;
+      color: #999;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .wish-card-actions .btn-remove:hover {
+      background: #ffeaea;
+      color: #e94560;
+    }
+
+    .wish-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+    .wish-empty .empty-emoji {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+    }
+    .wish-empty h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      color: #1a1a2e;
+      margin-bottom: 0.6rem;
+    }
+    .wish-empty p {
+      font-family: 'Inter', sans-serif;
+      color: #888;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .wish-empty .btn-browse {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #e94560, #c23152);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wish-empty .btn-browse:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233, 69, 96, 0.35);
+    }
+
+    .wish-toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #1a1a2e;
+      color: #fff;
+      padding: 0.9rem 1.5rem;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+      transform: translateY(120%);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      z-index: 9999;
+    }
+    .wish-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 800px) {
+      .wish-layout {
+        grid-template-columns: 1fr;
+        padding: 1.5rem 1rem 3rem;
+      }
+      .wish-summary {
+        position: static;
+        order: -1;
+      }
+      .wish-card {
+        flex-direction: column;
+      }
+      .wish-card-img {
+        width: 100%;
+        min-height: 120px;
+      }
+      .wish-hero {
+        padding: 3rem 1rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__scene">
+      <div class="preloader__plate"></div>
+      <div class="preloader__orbit">
+        <span class="preloader__food">&#x1F354;</span>
+        <span class="preloader__food">&#x1F355;</span>
+        <span class="preloader__food">&#x1F370;</span>
+        <span class="preloader__food">&#x1F353;</span>
+        <span class="preloader__food">&#x1F96A;</span>
+        <span class="preloader__food">&#x1F366;</span>
+      </div>
+      <div class="preloader__logo">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="30" fill="url(#prelogo-grad)"/>
+          <path d="M20 42c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="#1A1614" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="32" cy="24" r="5" fill="#1A1614"/>
+          <defs>
+            <linearGradient id="prelogo-grad" x1="4" y1="4" x2="60" y2="60">
+              <stop stop-color="#C4432B"/>
+              <stop offset="1" stop-color="#E8A33D"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+    <div class="preloader__text">
+      <div class="preloader__brand">Savoro</div>
+      <div class="preloader__tagline">Preparing Your Delicious Experience...</div>
+      <div class="preloader__progress">
+        <div class="preloader__progress-bar" id="preloaderBar"></div>
+      </div>
+      <div class="preloader__dots">
+        <span class="preloader__dot"></span>
+        <span class="preloader__dot"></span>
+        <span class="preloader__dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" role="region" aria-label="Announcements">
+    <div class="announcement-bar__track">
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Free delivery on your first order — Use code <strong>&nbsp;SAVORO25&nbsp;</strong> at checkout
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Limited time — <span class="discount">20% OFF</span> all family platters this weekend only
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Fresh daily — Our chefs prepare every dish from scratch each morning
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        New menu alert — Try our <span class="discount">15% OFF</span> summer specials today
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo" aria-label="Savoro home">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" fill="url(#logo-grad)"/>
+          <path d="M13 26c0-4 3-7 7-7s7 3 7 7" stroke="#1A1614" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="20" cy="15" r="3" fill="#1A1614"/>
+          <defs>
+            <linearGradient id="logo-grad" x1="2" y1="2" x2="38" y2="38">
+              <stop stop-color="#C4432B"/>
+              <stop offset="1" stop-color="#E8A33D"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>Savoro</span>
+      </a>
+      <ul class="navbar__links">
+        <li><a href="../index.html" class="navbar__link">Home</a></li>
+        <li><a href="menu.html" class="navbar__link">Menu</a></li>
+        <li><a href="categories.html" class="navbar__link">Categories</a></li>
+        <li><a href="offers.html" class="navbar__link">Offers</a></li>
+        <li><a href="about.html" class="navbar__link">About</a></li>
+        <li><a href="blog.html" class="navbar__link">Blog</a></li>
+        <li><a href="contact.html" class="navbar__link">Contact</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="search.html" class="navbar__action-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <a href="wishlist.html" class="navbar__action-btn" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="navbar__badge" data-badge="wishlist">0</span>
+        </a>
+        <a href="cart.html" class="navbar__action-btn" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="navbar__badge" data-badge="cart">0</span>
+        </a>
+        <a href="profile.html" class="navbar__action-btn hide-mobile" aria-label="Profile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <button class="navbar__action-btn theme-toggle" aria-label="Toggle theme"></button>
+        <button class="navbar__hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="navbar__mobile-menu" aria-hidden="true">
+      <a href="../index.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <a href="menu.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        Menu
+      </a>
+      <a href="categories.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Categories
+      </a>
+      <a href="offers.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        Offers
+      </a>
+      <a href="about.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        About
+      </a>
+      <a href="blog.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Blog
+      </a>
+      <a href="contact.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact
+      </a>
+      <a href="profile.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Profile
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="wish-hero">
+    <h1>Your Wishlist</h1>
+    <p>The dishes you're craving, saved for later.</p>
+  </section>
+
+  <!-- Main Content -->
+  <main class="wish-layout" id="wishContainer">
+    <!-- Rendered by JS -->
+  </main>
+
+  <!-- Toast -->
+  <div class="wish-toast" id="wishToast"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo" aria-label="Savoro home">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" fill="url(#footer-logo-grad)"/>
+            <path d="M13 26c0-4 3-7 7-7s7 3 7 7" stroke="#1A1614" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="20" cy="15" r="3" fill="#1A1614"/>
+            <defs>
+              <linearGradient id="footer-logo-grad" x1="2" y1="2" x2="38" y2="38">
+                <stop stop-color="#C4432B"/>
+                <stop offset="1" stop-color="#E8A33D"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span>Savoro</span>
+        </a>
+        <p class="footer__desc">Premium food delivery crafted with care. Fresh ingredients, bold flavors, and restaurant-quality dishes delivered to your door.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Quick Links</h4>
+        <ul class="footer__links">
+          <li><a href="menu.html" class="footer__link">Our Menu</a></li>
+          <li><a href="categories.html" class="footer__link">Categories</a></li>
+          <li><a href="offers.html" class="footer__link">Special Offers</a></li>
+          <li><a href="about.html" class="footer__link">About Us</a></li>
+          <li><a href="blog.html" class="footer__link">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Support</h4>
+        <ul class="footer__links">
+          <li><a href="contact.html" class="footer__link">Contact Us</a></li>
+          <li><a href="#" class="footer__link">FAQs</a></li>
+          <li><a href="#" class="footer__link">Delivery Info</a></li>
+          <li><a href="#" class="footer__link">Return Policy</a></li>
+          <li><a href="#" class="footer__link">Track Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Stay Updated</h4>
+        <p style="font-size: var(--fs-small); color: var(--text-muted); margin-bottom: var(--space-4);">Get exclusive deals and menu updates straight to your inbox.</p>
+        <form class="footer__newsletter" onsubmit="return false;">
+          <div class="form-group">
+            <input type="email" class="form-input" placeholder="Your email address" aria-label="Email for newsletter" style="margin-bottom: var(--space-3);">
+            <button type="submit" class="btn btn-primary btn-sm w-full">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">&copy; 2026 Savoro. All rights reserved.</p>
+      <div class="footer__bottom-links">
+        <a href="#" class="footer__bottom-link">Privacy Policy</a>
+        <a href="#" class="footer__bottom-link">Terms of Service</a>
+        <a href="#" class="footer__bottom-link">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="../assets/js/cart.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+
+      /* ─── Emoji map ─── */
+      var EMOJI_MAP = {
+        'cake':     { emoji: '🎂', gradient: 'gradient-cake' },
+        'pastry':   { emoji: '🍰', gradient: 'gradient-cake' },
+        'juice':    { emoji: '🍹', gradient: 'gradient-juice' },
+        'smoothie': { emoji: '🥤', gradient: 'gradient-juice' },
+        'icecream': { emoji: '🍨', gradient: 'gradient-icecream' },
+        'gelato':   { emoji: '🍦', gradient: 'gradient-icecream' },
+        'pasta':    { emoji: '🍝', gradient: 'gradient-pasta' },
+        'sushi':    { emoji: '🍣', gradient: 'gradient-sushi' },
+        'default':  { emoji: '🍽️', gradient: 'gradient-default' }
+      };
+
+      var DESC_MAP = {
+        'cake-1':     'Rich dark chocolate layers with a velvety ganache finish.',
+        'juice-3':    'A refreshing blend of mixed berries and natural yogurt.',
+        'icecream-4': 'Creamy gelato swirled with buttery salted caramel ribbons.',
+        'cake-2':     'Light lemon sponge with a tangy citrus glaze.',
+        'pasta-1':    'Hand-rolled fettuccine in a slow-simmered Alfredo.',
+        'sushi-1':    'Chef\'s selection of premium nigiri and maki rolls.'
+      };
+
+      function getEmojiInfo(id) {
+        var key = id.split('-')[0];
+        return EMOJI_MAP[key] || EMOJI_MAP['default'];
+      }
+
+      function getDesc(id) {
+        return DESC_MAP[id] || 'A Savoro original, made fresh to order.';
+      }
+
+      /* ─── Toast ─── */
+      var toastEl = document.getElementById('wishToast');
+      var toastTimer = null;
+
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toastEl.classList.remove('show');
+        }, 2200);
+      }
+
+      /* ─── Render ─── */
+      var container = document.getElementById('wishContainer');
+
+      function render() {
+        var items = window.Wishlist ? window.Wishlist.getAll() : [];
+
+        if (items.length === 0) {
+          container.innerHTML =
+            '<div class="wish-empty">' +
+              '<div class="empty-emoji">💔</div>' +
+              '<h2>Your wishlist is empty</h2>' +
+              '<p>Explore our menu and save your favourite dishes.</p>' +
+              '<a href="menu.html" class="btn-browse">Browse Menu</a>' +
+            '</div>';
+          return;
+        }
+
+        var subtotal = items.reduce(function (s, i) { return s + (i.price || 0); }, 0);
+
+        var html = '';
+
+        /* Summary bar */
+        html += '<aside class="wish-summary">';
+        html += '<h3>Wishlist Summary</h3>';
+        html += '<div class="summary-row"><span>Total Items</span><span>' + items.length + '</span></div>';
+        html += '<div class="summary-row"><span>Subtotal</span><span>$' + subtotal.toFixed(2) + '</span></div>';
+        html += '<button class="btn-move-all" id="btnMoveAll">Move All to Cart</button>';
+        html += '</aside>';
+
+        /* Cards */
+        html += '<div class="wish-grid">';
+        items.forEach(function (item) {
+          var info = getEmojiInfo(item.id);
+          html += '<div class="wish-card" data-id="' + item.id + '">';
+          html += '  <div class="wish-card-img ' + info.gradient + '">' + info.emoji + '</div>';
+          html += '  <div class="wish-card-info">';
+          html += '    <h3>' + item.name + '</h3>';
+          html += '    <div class="price">$' + (item.price || 0).toFixed(2) + '</div>';
+          html += '    <div class="desc">' + getDesc(item.id) + '</div>';
+          html += '    <div class="wish-card-actions">';
+          html += '      <button class="btn-add-cart" data-id="' + item.id + '">Add to Cart</button>';
+          html += '      <button class="btn-remove" data-id="' + item.id + '" title="Remove">&times;</button>';
+          html += '    </div>';
+          html += '  </div>';
+          html += '</div>';
+        });
+        html += '</div>';
+
+        container.innerHTML = html;
+
+        /* Bind events */
+        document.querySelectorAll('.btn-add-cart').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var id = this.getAttribute('data-id');
+            var item = items.find(function (i) { return i.id === id; });
+            if (item && window.Cart && window.Cart.addItem) {
+              window.Cart.addItem(item);
+              showToast(item.name + ' added to cart!');
+            }
+          });
+        });
+
+        document.querySelectorAll('.btn-remove').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var id = this.getAttribute('data-id');
+            if (window.Wishlist && window.Wishlist.removeItem) {
+              window.Wishlist.removeItem(id);
+              render();
+              showToast('Item removed from wishlist.');
+            }
+          });
+        });
+
+        var moveAllBtn = document.getElementById('btnMoveAll');
+        if (moveAllBtn) {
+          moveAllBtn.addEventListener('click', function () {
+            if (!window.Cart || !window.Cart.addItem) return;
+            items.forEach(function (item) {
+              window.Cart.addItem(item);
+            });
+            if (window.Wishlist.clear) window.Wishlist.clear();
+            render();
+            showToast('All items moved to cart!');
+          });
+        }
+      }
+
+      /* ─── Boot ─── */
+      render();
+    })();
+  </script>
+</body>
+</html>

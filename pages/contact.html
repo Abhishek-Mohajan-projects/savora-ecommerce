@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Savoro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    .contact-hero {
+      text-align: center;
+      padding: 6rem 1.5rem 3rem;
+      background: linear-gradient(180deg, var(--color-charcoal-soft) 0%, var(--surface) 100%);
+    }
+
+    .contact-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-hero p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .contact-form .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .contact-form label {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-primary);
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: var(--text-primary);
+      background: var(--surface-input);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--color-ember-start);
+      box-shadow: 0 0 0 3px rgba(196, 67, 43, 0.15);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .btn-submit {
+      padding: 0.85rem 2rem;
+      background: var(--gradient-ember);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      align-self: flex-start;
+    }
+
+    .btn-submit:hover {
+      background: var(--gradient-ember-hover);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-glow-ember);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .info-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: var(--surface-card);
+      border: 1px solid var(--border-card);
+      border-radius: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .info-card .icon {
+      font-size: 1.5rem;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(196, 67, 43, 0.12);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .info-card .label {
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .info-card .value {
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+
+    .info-card .value a {
+      color: var(--text-link);
+      text-decoration: none;
+    }
+
+    .info-card .value a:hover {
+      text-decoration: underline;
+    }
+
+    .map-section {
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+    }
+
+    .map-container {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-container iframe {
+      display: block;
+      width: 100%;
+      height: 340px;
+      border: none;
+    }
+
+    .map-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+    }
+
+    .map-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    .map-info__icon {
+      font-size: 1.6rem;
+    }
+
+    .map-info strong {
+      display: block;
+      font-size: 1rem;
+    }
+
+    .map-info span {
+      font-size: 0.82rem;
+      opacity: 0.85;
+    }
+
+    .map-info__btn {
+      margin-left: auto;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      backdrop-filter: blur(6px);
+      transition: background 0.2s;
+    }
+
+    .map-info__btn:hover {
+      background: rgba(255, 255, 255, 0.32);
+    }
+
+    .faq-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    .faq-section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--text-primary);
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+      background: var(--surface-card);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      background: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .faq-question:hover {
+      color: var(--color-ember-start);
+    }
+
+    .faq-question .arrow {
+      font-size: 0.7rem;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+
+    .faq-item.active .faq-question .arrow {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    .faq-answer p {
+      padding: 0 1.25rem 1rem;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      background: #2d8a4e;
+      color: #fff;
+      padding: 0.9rem 1.75rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      transition: transform 0.35s ease;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__scene">
+      <div class="preloader__plate"></div>
+      <div class="preloader__orbit">
+        <span class="preloader__food">&#x1F354;</span>
+        <span class="preloader__food">&#x1F355;</span>
+        <span class="preloader__food">&#x1F370;</span>
+        <span class="preloader__food">&#x1F353;</span>
+        <span class="preloader__food">&#x1F96A;</span>
+        <span class="preloader__food">&#x1F366;</span>
+      </div>
+      <div class="preloader__logo">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="30" fill="url(#prelogo-grad)"/>
+          <path d="M20 42c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="#1A1614" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="32" cy="24" r="5" fill="#1A1614"/>
+          <defs>
+            <linearGradient id="prelogo-grad" x1="4" y1="4" x2="60" y2="60">
+              <stop stop-color="#C4432B"/>
+              <stop offset="1" stop-color="#E8A33D"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+    <div class="preloader__text">
+      <div class="preloader__brand">Savoro</div>
+      <div class="preloader__tagline">Preparing Your Delicious Experience...</div>
+      <div class="preloader__progress">
+        <div class="preloader__progress-bar" id="preloaderBar"></div>
+      </div>
+      <div class="preloader__dots">
+        <span class="preloader__dot"></span>
+        <span class="preloader__dot"></span>
+        <span class="preloader__dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="announcement-bar" role="region" aria-label="Announcements">
+    <div class="announcement-bar__track">
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Free delivery on your first order — Use code <strong>&nbsp;SAVORO25&nbsp;</strong> at checkout
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Limited time — <span class="discount">20% OFF</span> all family platters this weekend only
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Fresh daily — Our chefs prepare every dish from scratch each morning
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        New menu alert — Try our <span class="discount">15% OFF</span> summer specials today
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo" aria-label="Savoro home">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" fill="url(#logo-grad)"/>
+          <path d="M13 26c0-4 3-7 7-7s7 3 7 7" stroke="#1A1614" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="20" cy="15" r="3" fill="#1A1614"/>
+          <defs>
+            <linearGradient id="logo-grad" x1="2" y1="2" x2="38" y2="38">
+              <stop stop-color="#C4432B"/>
+              <stop offset="1" stop-color="#E8A33D"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>Savoro</span>
+      </a>
+      <ul class="navbar__links">
+        <li><a href="../index.html" class="navbar__link">Home</a></li>
+        <li><a href="menu.html" class="navbar__link">Menu</a></li>
+        <li><a href="categories.html" class="navbar__link">Categories</a></li>
+        <li><a href="offers.html" class="navbar__link">Offers</a></li>
+        <li><a href="about.html" class="navbar__link">About</a></li>
+        <li><a href="blog.html" class="navbar__link">Blog</a></li>
+        <li><a href="contact.html" class="navbar__link active">Contact</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="search.html" class="navbar__action-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <a href="wishlist.html" class="navbar__action-btn" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="navbar__badge" data-badge="wishlist">0</span>
+        </a>
+        <a href="cart.html" class="navbar__action-btn" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="navbar__badge" data-badge="cart">0</span>
+        </a>
+        <a href="profile.html" class="navbar__action-btn hide-mobile" aria-label="Profile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <button class="navbar__action-btn theme-toggle" aria-label="Toggle theme"></button>
+        <button class="navbar__hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="navbar__mobile-menu" aria-hidden="true">
+      <a href="../index.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <a href="menu.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        Menu
+      </a>
+      <a href="categories.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Categories
+      </a>
+      <a href="offers.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        Offers
+      </a>
+      <a href="about.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        About
+      </a>
+      <a href="blog.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Blog
+      </a>
+      <a href="contact.html" class="navbar__mobile-link active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact
+      </a>
+      <a href="profile.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Profile
+      </a>
+    </div>
+  </nav>
+
+  <section class="contact-hero">
+    <h1>Get in Touch</h1>
+    <p>Have a question, feedback, or just want to say hello? We'd love to hear from you.</p>
+  </section>
+
+  <section class="contact-layout">
+    <form class="contact-form" id="contactForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <select id="subject" name="subject" required>
+          <option value="" disabled selected>Select a subject</option>
+          <option value="general">General Inquiry</option>
+          <option value="order">Order Issue</option>
+          <option value="partnership">Partnership</option>
+          <option value="feedback">Feedback</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send Message</button>
+    </form>
+
+    <div class="contact-info">
+      <div class="info-card">
+        <div class="icon">📞</div>
+        <div>
+          <div class="label">Phone</div>
+          <div class="value"><a href="tel:+8801537418504">+880 1537-418504</a></div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="icon">✉️</div>
+        <div>
+          <div class="label">Email</div>
+          <div class="value"><a href="mailto:avimm079@gmail.com">avimm079@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="icon">📍</div>
+        <div>
+          <div class="label">Address</div>
+          <div class="value">Badurtola, Boro Garage, Chittagong, Bangladesh</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="icon">🕐</div>
+        <div>
+          <div class="label">Hours</div>
+          <div class="value">Mon–Sat: 10 AM – 10 PM<br>Sun: 11 AM – 9 PM</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="map-section">
+    <div class="map-container">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=91.70%2C22.26%2C92.10%2C22.48&layer=mapnik&marker=22.3569%2C91.8340"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+        title="Savoro Location – Chittagong, Bangladesh"
+      ></iframe>
+      <div class="map-overlay">
+        <div class="map-info">
+          <div class="map-info__icon">📍</div>
+          <div>
+            <strong>Savoro – Chittagong</strong>
+            <span>Agrabad, Chittagong 4100, Bangladesh</span>
+          </div>
+          <a href="https://www.openstreetmap.org/?mlat=22.3569&mlon=91.8340#map=14/22.3569/91.8340" target="_blank" rel="noopener" class="map-info__btn">Open in Maps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        How long does delivery take?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Standard delivery takes 30-45 minutes. Express delivery (available for select areas) takes 20-30 minutes for an additional $2.99.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Can I modify my order after placing it?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>You can modify your order within 5 minutes of placing it. After that, please contact our support team.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Do you offer catering services?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Yes! We offer catering for events of all sizes. Contact us at catering@savoro.com for a custom quote.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What is your refund policy?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>If you're not satisfied with your order, contact us within 2 hours and we'll make it right with a full refund or replacement.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Do you accommodate dietary restrictions?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Absolutely! Many of our items are available in vegetarian, vegan, gluten-free, and nut-free options. Check our menu filters for details.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo" aria-label="Savoro home">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" fill="url(#footer-logo-grad)"/>
+            <path d="M13 26c0-4 3-7 7-7s7 3 7 7" stroke="#1A1614" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="20" cy="15" r="3" fill="#1A1614"/>
+            <defs>
+              <linearGradient id="footer-logo-grad" x1="2" y1="2" x2="38" y2="38">
+                <stop stop-color="#C4432B"/>
+                <stop offset="1" stop-color="#E8A33D"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span>Savoro</span>
+        </a>
+        <p class="footer__desc">Premium food delivery crafted with care. Fresh ingredients, bold flavors, and restaurant-quality dishes delivered to your door.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Quick Links</h4>
+        <ul class="footer__links">
+          <li><a href="menu.html" class="footer__link">Our Menu</a></li>
+          <li><a href="categories.html" class="footer__link">Categories</a></li>
+          <li><a href="offers.html" class="footer__link">Special Offers</a></li>
+          <li><a href="about.html" class="footer__link">About Us</a></li>
+          <li><a href="blog.html" class="footer__link">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Support</h4>
+        <ul class="footer__links">
+          <li><a href="contact.html" class="footer__link">Contact Us</a></li>
+          <li><a href="#" class="footer__link">FAQs</a></li>
+          <li><a href="#" class="footer__link">Delivery Info</a></li>
+          <li><a href="#" class="footer__link">Return Policy</a></li>
+          <li><a href="#" class="footer__link">Track Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Stay Updated</h4>
+        <p style="font-size: var(--fs-small); color: var(--text-muted); margin-bottom: var(--space-4);">Get exclusive deals and menu updates straight to your inbox.</p>
+        <form class="footer__newsletter" onsubmit="return false;">
+          <div class="form-group">
+            <input type="email" class="form-input" placeholder="Your email address" aria-label="Email for newsletter" style="margin-bottom: var(--space-3);">
+            <button type="submit" class="btn btn-primary btn-sm w-full">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">&copy; 2026 Savoro. All rights reserved.</p>
+      <div class="footer__bottom-links">
+        <a href="#" class="footer__bottom-link">Privacy Policy</a>
+        <a href="#" class="footer__bottom-link">Terms of Service</a>
+        <a href="#" class="footer__bottom-link">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <div class="toast" id="toast" style="display:none;">Message sent successfully! We'll get back to you soon.</div>
+
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = this.parentElement;
+        var isActive = item.classList.contains('active');
+
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(function(el) {
+          el.classList.remove('active');
+        });
+
+        // Toggle clicked
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var toast = document.getElementById('toast');
+      toast.style.display = 'flex';
+      toast.classList.add('show');
+      setTimeout(function() {
+        toast.classList.remove('show');
+        toast.style.display = 'none';
+      }, 3500);
+      this.reset();
+    });
+
+    // Back to top
+    document.querySelectorAll('.back-to-top').forEach(function(btn) {
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+          btn.classList.add('visible');
+        } else {
+          btn.classList.remove('visible');
+        }
+      });
+      btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
+  <script src="../assets/js/cart.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

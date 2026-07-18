@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search — Savoro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    .search-hero {
+      text-align: center;
+      padding: clamp(3rem, 2rem + 4vw, 6rem) var(--container-padding) clamp(1.5rem, 1rem + 2vw, 3rem);
+    }
+    .search-hero__overline {
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-semibold);
+      letter-spacing: var(--ls-widest);
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: var(--space-3);
+    }
+    .search-hero__title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h2);
+      font-weight: var(--fw-bold);
+      margin-bottom: var(--space-6);
+    }
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      max-width: 600px;
+      margin: 0 auto var(--space-4);
+      background: var(--surface-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2) var(--space-4);
+    }
+    .search-bar svg {
+      width: 22px;
+      height: 22px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .search-bar input {
+      flex: 1;
+      padding: var(--space-3) 0;
+      background: none;
+      border: none;
+      font-family: var(--font-body);
+      font-size: var(--fs-body);
+      color: var(--text-primary);
+      outline: none;
+    }
+    .search-bar input::placeholder {
+      color: var(--text-muted);
+    }
+    .search-bar__submit {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      border: none;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #fff;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--duration-fast) var(--ease-out);
+    }
+    .search-bar__submit:hover {
+      transform: scale(1.08);
+      box-shadow: 0 4px 16px rgba(196, 67, 43, 0.35);
+    }
+    .search-bar__submit svg {
+      width: 18px;
+      height: 18px;
+      color: #fff;
+    }
+    .search-bar__clear {
+      display: none;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      border: none;
+      background: var(--surface-hover);
+      color: var(--text-secondary);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all var(--duration-fast) var(--ease-out);
+    }
+    .search-bar__clear:hover {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+    }
+    .search-bar__clear.visible {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .search-bar__clear svg {
+      width: 16px;
+      height: 16px;
+    }
+    .search-result-count {
+      font-size: var(--fs-small);
+      color: var(--text-muted);
+      margin-bottom: var(--space-8);
+    }
+    .search-not-found {
+      text-align: center;
+      padding: var(--space-16) var(--container-padding);
+      display: none !important;
+    }
+    .search-not-found.visible {
+      display: block !important;
+    }
+    .search-not-found__emoji {
+      font-size: 4rem;
+      margin-bottom: var(--space-4);
+    }
+    .search-not-found__title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h4);
+      font-weight: var(--fw-bold);
+      margin-bottom: var(--space-2);
+    }
+    .search-not-found__desc {
+      font-size: var(--fs-body);
+      color: var(--text-muted);
+    }
+    .search-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      background: #2d2d2d;
+      color: #fff;
+      padding: 0.9rem 1.75rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      z-index: 9999;
+      transition: transform 0.35s ease;
+      pointer-events: none;
+      max-width: 90vw;
+      text-align: center;
+    }
+    .search-toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .search-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+      gap: var(--grid-gap);
+      padding-inline: var(--container-padding);
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-bottom: clamp(3rem, 2rem + 4vw, 6rem);
+    }
+
+    .food-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: transform var(--duration-normal) var(--ease-out),
+                  box-shadow var(--duration-normal) var(--ease-out),
+                  border-color var(--duration-normal) var(--ease-out);
+    }
+    .food-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-hover);
+    }
+    .food-card.hidden {
+      display: none;
+    }
+    .food-card__img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .food-card__emoji {
+      font-size: clamp(3rem, 2rem + 3vw, 5rem);
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+      transition: transform var(--duration-normal) var(--ease-out);
+    }
+    .food-card:hover .food-card__emoji {
+      transform: scale(1.1) rotate(-3deg);
+    }
+    .food-card__badge {
+      position: absolute;
+      top: var(--space-3);
+      left: var(--space-3);
+      background: var(--gradient-ember);
+      color: var(--color-charcoal);
+      font-size: 11px;
+      font-weight: var(--fw-bold);
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-md);
+    }
+    .food-card__body {
+      padding: var(--space-5);
+    }
+    .food-card__category {
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-semibold);
+      letter-spacing: var(--ls-wide);
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: var(--space-2);
+    }
+    .food-card__name {
+      font-family: var(--font-display);
+      font-size: var(--fs-h4);
+      font-weight: var(--fw-bold);
+      color: var(--text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .food-card__desc {
+      font-size: var(--fs-small);
+      color: var(--text-muted);
+      line-height: var(--lh-normal);
+      margin-bottom: var(--space-4);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .food-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .food-card__price {
+      font-family: var(--font-display);
+      font-size: var(--fs-h4);
+      font-weight: var(--fw-bold);
+      color: var(--color-ember-end);
+    }
+    .food-card__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .wishlist-btn,
+    .add-to-cart-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+      border: 1.5px solid var(--border-hover);
+      color: var(--text-secondary);
+      background: transparent;
+    }
+    .wishlist-btn svg,
+    .add-to-cart-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+    .wishlist-btn:hover {
+      color: var(--danger);
+      border-color: var(--danger);
+      background: var(--danger-soft);
+    }
+    .wishlist-btn.wishlisted {
+      color: var(--danger);
+      border-color: var(--danger);
+      background: var(--danger-soft);
+    }
+    .wishlist-btn.wishlisted svg {
+      fill: var(--danger);
+    }
+    .add-to-cart-btn:hover {
+      color: var(--color-charcoal);
+      border-color: transparent;
+      background: var(--gradient-ember);
+    }
+    @media (max-width: 640px) {
+      .search-grid {
+        grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+        gap: var(--space-4);
+      }
+      .food-card__footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-3);
+      }
+      .food-card__actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__scene">
+      <div class="preloader__plate"></div>
+      <div class="preloader__orbit">
+        <span class="preloader__food">&#x1F354;</span>
+        <span class="preloader__food">&#x1F355;</span>
+        <span class="preloader__food">&#x1F370;</span>
+        <span class="preloader__food">&#x1F353;</span>
+        <span class="preloader__food">&#x1F96A;</span>
+        <span class="preloader__food">&#x1F366;</span>
+      </div>
+      <div class="preloader__logo">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="30" fill="url(#prelogo-grad)"/>
+          <path d="M20 42c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="#1A1614" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="32" cy="24" r="5" fill="#1A1614"/>
+          <defs>
+            <linearGradient id="prelogo-grad" x1="4" y1="4" x2="60" y2="60">
+              <stop stop-color="#C4432B"/>
+              <stop offset="1" stop-color="#E8A33D"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+    <div class="preloader__text">
+      <div class="preloader__brand">Savoro</div>
+      <div class="preloader__tagline">Preparing Your Delicious Experience...</div>
+      <div class="preloader__progress">
+        <div class="preloader__progress-bar" id="preloaderBar"></div>
+      </div>
+      <div class="preloader__dots">
+        <span class="preloader__dot"></span>
+        <span class="preloader__dot"></span>
+        <span class="preloader__dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar" role="region" aria-label="Announcements">
+    <div class="announcement-bar__track">
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Free delivery on your first order — Use code <strong>&nbsp;SAVORO25&nbsp;</strong> at checkout
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Limited time — <span class="discount">20% OFF</span> all family platters this weekend only
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Fresh daily — Our chefs prepare every dish from scratch each morning
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        New menu alert — Try our <span class="discount">15% OFF</span> summer specials today
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo" aria-label="Savoro home">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" fill="url(#logo-grad)"/>
+          <path d="M13 26c0-4 3-7 7-7s7 3 7 7" stroke="#1A1614" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="20" cy="15" r="3" fill="#1A1614"/>
+          <defs>
+            <linearGradient id="logo-grad" x1="2" y1="2" x2="38" y2="38">
+              <stop stop-color="#C4432B"/>
+              <stop offset="1" stop-color="#E8A33D"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>Savoro</span>
+      </a>
+      <ul class="navbar__links">
+        <li><a href="../index.html" class="navbar__link">Home</a></li>
+        <li><a href="menu.html" class="navbar__link">Menu</a></li>
+        <li><a href="categories.html" class="navbar__link">Categories</a></li>
+        <li><a href="offers.html" class="navbar__link">Offers</a></li>
+        <li><a href="about.html" class="navbar__link">About</a></li>
+        <li><a href="blog.html" class="navbar__link">Blog</a></li>
+        <li><a href="contact.html" class="navbar__link">Contact</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="search.html" class="navbar__action-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <a href="wishlist.html" class="navbar__action-btn" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="navbar__badge" data-badge="wishlist">0</span>
+        </a>
+        <a href="cart.html" class="navbar__action-btn" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="navbar__badge" data-badge="cart">0</span>
+        </a>
+        <a href="profile.html" class="navbar__action-btn hide-mobile" aria-label="Profile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <button class="navbar__action-btn theme-toggle" aria-label="Toggle theme"></button>
+        <button class="navbar__hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="navbar__mobile-menu" aria-hidden="true">
+      <a href="../index.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <a href="menu.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        Menu
+      </a>
+      <a href="categories.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Categories
+      </a>
+      <a href="offers.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        Offers
+      </a>
+      <a href="about.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        About
+      </a>
+      <a href="blog.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Blog
+      </a>
+      <a href="contact.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact
+      </a>
+      <a href="profile.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Profile
+      </a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <section class="search-hero">
+      <p class="search-hero__overline">Find Your Favorite</p>
+      <h1 class="search-hero__title ember-glow">Search Our Menu</h1>
+      <div class="search-bar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Search for cakes, juices, burgers..." autofocus>
+        <button class="search-bar__submit" id="searchBtn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="search-bar__clear" id="clearBtn" aria-label="Clear search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <p class="search-result-count" id="resultCount"></p>
+    </section>
+
+    <div class="search-grid" id="searchGrid">
+
+      <div class="food-card" data-name="Chocolate Truffle Cake" data-category="cakes">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #4a2c2a, #8b4513);">
+          <span class="food-card__emoji">&#x1F370;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Cakes</p>
+          <h3 class="food-card__name">Chocolate Truffle Cake</h3>
+          <p class="food-card__desc">Rich dark chocolate layers with a velvety ganache finish and cocoa dust.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$34.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="chocolate-truffle-cake" data-name="Chocolate Truffle Cake" data-price="34.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="chocolate-truffle-cake" data-name="Chocolate Truffle Cake" data-price="34.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Red Velvet Delight" data-category="cakes">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #8b2252, #ff6b6b);">
+          <span class="food-card__emoji">&#x1F382;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Cakes</p>
+          <h3 class="food-card__name">Red Velvet Delight</h3>
+          <p class="food-card__desc">Classic red velvet sponge with cream cheese frosting and a hint of cocoa.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$32.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="red-velvet-delight" data-name="Red Velvet Delight" data-price="32.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="red-velvet-delight" data-name="Red Velvet Delight" data-price="32.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Tiramisu Classic" data-category="cakes">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #8b6914, #deb887);">
+          <span class="food-card__emoji">&#x1F370;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Cakes</p>
+          <h3 class="food-card__name">Tiramisu Classic</h3>
+          <p class="food-card__desc">Espresso-soaked ladyfingers layered with mascarpone cream and dusted cocoa.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$29.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="tiramisu-classic" data-name="Tiramisu Classic" data-price="29.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="tiramisu-classic" data-name="Tiramisu Classic" data-price="29.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Mango Cheesecake" data-category="cakes">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #f4a460, #ffd700);">
+          <span class="food-card__emoji">&#x1F370;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Cakes</p>
+          <h3 class="food-card__name">Mango Cheesecake</h3>
+          <p class="food-card__desc">New York-style cheesecake topped with fresh Alphonso mango coulis and a graham crust.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$31.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="mango-cheesecake" data-name="Mango Cheesecake" data-price="31.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="mango-cheesecake" data-name="Mango Cheesecake" data-price="31.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Mango Bliss" data-category="juices">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #e88a1a, #ffd700);">
+          <span class="food-card__emoji">&#x1F9C3;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Juices</p>
+          <h3 class="food-card__name">Mango Bliss</h3>
+          <p class="food-card__desc">Freshly blended Alphonso mango with a squeeze of lime and mint garnish.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$6.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="mango-bliss" data-name="Mango Bliss" data-price="6.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="mango-bliss" data-name="Mango Bliss" data-price="6.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Green Detox" data-category="juices">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #2d5016, #6b8e23);">
+          <span class="food-card__emoji">&#x1F33F;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Juices</p>
+          <h3 class="food-card__name">Green Detox</h3>
+          <p class="food-card__desc">Spinach, kale, celery, and green apple with a hint of ginger for a clean boost.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$7.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="green-detox" data-name="Green Detox" data-price="7.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="green-detox" data-name="Green Detox" data-price="7.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Berry Blast" data-category="juices">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #8b0000, #ff4500);">
+          <span class="food-card__emoji">&#x1FAD0;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Juices</p>
+          <h3 class="food-card__name">Berry Blast</h3>
+          <p class="food-card__desc">A vibrant blend of blueberries, strawberries, raspberries, and a touch of honey.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$8.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="berry-blast" data-name="Berry Blast" data-price="8.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="berry-blast" data-name="Berry Blast" data-price="8.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Citrus Sunrise" data-category="juices">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #ff8c00, #ffdb58);">
+          <span class="food-card__emoji">&#x1F34A;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Juices</p>
+          <h3 class="food-card__name">Citrus Sunrise</h3>
+          <p class="food-card__desc">Fresh-squeezed orange and grapefruit juice with a hint of blood orange for depth.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$5.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="citrus-sunrise" data-name="Citrus Sunrise" data-price="5.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="citrus-sunrise" data-name="Citrus Sunrise" data-price="5.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Classic Smash Burger" data-category="fast-food">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #b8860b, #cd853f);">
+          <span class="food-card__emoji">&#x1F354;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Fast Food</p>
+          <h3 class="food-card__name">Classic Smash Burger</h3>
+          <p class="food-card__desc">Double smashed patties with American cheese, pickles, and special sauce on brioche.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$12.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="classic-smash-burger" data-name="Classic Smash Burger" data-price="12.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="classic-smash-burger" data-name="Classic Smash Burger" data-price="12.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Margherita Pizza" data-category="fast-food">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #b22222, #e8a33d);">
+          <span class="food-card__emoji">&#x1F355;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Fast Food</p>
+          <h3 class="food-card__name">Margherita Pizza</h3>
+          <p class="food-card__desc">San Marzano tomatoes, fresh mozzarella, basil, and extra virgin olive oil on sourdough crust.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$14.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="margherita-pizza" data-name="Margherita Pizza" data-price="14.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="margherita-pizza" data-name="Margherita Pizza" data-price="14.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Crispy Chicken Wings" data-category="fast-food">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #8b4513, #cd853f);">
+          <span class="food-card__emoji">&#x1F357;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Fast Food</p>
+          <h3 class="food-card__name">Crispy Chicken Wings</h3>
+          <p class="food-card__desc">Buttermilk-brined wings fried golden crispy, served with your choice of house sauce.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$11.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="crispy-chicken-wings" data-name="Crispy Chicken Wings" data-price="11.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="crispy-chicken-wings" data-name="Crispy Chicken Wings" data-price="11.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Loaded Fries" data-category="fast-food">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #d4a017, #f0c040);">
+          <span class="food-card__emoji">&#x1F9C6;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Fast Food</p>
+          <h3 class="food-card__name">Loaded Fries</h3>
+          <p class="food-card__desc">Crispy fries topped with melted cheese, jalapeños, sour cream, and crispy bacon bits.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$9.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="loaded-fries" data-name="Loaded Fries" data-price="9.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="loaded-fries" data-name="Loaded Fries" data-price="9.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Iced Caramel Latte" data-category="cold-drinks">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #5c3317, #d2a679);">
+          <span class="food-card__emoji">&#x2615;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Cold Drinks</p>
+          <h3 class="food-card__name">Iced Caramel Latte</h3>
+          <p class="food-card__desc">Double-shot espresso over ice with steamed milk and buttery caramel drizzle.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$5.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="iced-caramel-latte" data-name="Iced Caramel Latte" data-price="5.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="iced-caramel-latte" data-name="Iced Caramel Latte" data-price="5.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Fresh Lemonade" data-category="cold-drinks">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #c8d84e, #f0e130);">
+          <span class="food-card__emoji">&#x1F34B;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Cold Drinks</p>
+          <h3 class="food-card__name">Fresh Lemonade</h3>
+          <p class="food-card__desc">Hand-squeezed lemons with cane sugar, served over crushed ice with a sprig of mint.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$4.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="fresh-lemonade" data-name="Fresh Lemonade" data-price="4.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="fresh-lemonade" data-name="Fresh Lemonade" data-price="4.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Sparkling Cola" data-category="cold-drinks">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #2f1b14, #5c3a28);">
+          <span class="food-card__emoji">&#x1F366;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Cold Drinks</p>
+          <h3 class="food-card__name">Sparkling Cola</h3>
+          <p class="food-card__desc">House-crafted cola with natural vanilla, citrus oils, and a perfect fizz over hand-cut ice.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$3.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="sparkling-cola" data-name="Sparkling Cola" data-price="3.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="sparkling-cola" data-name="Sparkling Cola" data-price="3.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Iced Matcha" data-category="cold-drinks">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #556b2f, #9acd32);">
+          <span class="food-card__emoji">&#x1F375;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Cold Drinks</p>
+          <h3 class="food-card__name">Iced Matcha</h3>
+          <p class="food-card__desc">Ceremonial grade matcha whisked with oat milk over ice for a smooth, earthy refreshment.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$6.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="iced-matcha" data-name="Iced Matcha" data-price="6.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="iced-matcha" data-name="Iced Matcha" data-price="6.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Vanilla Bean" data-category="ice-cream">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #f5f5dc, #daa520);">
+          <span class="food-card__emoji">&#x1F366;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Ice Cream</p>
+          <h3 class="food-card__name">Vanilla Bean</h3>
+          <p class="food-card__desc">Madagascar vanilla bean ice cream, creamy and smooth with real vanilla specks.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$7.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="vanilla-bean" data-name="Vanilla Bean" data-price="7.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="vanilla-bean" data-name="Vanilla Bean" data-price="7.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Chocolate Fudge" data-category="ice-cream">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #3c1a0a, #6b3a2a);">
+          <span class="food-card__emoji">&#x1F36B;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Ice Cream</p>
+          <h3 class="food-card__name">Chocolate Fudge</h3>
+          <p class="food-card__desc">Decadent Belgian chocolate ice cream swirled with warm fudge and chocolate chunks.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$8.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="chocolate-fudge" data-name="Chocolate Fudge" data-price="8.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="chocolate-fudge" data-name="Chocolate Fudge" data-price="8.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Mango Sorbet" data-category="ice-cream">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #e88a1a, #ffc107);">
+          <span class="food-card__emoji">&#x1F366;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Ice Cream</p>
+          <h3 class="food-card__name">Mango Sorbet</h3>
+          <p class="food-card__desc">Dairy-free tropical mango sorbet, intensely fruity and refreshingly light.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$6.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="mango-sorbet" data-name="Mango Sorbet" data-price="6.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="mango-sorbet" data-name="Mango Sorbet" data-price="6.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Salted Caramel" data-category="ice-cream">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #8b5e3c, #c4a265);">
+          <span class="food-card__emoji">&#x1F366;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Ice Cream</p>
+          <h3 class="food-card__name">Salted Caramel</h3>
+          <p class="food-card__desc">Rich caramel ice cream with ribbons of salted caramel swirl and buttery toffee bits.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$9.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="salted-caramel" data-name="Salted Caramel" data-price="9.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="salted-caramel" data-name="Salted Caramel" data-price="9.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo" aria-label="Savoro home">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" fill="url(#footer-logo-grad)"/>
+            <path d="M13 26c0-4 3-7 7-7s7 3 7 7" stroke="#1A1614" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="20" cy="15" r="3" fill="#1A1614"/>
+            <defs>
+              <linearGradient id="footer-logo-grad" x1="2" y1="2" x2="38" y2="38">
+                <stop stop-color="#C4432B"/>
+                <stop offset="1" stop-color="#E8A33D"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span>Savoro</span>
+        </a>
+        <p class="footer__desc">Premium food delivery crafted with care. Fresh ingredients, bold flavors, and restaurant-quality dishes delivered to your door.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Quick Links</h4>
+        <ul class="footer__links">
+          <li><a href="menu.html" class="footer__link">Our Menu</a></li>
+          <li><a href="categories.html" class="footer__link">Categories</a></li>
+          <li><a href="offers.html" class="footer__link">Special Offers</a></li>
+          <li><a href="about.html" class="footer__link">About Us</a></li>
+          <li><a href="blog.html" class="footer__link">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Support</h4>
+        <ul class="footer__links">
+          <li><a href="contact.html" class="footer__link">Contact Us</a></li>
+          <li><a href="#" class="footer__link">FAQs</a></li>
+          <li><a href="#" class="footer__link">Delivery Info</a></li>
+          <li><a href="#" class="footer__link">Return Policy</a></li>
+          <li><a href="#" class="footer__link">Track Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Stay Updated</h4>
+        <p style="font-size: var(--fs-small); color: var(--text-muted); margin-bottom: var(--space-4);">Get exclusive deals and menu updates straight to your inbox.</p>
+        <form class="footer__newsletter" onsubmit="return false;">
+          <div class="form-group">
+            <input type="email" class="form-input" placeholder="Your email address" aria-label="Email for newsletter" style="margin-bottom: var(--space-3);">
+            <button type="submit" class="btn btn-primary btn-sm w-full">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">&copy; 2026 Savoro. All rights reserved.</p>
+      <div class="footer__bottom-links">
+        <a href="#" class="footer__bottom-link">Privacy Policy</a>
+        <a href="#" class="footer__bottom-link">Terms of Service</a>
+        <a href="#" class="footer__bottom-link">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK-TO-TOP -->
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="../assets/js/cart.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      var searchInput = document.getElementById("searchInput");
+      var clearBtn = document.getElementById("clearBtn");
+      var resultCount = document.getElementById("resultCount");
+      var grid = document.getElementById("searchGrid");
+      var cards = grid.querySelectorAll(".food-card");
+
+      function showToast(msg) {
+        var existing = document.querySelector(".search-toast");
+        if (existing) existing.remove();
+        var t = document.createElement("div");
+        t.className = "search-toast";
+        t.textContent = msg;
+        document.body.appendChild(t);
+        requestAnimationFrame(function () { t.classList.add("show"); });
+        setTimeout(function () {
+          t.classList.remove("show");
+          setTimeout(function () { t.remove(); }, 350);
+        }, 3000);
+      }
+
+      function doSearch(showNotFound) {
+        var q = searchInput.value.trim().toLowerCase();
+        var visible = 0;
+
+        if (q.length > 0) {
+          clearBtn.classList.add("visible");
+        } else {
+          clearBtn.classList.remove("visible");
+        }
+
+        cards.forEach(function (card) {
+          var name = (card.getAttribute("data-name") || "").toLowerCase();
+          var category = (card.getAttribute("data-category") || "").toLowerCase().replace(/-/g, " ");
+          var match = q.length === 0 || name.indexOf(q) !== -1 || category.indexOf(q) !== -1;
+          if (match) {
+            card.classList.remove("hidden");
+            visible++;
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+
+        if (q.length > 0) {
+          resultCount.textContent = visible + " result" + (visible !== 1 ? "s" : "") + " found";
+        } else {
+          resultCount.textContent = "";
+        }
+
+        if (visible === 0 && q.length > 0 && showNotFound) {
+          grid.style.display = "none";
+          showToast("Not Found \u2014 No products match \"" + searchInput.value.trim() + "\". Try a different keyword.");
+        } else if (visible === 0 && q.length > 0) {
+          grid.style.display = "none";
+        } else {
+          grid.style.display = "";
+        }
+      }
+
+      searchInput.addEventListener("input", function () {
+        doSearch(false);
+      });
+
+      searchInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          doSearch(true);
+        }
+      });
+
+      var searchBtn = document.getElementById("searchBtn");
+      if (searchBtn) {
+        searchBtn.addEventListener("click", function () {
+          doSearch(true);
+        });
+      }
+
+      clearBtn.addEventListener("click", function () {
+        searchInput.value = "";
+        doSearch();
+        searchInput.focus();
+      });
+
+      /* Cart and wishlist button handlers (delegated) */
+      grid.addEventListener("click", function (e) {
+        var addBtn = e.target.closest(".add-to-cart-btn");
+        if (addBtn && window.Cart) {
+          window.Cart.add({
+            id: addBtn.getAttribute("data-id"),
+            name: addBtn.getAttribute("data-name"),
+            price: parseFloat(addBtn.getAttribute("data-price")),
+            emoji: addBtn.closest(".food-card").querySelector(".food-card__emoji").textContent,
+            category: addBtn.getAttribute("data-id").replace(/-/g, " ")
+          });
+          if (window.showToast) window.showToast("success", "Added to Cart", addBtn.getAttribute("data-name") + " has been added to your cart.");
+        }
+
+        var wishBtn = e.target.closest(".wishlist-btn");
+        if (wishBtn && window.Wishlist) {
+          var isWishlisted = wishBtn.classList.contains("wishlisted");
+          if (isWishlisted) {
+            window.Wishlist.remove(wishBtn.getAttribute("data-id"));
+            wishBtn.classList.remove("wishlisted");
+            if (window.showToast) window.showToast("info", "Removed from Wishlist", wishBtn.getAttribute("data-name") + " removed.");
+          } else {
+            window.Wishlist.add({
+              id: wishBtn.getAttribute("data-id"),
+              name: wishBtn.getAttribute("data-name"),
+              price: parseFloat(wishBtn.getAttribute("data-price")),
+              emoji: wishBtn.closest(".food-card").querySelector(".food-card__emoji").textContent,
+              category: wishBtn.getAttribute("data-id").replace(/-/g, " ")
+            });
+            wishBtn.classList.add("wishlisted");
+            if (window.showToast) window.showToast("success", "Added to Wishlist", wishBtn.getAttribute("data-name") + " added to wishlist!");
+          }
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>

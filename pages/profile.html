@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile — Savoro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    /* ─── Auth screen ─── */
+    .auth-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-8) var(--container-padding);
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--surface-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-xl);
+      padding: var(--space-10);
+    }
+    .auth-card__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-8);
+    }
+    .auth-card__logo svg { width: 44px; height: 44px; }
+    .auth-card__logo span {
+      font-family: var(--font-display);
+      font-size: var(--fs-h3);
+      font-weight: var(--fw-bold);
+    }
+    .auth-card__title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h4);
+      font-weight: var(--fw-bold);
+      text-align: center;
+      margin-bottom: var(--space-2);
+    }
+    .auth-card__subtitle {
+      text-align: center;
+      font-size: var(--fs-small);
+      color: var(--text-muted);
+      margin-bottom: var(--space-8);
+    }
+    .auth-tabs {
+      display: flex;
+      gap: var(--space-1);
+      background: var(--surface-input);
+      border-radius: var(--radius-lg);
+      padding: 4px;
+      margin-bottom: var(--space-6);
+    }
+    .auth-tab {
+      flex: 1;
+      padding: var(--space-3);
+      border: none;
+      background: none;
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: var(--fs-small);
+      font-weight: var(--fw-semibold);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+    }
+    .auth-tab.active {
+      background: var(--surface-card);
+      color: var(--text-primary);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    }
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+    .auth-form.hidden { display: none; }
+    .auth-form label {
+      font-size: var(--fs-small);
+      font-weight: var(--fw-semibold);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-2);
+      display: block;
+    }
+    .auth-form input {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+      background: var(--surface-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      font-family: var(--font-body);
+      font-size: var(--fs-small);
+      color: var(--text-primary);
+      transition: border-color var(--duration-fast) var(--ease-out);
+    }
+    .auth-form input:focus {
+      outline: none;
+      border-color: var(--color-ember-start);
+    }
+    .auth-form .btn { width: 100%; }
+    .auth-error {
+      font-size: var(--fs-caption);
+      color: #ef4444;
+      display: none;
+    }
+
+    /* ─── Profile layout ─── */
+    .profile-hero {
+      text-align: center;
+      padding: var(--space-12) var(--container-padding) var(--space-8);
+    }
+    .profile-hero__title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h2);
+      font-weight: var(--fw-bold);
+      margin-bottom: var(--space-2);
+    }
+    .profile-hero__subtitle {
+      font-size: var(--fs-body);
+      color: var(--text-muted);
+    }
+    .profile-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--grid-gap);
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-padding);
+      padding-bottom: var(--space-16);
+      align-items: start;
+    }
+    .profile-sidebar {
+      background: var(--surface-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      position: sticky;
+      top: calc(var(--navbar-height) + var(--announcement-height) + var(--space-6));
+    }
+    .profile-sidebar__avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-full);
+      background: var(--gradient-ember);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto var(--space-4);
+      color: var(--color-charcoal);
+      font-weight: var(--fw-bold);
+      font-family: var(--font-display);
+    }
+    .profile-sidebar__name {
+      font-family: var(--font-display);
+      font-size: var(--fs-body);
+      font-weight: var(--fw-bold);
+      text-align: center;
+      margin-bottom: var(--space-1);
+    }
+    .profile-sidebar__email {
+      font-size: var(--fs-small);
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: var(--space-6);
+    }
+    .profile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+    .profile-nav__item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-lg);
+      font-size: var(--fs-small);
+      font-weight: var(--fw-medium);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      font-family: var(--font-body);
+    }
+    .profile-nav__item:hover {
+      background: var(--surface-hover);
+      color: var(--text-primary);
+    }
+    .profile-nav__item.active {
+      background: rgba(196, 67, 43, 0.1);
+      color: var(--color-ember-end);
+    }
+    .profile-nav__item svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+    .profile-nav__item--danger {
+      color: #ef4444;
+    }
+    .profile-nav__item--danger:hover {
+      background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+    }
+    .profile-panel {
+      background: var(--surface-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+    }
+    .profile-panel__title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h4);
+      font-weight: var(--fw-bold);
+      margin-bottom: var(--space-6);
+    }
+    .profile-panel.hidden { display: none; }
+
+    /* ─── Forms ─── */
+    .profile-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+    .profile-form .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+    }
+    .profile-form label {
+      font-size: var(--fs-small);
+      font-weight: var(--fw-semibold);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-2);
+      display: block;
+    }
+    .profile-form input,
+    .profile-form select {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+      background: var(--surface-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      font-family: var(--font-body);
+      font-size: var(--fs-small);
+      color: var(--text-primary);
+      transition: border-color var(--duration-fast) var(--ease-out);
+    }
+    .profile-form input:focus,
+    .profile-form select:focus {
+      outline: none;
+      border-color: var(--color-ember-start);
+    }
+
+    /* ─── Stats ─── */
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+    .profile-stat {
+      text-align: center;
+      padding: var(--space-5);
+      background: var(--surface-input);
+      border-radius: var(--radius-lg);
+    }
+    .profile-stat__number {
+      font-family: var(--font-display);
+      font-size: var(--fs-h3);
+      font-weight: var(--fw-bold);
+      color: var(--color-ember-end);
+    }
+    .profile-stat__label {
+      font-size: var(--fs-caption);
+      color: var(--text-muted);
+      margin-top: var(--space-1);
+    }
+
+    /* ─── Orders ─── */
+    .order-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .order-card {
+      display: flex;
+      align-items: center;
+      gap: var(--space-5);
+      padding: var(--space-5);
+      background: var(--surface-input);
+      border-radius: var(--radius-lg);
+      transition: transform var(--duration-fast) var(--ease-out);
+    }
+    .order-card:hover { transform: translateY(-2px); }
+    .order-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-lg);
+      background: var(--gradient-ember);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .order-card__info { flex: 1; min-width: 0; }
+    .order-card__name {
+      font-weight: var(--fw-semibold);
+      font-size: var(--fs-small);
+      margin-bottom: var(--space-1);
+    }
+    .order-card__meta {
+      font-size: var(--fs-caption);
+      color: var(--text-muted);
+    }
+    .order-card__status {
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-semibold);
+      flex-shrink: 0;
+    }
+    .order-card__status--delivered {
+      background: rgba(76, 175, 80, 0.15);
+      color: #4caf50;
+    }
+    .order-card__status--preparing {
+      background: rgba(255, 193, 7, 0.15);
+      color: #ffc107;
+    }
+    .order-card__status--transit {
+      background: rgba(33, 150, 243, 0.15);
+      color: #2196f3;
+    }
+    .order-card__total {
+      font-family: var(--font-display);
+      font-weight: var(--fw-bold);
+      color: var(--color-ember-end);
+      flex-shrink: 0;
+    }
+    .order-empty {
+      text-align: center;
+      padding: var(--space-10) var(--space-4);
+      background: var(--surface-input);
+      border-radius: var(--radius-lg);
+    }
+    .order-card__actions {
+      display: flex;
+      gap: var(--space-2);
+      flex-shrink: 0;
+    }
+    .order-btn {
+      padding: var(--space-2) var(--space-3);
+      border: none;
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-semibold);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+    }
+    .order-btn--edit {
+      background: rgba(33, 150, 243, 0.15);
+      color: #2196f3;
+    }
+    .order-btn--edit:hover {
+      background: rgba(33, 150, 243, 0.3);
+    }
+    .order-btn--delete {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+    }
+    .order-btn--delete:hover {
+      background: rgba(239, 68, 68, 0.3);
+    }
+    .order-btn--save {
+      background: rgba(76, 175, 80, 0.15);
+      color: #4caf50;
+    }
+    .order-btn--save:hover {
+      background: rgba(76, 175, 80, 0.3);
+    }
+    .order-btn--cancel {
+      background: rgba(156, 163, 175, 0.15);
+      color: #9ca3af;
+    }
+    .order-btn--cancel:hover {
+      background: rgba(156, 163, 175, 0.3);
+    }
+    .order-card input,
+    .order-card select {
+      padding: var(--space-2) var(--space-3);
+      background: var(--surface-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: var(--fs-small);
+      color: var(--text-primary);
+      width: 100%;
+    }
+    .order-card input:focus,
+    .order-card select:focus {
+      outline: none;
+      border-color: var(--color-ember-start);
+    }
+
+    /* ─── Admin table ─── */
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .admin-table th,
+    .admin-table td {
+      padding: var(--space-3) var(--space-4);
+      text-align: left;
+      font-size: var(--fs-small);
+      border-bottom: 1px solid var(--border);
+    }
+    .admin-table th {
+      font-weight: var(--fw-semibold);
+      color: var(--text-muted);
+      font-size: var(--fs-caption);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+    }
+    .admin-table tr:hover td {
+      background: var(--surface-hover);
+    }
+    .admin-table input {
+      padding: var(--space-2) var(--space-3);
+      background: var(--surface-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: var(--fs-small);
+      color: var(--text-primary);
+      width: 100%;
+    }
+    .admin-table input:focus {
+      outline: none;
+      border-color: var(--color-ember-start);
+    }
+    .admin-table select {
+      padding: var(--space-2) var(--space-3);
+      background: var(--surface-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: var(--fs-small);
+      color: var(--text-primary);
+    }
+    .admin-table select:focus {
+      outline: none;
+      border-color: var(--color-ember-start);
+    }
+    .admin-actions {
+      display: flex;
+      gap: var(--space-2);
+    }
+    .admin-btn {
+      padding: var(--space-2) var(--space-3);
+      border: none;
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-semibold);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+    }
+    .admin-btn--edit {
+      background: rgba(33, 150, 243, 0.15);
+      color: #2196f3;
+    }
+    .admin-btn--edit:hover {
+      background: rgba(33, 150, 243, 0.3);
+    }
+    .admin-btn--delete {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+    }
+    .admin-btn--delete:hover {
+      background: rgba(239, 68, 68, 0.3);
+    }
+    .admin-btn--save {
+      background: rgba(76, 175, 80, 0.15);
+      color: #4caf50;
+    }
+    .admin-btn--save:hover {
+      background: rgba(76, 175, 80, 0.3);
+    }
+    .admin-btn--cancel {
+      background: rgba(156, 163, 175, 0.15);
+      color: #9ca3af;
+    }
+    .admin-btn--cancel:hover {
+      background: rgba(156, 163, 175, 0.3);
+    }
+    .create-account-section {
+      margin-top: var(--space-8);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--border);
+    }
+    .create-account-section h3 {
+      font-family: var(--font-display);
+      font-size: var(--fs-h4);
+      font-weight: var(--fw-bold);
+      margin-bottom: var(--space-5);
+    }
+
+    /* ─── Toast ─── */
+    .profile-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      background: #2d8a4e;
+      color: #fff;
+      padding: 0.9rem 1.75rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      transition: transform 0.35s ease;
+      pointer-events: none;
+    }
+    .profile-toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ─── Mobile ─── */
+    @media (max-width: 768px) {
+      .profile-layout {
+        grid-template-columns: 1fr;
+      }
+      .profile-sidebar {
+        position: static;
+      }
+      .profile-form .form-row {
+        grid-template-columns: 1fr;
+      }
+      .profile-stats {
+        grid-template-columns: 1fr;
+      }
+      .order-card {
+        flex-wrap: wrap;
+      }
+      .admin-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__scene">
+      <div class="preloader__plate"></div>
+      <div class="preloader__orbit">
+        <span class="preloader__food">&#x1F354;</span>
+        <span class="preloader__food">&#x1F355;</span>
+        <span class="preloader__food">&#x1F370;</span>
+        <span class="preloader__food">&#x1F353;</span>
+        <span class="preloader__food">&#x1F96A;</span>
+        <span class="preloader__food">&#x1F366;</span>
+      </div>
+      <div class="preloader__logo">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="30" fill="url(#prelogo-grad)"/>
+          <path d="M20 42c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="#1A1614" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="32" cy="24" r="5" fill="#1A1614"/>
+          <defs>
+            <linearGradient id="prelogo-grad" x1="4" y1="4" x2="60" y2="60">
+              <stop stop-color="#C4432B"/>
+              <stop offset="1" stop-color="#E8A33D"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+    <div class="preloader__text">
+      <div class="preloader__brand">Savoro</div>
+      <div class="preloader__tagline">Preparing Your Delicious Experience...</div>
+      <div class="preloader__progress">
+        <div class="preloader__progress-bar" id="preloaderBar"></div>
+      </div>
+      <div class="preloader__dots">
+        <span class="preloader__dot"></span>
+        <span class="preloader__dot"></span>
+        <span class="preloader__dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar" role="region" aria-label="Announcements">
+    <div class="announcement-bar__track">
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Free delivery on your first order — Use code <strong>&nbsp;SAVORO25&nbsp;</strong> at checkout
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Limited time — <span class="discount">20% OFF</span> all family platters this weekend only
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Fresh daily — Our chefs prepare every dish from scratch each morning
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        New menu alert — Try our <span class="discount">15% OFF</span> summer specials today
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo" aria-label="Savoro home">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" fill="url(#logo-grad)"/>
+          <path d="M13 26c0-4 3-7 7-7s7 3 7 7" stroke="#1A1614" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="20" cy="15" r="3" fill="#1A1614"/>
+          <defs>
+            <linearGradient id="logo-grad" x1="2" y1="2" x2="38" y2="38">
+              <stop stop-color="#C4432B"/>
+              <stop offset="1" stop-color="#E8A33D"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>Savoro</span>
+      </a>
+      <ul class="navbar__links">
+        <li><a href="../index.html" class="navbar__link">Home</a></li>
+        <li><a href="menu.html" class="navbar__link">Menu</a></li>
+        <li><a href="categories.html" class="navbar__link">Categories</a></li>
+        <li><a href="offers.html" class="navbar__link">Offers</a></li>
+        <li><a href="about.html" class="navbar__link">About</a></li>
+        <li><a href="blog.html" class="navbar__link">Blog</a></li>
+        <li><a href="contact.html" class="navbar__link">Contact</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="search.html" class="navbar__action-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <a href="wishlist.html" class="navbar__action-btn" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="navbar__badge" data-badge="wishlist">0</span>
+        </a>
+        <a href="cart.html" class="navbar__action-btn" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="navbar__badge" data-badge="cart">0</span>
+        </a>
+        <a href="profile.html" class="navbar__action-btn hide-mobile" aria-label="Profile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <button class="navbar__action-btn theme-toggle" aria-label="Toggle theme"></button>
+        <button class="navbar__hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="navbar__mobile-menu" aria-hidden="true">
+      <a href="../index.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <a href="menu.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        Menu
+      </a>
+      <a href="categories.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Categories
+      </a>
+      <a href="offers.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        Offers
+      </a>
+      <a href="about.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        About
+      </a>
+      <a href="blog.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Blog
+      </a>
+      <a href="contact.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact
+      </a>
+      <a href="profile.html" class="navbar__mobile-link active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Profile
+      </a>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- AUTH SCREEN (shown when logged out)         -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="auth-screen" id="authScreen">
+    <div class="auth-card">
+      <div class="auth-card__logo">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" fill="url(#auth-logo-grad)"/>
+          <path d="M13 26c0-4 3-7 7-7s7 3 7 7" stroke="#1A1614" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="20" cy="15" r="3" fill="#1A1614"/>
+          <defs>
+            <linearGradient id="auth-logo-grad" x1="2" y1="2" x2="38" y2="38">
+              <stop stop-color="#C4432B"/>
+              <stop offset="1" stop-color="#E8A33D"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>Savoro</span>
+      </div>
+
+      <!-- Tabs -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-auth="login">Log In</button>
+        <button class="auth-tab" data-auth="signup">Sign Up</button>
+      </div>
+
+      <!-- Login Form -->
+      <form class="auth-form" id="loginForm">
+        <h2 class="auth-card__title">Welcome back</h2>
+        <p class="auth-card__subtitle">Log in to your account to continue</p>
+        <div>
+          <label for="loginEmail">Email Address</label>
+          <input type="email" id="loginEmail" placeholder="you@example.com" required>
+        </div>
+        <div>
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter your password" required>
+        </div>
+        <p class="auth-error" id="loginError"></p>
+        <button type="submit" class="btn btn-primary">Log In</button>
+      </form>
+
+      <!-- Signup Form -->
+      <form class="auth-form hidden" id="signupForm">
+        <h2 class="auth-card__title">Create account</h2>
+        <p class="auth-card__subtitle">Sign up to start ordering delicious food</p>
+        <div>
+          <label for="signupName">Full Name</label>
+          <input type="text" id="signupName" placeholder="Your name" required>
+        </div>
+        <div>
+          <label for="signupEmail">Email Address</label>
+          <input type="email" id="signupEmail" placeholder="you@example.com" required>
+        </div>
+        <div>
+          <label for="signupPassword">Password</label>
+          <input type="password" id="signupPassword" placeholder="Min 6 characters" required minlength="6">
+        </div>
+        <div>
+          <label for="signupPhone">Phone Number (optional)</label>
+          <input type="tel" id="signupPhone" placeholder="+1 (555) 000-0000">
+        </div>
+        <p class="auth-error" id="signupError"></p>
+        <button type="submit" class="btn btn-primary">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- PROFILE DASHBOARD (shown when logged in)    -->
+  <!-- ════════════════════════════════════════════ -->
+  <main id="main-content" style="display:none;">
+    <div class="profile-hero">
+      <p class="text-overline mb-2">Account</p>
+      <h1 class="profile-hero__title ember-glow">My Profile</h1>
+      <p class="profile-hero__subtitle">Manage your account, orders, and preferences</p>
+    </div>
+
+    <div class="profile-layout">
+      <!-- Sidebar -->
+      <aside class="profile-sidebar">
+        <div class="profile-sidebar__avatar" id="userAvatar">U</div>
+        <div class="profile-sidebar__name" id="userName">Guest User</div>
+        <div class="profile-sidebar__email" id="userEmail">Not logged in</div>
+        <nav class="profile-nav">
+          <button class="profile-nav__item active" data-panel="dashboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Dashboard
+          </button>
+          <button class="profile-nav__item" data-panel="orders">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            My Orders
+          </button>
+          <button class="profile-nav__item" data-panel="settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            Settings
+          </button>
+          <button class="profile-nav__item" data-panel="admin" id="adminNavBtn" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Admin Panel
+          </button>
+          <button class="profile-nav__item profile-nav__item--danger" id="logoutBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Log Out
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Dashboard Panel -->
+      <div class="profile-panel" id="panel-dashboard">
+        <h2 class="profile-panel__title">Dashboard</h2>
+        <div class="profile-stats">
+          <div class="profile-stat">
+            <div class="profile-stat__number" id="statOrders">0</div>
+            <div class="profile-stat__label">Total Orders</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat__number" id="statSpent">$0</div>
+            <div class="profile-stat__label">Total Spent</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat__number" id="statPoints">0</div>
+            <div class="profile-stat__label">Reward Points</div>
+          </div>
+        </div>
+        <h3 style="font-family:var(--font-display);font-size:var(--fs-body);font-weight:var(--fw-bold);margin-bottom:var(--space-4);">Recent Orders</h3>
+        <div class="order-list" id="recentOrders">
+        </div>
+        <div class="order-empty" id="recentOrdersEmpty">
+          <p style="font-size:2rem;margin-bottom:var(--space-3);">&#x1F6D2;</p>
+          <p style="font-weight:var(--fw-semibold);margin-bottom:var(--space-1);">No orders yet</p>
+          <p style="font-size:var(--fs-small);color:var(--text-muted);">Your recent orders will appear here after you place one.</p>
+        </div>
+      </div>
+
+      <!-- Orders Panel -->
+      <div class="profile-panel hidden" id="panel-orders">
+        <h2 class="profile-panel__title">My Orders</h2>
+        <div class="order-list" id="allOrders">
+        </div>
+        <div class="order-empty" id="allOrdersEmpty">
+          <p style="font-size:2rem;margin-bottom:var(--space-3);">&#x1F4CB;</p>
+          <p style="font-weight:var(--fw-semibold);margin-bottom:var(--space-1);">No orders yet</p>
+          <p style="font-size:var(--fs-small);color:var(--text-muted);">When you place an order, it will appear here for easy tracking.</p>
+        </div>
+      </div>
+
+      <!-- Settings Panel -->
+      <div class="profile-panel hidden" id="panel-settings">
+        <h2 class="profile-panel__title">Account Settings</h2>
+        <form class="profile-form" id="settingsForm">
+          <div class="form-row">
+            <div>
+              <label for="settingsName">Full Name</label>
+              <input type="text" id="settingsName" placeholder="Your name">
+            </div>
+            <div>
+              <label for="settingsEmail">Email Address</label>
+              <input type="email" id="settingsEmail" placeholder="you@example.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="settingsPhone">Phone Number</label>
+              <input type="tel" id="settingsPhone" placeholder="+1 (555) 000-0000">
+            </div>
+            <div>
+              <label for="settingsAddress">Delivery Address</label>
+              <input type="text" id="settingsAddress" placeholder="123 Main St, City">
+            </div>
+          </div>
+          <div>
+            <label for="settingsPassword">New Password</label>
+            <input type="password" id="settingsPassword" placeholder="Leave blank to keep current">
+          </div>
+          <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Save Changes</button>
+        </form>
+      </div>
+
+      <!-- Admin Panel -->
+      <div class="profile-panel hidden" id="panel-admin">
+        <h2 class="profile-panel__title">Admin Dashboard</h2>
+        <div class="profile-stats">
+          <div class="profile-stat">
+            <div class="profile-stat__number" id="adminUserCount">1</div>
+            <div class="profile-stat__label">Total Users</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat__number">3,891</div>
+            <div class="profile-stat__label">Total Orders</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat__number">$48.2K</div>
+            <div class="profile-stat__label">Revenue</div>
+          </div>
+        </div>
+
+        <h3 style="font-family:var(--font-display);font-size:var(--fs-body);font-weight:var(--fw-bold);margin-bottom:var(--space-4);">Users</h3>
+        <div style="overflow-x:auto;margin-bottom:var(--space-6);">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Joined</th>
+                <th style="text-align:right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminUserTable">
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Create New Account -->
+        <div class="create-account-section">
+          <h3>Create New Account</h3>
+          <form class="profile-form" id="createAccountForm">
+            <div class="form-row">
+              <div>
+                <label for="newName">Full Name</label>
+                <input type="text" id="newName" placeholder="Enter full name" required>
+              </div>
+              <div>
+                <label for="newEmail">Email Address</label>
+                <input type="email" id="newEmail" placeholder="user@example.com" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div>
+                <label for="newPassword">Password</label>
+                <input type="password" id="newPassword" placeholder="Min 6 characters" required minlength="6">
+              </div>
+              <div>
+                <label for="newRole">Role</label>
+                <select id="newRole" style="width:100%;padding:var(--space-3) var(--space-4);background:var(--surface-input);border:1px solid var(--border);border-radius:var(--radius-lg);font-family:var(--font-body);font-size:var(--fs-small);color:var(--text-primary);">
+                  <option value="customer">Customer</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Create Account</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo" aria-label="Savoro home">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" fill="url(#footer-logo-grad)"/>
+            <path d="M13 26c0-4 3-7 7-7s7 3 7 7" stroke="#1A1614" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="20" cy="15" r="3" fill="#1A1614"/>
+            <defs>
+              <linearGradient id="footer-logo-grad" x1="2" y1="2" x2="38" y2="38">
+                <stop stop-color="#C4432B"/>
+                <stop offset="1" stop-color="#E8A33D"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span>Savoro</span>
+        </a>
+        <p class="footer__desc">Premium food delivery crafted with care. Fresh ingredients, bold flavors, and restaurant-quality dishes delivered to your door.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Quick Links</h4>
+        <ul class="footer__links">
+          <li><a href="menu.html" class="footer__link">Our Menu</a></li>
+          <li><a href="categories.html" class="footer__link">Categories</a></li>
+          <li><a href="offers.html" class="footer__link">Special Offers</a></li>
+          <li><a href="about.html" class="footer__link">About Us</a></li>
+          <li><a href="blog.html" class="footer__link">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Support</h4>
+        <ul class="footer__links">
+          <li><a href="contact.html" class="footer__link">Contact Us</a></li>
+          <li><a href="#" class="footer__link">FAQs</a></li>
+          <li><a href="#" class="footer__link">Delivery Info</a></li>
+          <li><a href="#" class="footer__link">Return Policy</a></li>
+          <li><a href="#" class="footer__link">Track Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Stay Updated</h4>
+        <p style="font-size: var(--fs-small); color: var(--text-muted); margin-bottom: var(--space-4);">Get exclusive deals and menu updates straight to your inbox.</p>
+        <form class="footer__newsletter" onsubmit="return false;">
+          <div class="form-group">
+            <input type="email" class="form-input" placeholder="Your email address" aria-label="Email for newsletter" style="margin-bottom: var(--space-3);">
+            <button type="submit" class="btn btn-primary btn-sm w-full">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">&copy; 2026 Savoro. All rights reserved.</p>
+      <div class="footer__bottom-links">
+        <a href="#" class="footer__bottom-link">Privacy Policy</a>
+        <a href="#" class="footer__bottom-link">Terms of Service</a>
+        <a href="#" class="footer__bottom-link">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK-TO-TOP -->
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <div class="profile-toast" id="profileToast"></div>
+
+  <script src="../assets/js/cart.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var USERS_KEY = "savoro_users";
+      var CURRENT_USER_KEY = "savoro_current_user";
+
+      function getUsers() {
+        try {
+          var raw = localStorage.getItem(USERS_KEY);
+          return raw ? JSON.parse(raw) : [];
+        } catch (e) { return []; }
+      }
+
+      function saveUsers(users) {
+        localStorage.setItem(USERS_KEY, JSON.stringify(users));
+      }
+
+      function getCurrentUser() {
+        try {
+          var raw = localStorage.getItem(CURRENT_USER_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveCurrentUser(user) {
+        if (user) {
+          localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
+        } else {
+          localStorage.removeItem(CURRENT_USER_KEY);
+        }
+      }
+
+      function escapeHTML(str) {
+        var div = document.createElement("div");
+        div.appendChild(document.createTextNode(str || ""));
+        return div.innerHTML;
+      }
+
+      function showToast(msg) {
+        var toast = document.getElementById("profileToast");
+        toast.textContent = msg;
+        toast.classList.add("show");
+        setTimeout(function () { toast.classList.remove("show"); }, 2500);
+      }
+
+      /* ─── Seed default admin if no users exist ─── */
+      function seedDefaultAdmin() {
+        var users = getUsers();
+        if (users.length === 0) {
+          var today = new Date();
+          var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+          saveUsers([{
+            name: "Admin",
+            email: "admin@savoro.com",
+            password: "admin123",
+            role: "admin",
+            phone: "",
+            address: "",
+            joined: monthNames[today.getMonth()] + " " + today.getFullYear()
+          }]);
+        }
+      }
+      seedDefaultAdmin();
+
+      /* ─── Auth screen logic ─── */
+      var authScreen = document.getElementById("authScreen");
+      var mainContent = document.getElementById("main-content");
+      var user = getCurrentUser();
+
+      if (user) {
+        authScreen.style.display = "none";
+        mainContent.style.display = "";
+        loadDashboard();
+      } else {
+        authScreen.style.display = "";
+        mainContent.style.display = "none";
+      }
+
+      /* Tab switching */
+      var authTabs = document.querySelectorAll(".auth-tab");
+      var loginForm = document.getElementById("loginForm");
+      var signupForm = document.getElementById("signupForm");
+      authTabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          authTabs.forEach(function (t) { t.classList.remove("active"); });
+          tab.classList.add("active");
+          var mode = tab.getAttribute("data-auth");
+          if (mode === "login") {
+            loginForm.classList.remove("hidden");
+            signupForm.classList.add("hidden");
+          } else {
+            signupForm.classList.remove("hidden");
+            loginForm.classList.add("hidden");
+          }
+        });
+      });
+
+      /* Login */
+      loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var email = document.getElementById("loginEmail").value.trim();
+        var password = document.getElementById("loginPassword").value;
+        var errEl = document.getElementById("loginError");
+        errEl.style.display = "none";
+
+        var users = getUsers();
+        var found = users.find(function (u) { return u.email === email && u.password === password; });
+        if (!found) {
+          errEl.textContent = "Invalid email or password.";
+          errEl.style.display = "block";
+          return;
+        }
+
+        saveCurrentUser(found);
+        user = found;
+        authScreen.style.display = "none";
+        mainContent.style.display = "";
+        loadDashboard();
+        showToast("Welcome back, " + found.name + "!");
+      });
+
+      /* Signup */
+      signupForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var name = document.getElementById("signupName").value.trim();
+        var email = document.getElementById("signupEmail").value.trim();
+        var password = document.getElementById("signupPassword").value;
+        var phone = document.getElementById("signupPhone").value.trim();
+        var errEl = document.getElementById("signupError");
+        errEl.style.display = "none";
+
+        var users = getUsers();
+        var exists = users.some(function (u) { return u.email === email; });
+        if (exists) {
+          errEl.textContent = "An account with this email already exists.";
+          errEl.style.display = "block";
+          return;
+        }
+
+        var today = new Date();
+        var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        var newUser = {
+          name: name,
+          email: email,
+          password: password,
+          role: "customer",
+          phone: phone,
+          address: "",
+          joined: monthNames[today.getMonth()] + " " + today.getFullYear()
+        };
+        users.push(newUser);
+        saveUsers(users);
+
+        saveCurrentUser(newUser);
+        user = newUser;
+        authScreen.style.display = "none";
+        mainContent.style.display = "";
+        loadDashboard();
+        showToast("Account created! Welcome, " + name + "!");
+      });
+
+      /* Logout */
+      document.getElementById("logoutBtn").addEventListener("click", function () {
+        saveCurrentUser(null);
+        user = null;
+        authScreen.style.display = "";
+        mainContent.style.display = "none";
+        /* Reset forms */
+        loginForm.reset();
+        signupForm.reset();
+        document.getElementById("loginError").style.display = "none";
+        document.getElementById("signupError").style.display = "none";
+        /* Reset to login tab */
+        authTabs.forEach(function (t) { t.classList.remove("active"); });
+        authTabs[0].classList.add("active");
+        loginForm.classList.remove("hidden");
+        signupForm.classList.add("hidden");
+      });
+
+      /* ─── Dashboard ─── */
+      function loadDashboard() {
+        if (!user) return;
+
+        document.getElementById("userName").textContent = user.name || "User";
+        document.getElementById("userEmail").textContent = user.email || "";
+        document.getElementById("userAvatar").textContent = (user.name || "U").charAt(0).toUpperCase();
+        document.getElementById("settingsName").value = user.name || "";
+        document.getElementById("settingsEmail").value = user.email || "";
+        document.getElementById("settingsPhone").value = user.phone || "";
+        document.getElementById("settingsAddress").value = user.address || "";
+
+        if (user.role === "admin") {
+          document.getElementById("adminNavBtn").style.display = "flex";
+          renderAdminTable();
+        } else {
+          document.getElementById("adminNavBtn").style.display = "none";
+        }
+
+        var cartItems = window.Cart ? window.Cart.getAll() : [];
+        var totalSpent = cartItems.reduce(function (s, i) { return s + (i.price * i.quantity); }, 0);
+        var totalItems = cartItems.reduce(function (s, i) { return s + i.quantity; }, 0);
+        document.getElementById("statOrders").textContent = totalItems || 0;
+        document.getElementById("statSpent").textContent = "$" + totalSpent.toFixed(2);
+        document.getElementById("statPoints").textContent = Math.floor(totalSpent * 10) || 0;
+      }
+
+      /* ─── Panel switching ─── */
+      var navItems = document.querySelectorAll(".profile-nav__item");
+      navItems.forEach(function (item) {
+        item.addEventListener("click", function () {
+          if (item.id === "logoutBtn") return;
+          navItems.forEach(function (n) { n.classList.remove("active"); });
+          item.classList.add("active");
+          var panelId = "panel-" + item.getAttribute("data-panel");
+          document.querySelectorAll(".profile-panel").forEach(function (p) {
+            p.classList.add("hidden");
+          });
+          document.getElementById(panelId).classList.remove("hidden");
+        });
+      });
+
+      /* ─── Settings save ─── */
+      document.getElementById("settingsForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var updated = {
+          name: document.getElementById("settingsName").value,
+          email: document.getElementById("settingsEmail").value,
+          phone: document.getElementById("settingsPhone").value,
+          address: document.getElementById("settingsAddress").value,
+          password: user ? user.password : "",
+          role: user ? user.role : "customer",
+          joined: user ? user.joined : "Today"
+        };
+        saveCurrentUser(updated);
+
+        var users = getUsers();
+        for (var i = 0; i < users.length; i++) {
+          if (users[i].email === (user ? user.email : "")) {
+            users[i] = updated;
+            break;
+          }
+        }
+        saveUsers(users);
+        user = updated;
+
+        document.getElementById("userName").textContent = updated.name || "User";
+        document.getElementById("userEmail").textContent = updated.email || "";
+        document.getElementById("userAvatar").textContent = (updated.name || "U").charAt(0).toUpperCase();
+        showToast("Settings saved successfully!");
+      });
+
+      /* ─── Create account (admin) ─── */
+      document.getElementById("createAccountForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var name = document.getElementById("newName").value.trim();
+        var email = document.getElementById("newEmail").value.trim();
+        var password = document.getElementById("newPassword").value;
+        var role = document.getElementById("newRole").value;
+
+        if (!name || !email || !password) {
+          showToast("Please fill in all fields.");
+          return;
+        }
+
+        var users = getUsers();
+        var exists = users.some(function (u) { return u.email === email; });
+        if (exists) {
+          showToast("An account with this email already exists.");
+          return;
+        }
+
+        var today = new Date();
+        var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        var newUser = { name: name, email: email, password: password, role: role, phone: "", address: "", joined: monthNames[today.getMonth()] + " " + today.getFullYear() };
+        users.push(newUser);
+        saveUsers(users);
+
+        document.getElementById("newName").value = "";
+        document.getElementById("newEmail").value = "";
+        document.getElementById("newPassword").value = "";
+        document.getElementById("newRole").value = "customer";
+
+        renderAdminTable();
+        showToast("Account created for " + name + "!");
+      });
+
+      /* ─── Admin table with Edit / Delete ─── */
+      function renderAdminTable() {
+        var users = getUsers();
+        var tbody = document.getElementById("adminUserTable");
+        if (!tbody) return;
+
+        document.getElementById("adminUserCount").textContent = users.length;
+
+        var html = "";
+        users.forEach(function (u, idx) {
+          var initial = (u.name || "?").charAt(0).toUpperCase();
+          var date = u.joined || "Today";
+          html += '<tr data-idx="' + idx + '">'
+            + '<td><span class="user-view">' + escapeHTML(u.name) + '</span></td>'
+            + '<td><span class="user-view">' + escapeHTML(u.email) + '</span></td>'
+            + '<td><span class="user-view">' + (u.role || "customer") + '</span></td>'
+            + '<td><span class="user-view">' + date + '</span></td>'
+            + '<td style="text-align:right;"><div class="admin-actions">'
+            + '<button class="admin-btn admin-btn--edit" onclick="editUser(' + idx + ')">Edit</button>'
+            + '<button class="admin-btn admin-btn--delete" onclick="deleteUser(' + idx + ')">Delete</button>'
+            + '</div></td>'
+            + '</tr>';
+        });
+        tbody.innerHTML = html;
+      }
+
+      /* Edit user — inline */
+      window.editUser = function (idx) {
+        var users = getUsers();
+        var u = users[idx];
+        var tbody = document.getElementById("adminUserTable");
+        var rows = tbody.querySelectorAll("tr");
+        var row = rows[idx];
+
+        row.innerHTML = ''
+          + '<td><input type="text" value="' + escapeHTML(u.name) + '" data-field="name"></td>'
+          + '<td><input type="email" value="' + escapeHTML(u.email) + '" data-field="email"></td>'
+          + '<td><select data-field="role">'
+          + '<option value="customer"' + (u.role === "customer" ? " selected" : "") + '>Customer</option>'
+          + '<option value="admin"' + (u.role === "admin" ? " selected" : "") + '>Admin</option>'
+          + '</select></td>'
+          + '<td><span class="user-view">' + (u.joined || "Today") + '</span></td>'
+          + '<td style="text-align:right;"><div class="admin-actions">'
+          + '<button class="admin-btn admin-btn--save" onclick="saveUser(' + idx + ')">Save</button>'
+          + '<button class="admin-btn admin-btn--cancel" onclick="renderAdminTable()">Cancel</button>'
+          + '</div></td>';
+      };
+
+      /* Save edited user */
+      window.saveUser = function (idx) {
+        var users = getUsers();
+        var tbody = document.getElementById("adminUserTable");
+        var rows = tbody.querySelectorAll("tr");
+        var row = rows[idx];
+
+        var nameInput = row.querySelector('[data-field="name"]');
+        var emailInput = row.querySelector('[data-field="email"]');
+        var roleSelect = row.querySelector('[data-field="role"]');
+
+        users[idx].name = nameInput.value.trim();
+        users[idx].email = emailInput.value.trim();
+        users[idx].role = roleSelect.value;
+
+        saveUsers(users);
+
+        /* Update current user if editing self */
+        var cu = getCurrentUser();
+        if (cu && cu.email === users[idx].email) {
+          saveCurrentUser(users[idx]);
+          user = users[idx];
+          document.getElementById("userName").textContent = users[idx].name;
+          document.getElementById("userEmail").textContent = users[idx].email;
+          document.getElementById("userAvatar").textContent = (users[idx].name || "U").charAt(0).toUpperCase();
+        }
+
+        renderAdminTable();
+        showToast("User updated successfully!");
+      };
+
+      /* Delete user */
+      window.deleteUser = function (idx) {
+        var users = getUsers();
+        var u = users[idx];
+
+        /* Prevent deleting yourself */
+        var cu = getCurrentUser();
+        if (cu && cu.email === u.email) {
+          showToast("You cannot delete your own account.");
+          return;
+        }
+
+        if (!confirm("Delete " + u.name + "'s account? This cannot be undone.")) return;
+
+        users.splice(idx, 1);
+        saveUsers(users);
+        renderAdminTable();
+        showToast("Account deleted.");
+      };
+
+      /* ─── Order Edit / Delete ─── */
+      window.editOrder = function (btn) {
+        var card = btn.closest(".order-card");
+        var nameEl = card.querySelector(".order-card__name");
+        var statusEl = card.querySelector(".order-card__status");
+        var totalEl = card.querySelector(".order-card__total");
+        var actionsEl = card.querySelector(".order-card__actions");
+
+        var currentName = nameEl.textContent;
+        var currentTotal = totalEl.textContent.replace("$", "");
+        var currentStatus = statusEl.textContent;
+
+        nameEl.innerHTML = '<input type="text" value="' + escapeHTML(currentName) + '">';
+        totalEl.innerHTML = '<input type="text" value="' + escapeHTML(currentTotal) + '" style="width:80px;">';
+        statusEl.outerHTML = '<select class="order-card__status">'
+          + '<option value="Delivered"' + (currentStatus === "Delivered" ? " selected" : "") + '>Delivered</option>'
+          + '<option value="Preparing"' + (currentStatus === "Preparing" ? " selected" : "") + '>Preparing</option>'
+          + '<option value="In Transit"' + (currentStatus === "In Transit" ? " selected" : "") + '>In Transit</option>'
+          + '</select>';
+
+        actionsEl.innerHTML = '<button class="order-btn order-btn--save" onclick="saveOrder(this)">Save</button>'
+          + '<button class="order-btn order-btn--cancel" onclick="cancelEditOrder(this, \'' + escapeHTML(currentName) + '\', \'' + escapeHTML(currentStatus) + '\', \'' + escapeHTML(currentTotal) + '\')">Cancel</button>';
+      };
+
+      window.saveOrder = function (btn) {
+        var card = btn.closest(".order-card");
+        var nameInput = card.querySelector(".order-card__name input");
+        var statusSelect = card.querySelector(".order-card__status");
+        var totalInput = card.querySelector(".order-card__total input");
+
+        var newName = nameInput.value.trim();
+        var newStatus = statusSelect.value;
+        var newTotal = totalInput.value.trim();
+
+        var statusClass = "order-card__status--delivered";
+        if (newStatus === "Preparing") statusClass = "order-card__status--preparing";
+        else if (newStatus === "In Transit") statusClass = "order-card__status--transit";
+
+        card.querySelector(".order-card__name").textContent = newName;
+        statusSelect.outerHTML = '<span class="order-card__status ' + statusClass + '">' + newStatus + '</span>';
+        card.querySelector(".order-card__total").textContent = "$" + newTotal;
+        card.querySelector(".order-card__actions").innerHTML =
+          '<button class="order-btn order-btn--edit" onclick="editOrder(this)">Edit</button>'
+          + '<button class="order-btn order-btn--delete" onclick="deleteOrder(this)">Delete</button>';
+
+        showToast("Order updated!");
+      };
+
+      window.cancelEditOrder = function (btn, origName, origStatus, origTotal) {
+        var card = btn.closest(".order-card");
+
+        card.querySelector(".order-card__name").textContent = origName;
+        card.querySelector(".order-card__total").textContent = "$" + origTotal;
+
+        var statusSelect = card.querySelector(".order-card__status");
+        var statusClass = "order-card__status--delivered";
+        if (origStatus === "Preparing") statusClass = "order-card__status--preparing";
+        else if (origStatus === "In Transit") statusClass = "order-card__status--transit";
+        statusSelect.outerHTML = '<span class="order-card__status ' + statusClass + '">' + origStatus + '</span>';
+
+        card.querySelector(".order-card__actions").innerHTML =
+          '<button class="order-btn order-btn--edit" onclick="editOrder(this)">Edit</button>'
+          + '<button class="order-btn order-btn--delete" onclick="deleteOrder(this)">Delete</button>';
+      };
+
+      window.deleteOrder = function (btn) {
+        var card = btn.closest(".order-card");
+        var name = card.querySelector(".order-card__name").textContent;
+        if (!confirm("Delete order for " + name + "?")) return;
+        var list = card.closest(".order-list");
+        card.remove();
+        toggleEmptyState(list);
+        showToast("Order deleted.");
+      };
+
+      function toggleEmptyState(list) {
+        var hasOrders = list.querySelectorAll(".order-card").length > 0;
+        var emptyEl = list.nextElementSibling;
+        if (emptyEl && emptyEl.classList.contains("order-empty")) {
+          emptyEl.style.display = hasOrders ? "none" : "";
+        }
+      }
+
+    })();
+  </script>
+
+</body>
+</html>
