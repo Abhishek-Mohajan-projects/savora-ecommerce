@@ -16,8 +16,17 @@
     var preloader = document.getElementById("preloader");
     if (!preloader) return;
 
-    // Only show preloader on first visit of the session
-    if (sessionStorage.getItem("savoro_preloaded")) {
+    // Detect if page was refreshed (not just navigated)
+    var navEntries = performance.getEntriesByType("navigation");
+    var isReload = navEntries.length > 0 && navEntries[0].type === "reload";
+    if (!isReload && performance.navigation) {
+      isReload = performance.navigation.type === 1;
+    }
+
+    var hasSeen = sessionStorage.getItem("savoro_preloaded");
+
+    // Skip preloader on normal navigation (not refresh, not first visit)
+    if (hasSeen && !isReload) {
       preloader.parentNode.removeChild(preloader);
       return;
     }
