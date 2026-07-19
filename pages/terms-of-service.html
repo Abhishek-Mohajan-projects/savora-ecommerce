@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service | Savoro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/variables.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <style>
+    .legal-hero {
+      text-align: center;
+      padding: 5rem 1.5rem 3.5rem;
+      background: linear-gradient(135deg, #1a0a00 0%, #2d1600 50%, #1a0a00 100%);
+      color: #f5e6d3;
+    }
+    .legal-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      color: #f5e6d3;
+    }
+    .legal-hero p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.15rem;
+      color: #bfa88a;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .legal-hero .legal-updated {
+      font-size: 0.85rem;
+      color: rgba(191,168,138,0.5);
+      margin-top: 0.75rem;
+    }
+
+    .legal-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+    .legal-content h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #f5e6d3;
+      margin: 2.5rem 0 1rem;
+    }
+    .legal-content h2:first-child {
+      margin-top: 0;
+    }
+    .legal-content p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #bfa88a;
+      margin-bottom: 1rem;
+    }
+    .legal-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 1rem;
+    }
+    .legal-content ul li {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.93rem;
+      line-height: 1.7;
+      color: #bfa88a;
+      padding: 0.4rem 0 0.4rem 1.5rem;
+      position: relative;
+    }
+    .legal-content ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #daa520;
+      font-weight: 700;
+    }
+    .legal-content strong {
+      color: #f5e6d3;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .legal-hero {
+        padding: 3.5rem 1.25rem 2.5rem;
+      }
+      .legal-content {
+        padding: 2.5rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__scene">
+      <div class="preloader__plate"></div>
+      <div class="preloader__orbit">
+        <span class="preloader__food">&#x1F354;</span>
+        <span class="preloader__food">&#x1F355;</span>
+        <span class="preloader__food">&#x1F370;</span>
+        <span class="preloader__food">&#x1F353;</span>
+        <span class="preloader__food">&#x1F96A;</span>
+        <span class="preloader__food">&#x1F366;</span>
+      </div>
+      <div class="preloader__logo">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="30" fill="url(#prelogo-grad)"/>
+          <path d="M20 42c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="#1A1614" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="32" cy="24" r="5" fill="#1A1614"/>
+          <defs>
+            <linearGradient id="prelogo-grad" x1="4" y1="4" x2="60" y2="60">
+              <stop stop-color="#C4432B"/>
+              <stop offset="1" stop-color="#E8A33D"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+    <div class="preloader__text">
+      <div class="preloader__brand">Savoro</div>
+      <div class="preloader__tagline">Preparing Your Delicious Experience...</div>
+      <div class="preloader__progress">
+        <div class="preloader__progress-bar" id="preloaderBar"></div>
+      </div>
+      <div class="preloader__dots">
+        <span class="preloader__dot"></span>
+        <span class="preloader__dot"></span>
+        <span class="preloader__dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" role="region" aria-label="Announcements">
+    <div class="announcement-bar__track">
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Free delivery on your first order — Use code <strong>&nbsp;SAVORO25&nbsp;</strong> at checkout
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Limited time — <span class="discount">20% OFF</span> all family platters this weekend only
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Fresh daily — Our chefs prepare every dish from scratch each morning
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        New menu alert — Try our <span class="discount">15% OFF</span> summer specials today
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo" aria-label="Savoro home">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" fill="url(#logo-grad)"/>
+          <path d="M13 26c0-4 3-7 7-7s7 3 7 7" stroke="#1A1614" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="20" cy="15" r="3" fill="#1A1614"/>
+          <defs>
+            <linearGradient id="logo-grad" x1="2" y1="2" x2="38" y2="38">
+              <stop stop-color="#C4432B"/>
+              <stop offset="1" stop-color="#E8A33D"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>Savoro</span>
+      </a>
+      <ul class="navbar__links">
+        <li><a href="../index.html" class="navbar__link">Home</a></li>
+        <li><a href="menu.html" class="navbar__link">Menu</a></li>
+        <li><a href="categories.html" class="navbar__link">Categories</a></li>
+        <li><a href="offers.html" class="navbar__link">Offers</a></li>
+        <li><a href="about.html" class="navbar__link">About</a></li>
+        <li><a href="blog.html" class="navbar__link">Blog</a></li>
+        <li><a href="contact.html" class="navbar__link">Contact</a></li>
+        <li><a href="reservation.html" class="navbar__link">Reservation</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="search.html" class="navbar__action-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <a href="wishlist.html" class="navbar__action-btn" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="navbar__badge" data-badge="wishlist">0</span>
+        </a>
+        <a href="cart.html" class="navbar__action-btn" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="navbar__badge" data-badge="cart">0</span>
+        </a>
+        <a href="profile.html" class="navbar__action-btn hide-mobile" aria-label="Profile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <button class="navbar__action-btn theme-toggle" aria-label="Toggle theme"></button>
+        <button class="navbar__hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="navbar__mobile-menu" aria-hidden="true">
+      <a href="../index.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <a href="menu.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        Menu
+      </a>
+      <a href="categories.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Categories
+      </a>
+      <a href="offers.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        Offers
+      </a>
+      <a href="about.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        About
+      </a>
+      <a href="blog.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Blog
+      </a>
+      <a href="contact.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact
+      </a>
+      <a href="reservation.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Reservation
+      </a>
+      <a href="profile.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Profile
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="legal-hero">
+    <h1>Terms of Service</h1>
+    <p>Terms and conditions governing your use of the Savoro platform</p>
+    <div class="legal-updated">Last updated: July 19, 2026</div>
+  </section>
+
+  <!-- Terms of Service Content -->
+  <main id="main-content">
+    <section class="legal-content">
+
+      <h2>1. Acceptance of Terms</h2>
+      <p>By accessing or using the Savoro platform, including our website at www.savoro.com, mobile applications, and related food ordering and delivery services (collectively, the "Services"), you agree to be bound by these Terms of Service ("Terms"). If you are using the Services on behalf of an organization, you represent and warrant that you have the authority to bind that organization to these Terms.</p>
+      <p>These Terms constitute a legally binding agreement between you ("User," "you," "your") and Savoro ("we," "our," "us"), operating from Badurtola, Boro garage, Chittagong, Bangladesh.</p>
+      <p>We reserve the right to modify these Terms at any time. Material changes will be communicated via email to registered users or through a prominent notice on our platform at least 7 days before they take effect. Your continued use of the Services after the effective date of any revised Terms constitutes your acceptance of the changes. If you do not agree to the modified Terms, you must cease using the Services and close your account.</p>
+
+      <h2>2. User Accounts</h2>
+      <p>To access certain features of the Services, you must create a user account. When registering, you agree to provide accurate, current, and complete information and to keep this information up to date at all times.</p>
+      <ul>
+        <li><strong>Eligibility:</strong> You must be at least 16 years of age to create an account. By registering, you confirm that you meet this age requirement and have the legal capacity to enter into a binding agreement</li>
+        <li><strong>Account Security:</strong> You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You must notify us immediately at avimm079@gmail.com if you suspect any unauthorized access</li>
+        <li><strong>Account Accuracy:</strong> You agree not to create multiple accounts, use another person's identity or contact information, or provide false or misleading information during registration</li>
+        <li><strong>Account Usage:</strong> Your account is personal and non-transferable. You may not share, sell, or assign your account or login credentials to any third party without prior written consent from Savoro</li>
+        <li><strong>Account Suspension:</strong> We reserve the right to suspend or deactivate your account at our discretion if we reasonably believe you have violated these Terms, engaged in fraudulent activity, or posed a risk to the security or integrity of the Services</li>
+      </ul>
+
+      <h2>3. Orders &amp; Payments</h2>
+      <p>When you place an order through the Savoro platform, you are making an offer to purchase the selected items from the listed restaurant or vendor. An order is considered accepted only when you receive an order confirmation notification via email, SMS, or in-app message.</p>
+      <ul>
+        <li><strong>Order Accuracy:</strong> You are responsible for reviewing your order details, including item selection, quantity, special instructions, and delivery address before confirming payment</li>
+        <li><strong>Payment Methods:</strong> We accept credit cards, debit cards, UPI, net banking, mobile wallets, and Savoro gift cards. All payments are processed through PCI-DSS compliant third-party payment gateways</li>
+        <li><strong>Payment Authorization:</strong> By providing payment information, you authorize us and our payment processors to charge the total order amount, including applicable taxes, delivery fees, and service charges, to your selected payment method</li>
+        <li><strong>Promotional Codes:</strong> Discount codes and promotional offers are subject to their stated terms, including minimum order values, expiry dates, and category restrictions. Only one promotional code may be applied per order unless otherwise specified</li>
+        <li><strong>Failed Payments:</strong> If a payment fails or is declined, your order will not be processed. We are not responsible for any fees imposed by your bank or payment provider in connection with failed transactions</li>
+        <li><strong>Order Confirmation:</strong> Your order is not confirmed until you receive a confirmation notification. An automated acknowledgment of receipt of your order does not constitute acceptance</li>
+      </ul>
+
+      <h2>4. Pricing &amp; Availability</h2>
+      <p>All prices displayed on the Savoro platform are in Indian Rupees (INR) and include applicable Goods and Services Tax (GST) unless explicitly stated otherwise. Prices are set by the individual restaurants and vendors and may change without prior notice.</p>
+      <ul>
+        <li><strong>Menu Pricing:</strong> Prices shown on menu items are determined by the respective restaurant partners. Savoro does not set or control item pricing, though we reserve the right to adjust displayed prices to reflect accuracy errors</li>
+        <li><strong>Delivery Fees:</strong> A delivery fee may be applied based on your distance from the restaurant, order value, and current demand. The applicable delivery fee will be clearly displayed before you confirm your order</li>
+        <li><strong>Service Charge:</strong> A platform service fee may apply to each order to cover payment processing, customer support, and platform maintenance costs. This fee will be itemized at checkout</li>
+        <li><strong>Item Availability:</strong> All menu items are subject to availability. Restaurants may run out of specific dishes or modify their menus throughout the day. If an item in your confirmed order becomes unavailable, we will notify you and offer a substitution, partial refund, or full cancellation</li>
+        <li><strong>Pricing Errors:</strong> In the event of a pricing error on the platform, we reserve the right to cancel the affected order and issue a full refund. We will notify you promptly if such an error impacts your order</li>
+      </ul>
+
+      <h2>5. Delivery Terms</h2>
+      <p>Savoro facilitates the delivery of food orders through a network of independent delivery partners. By placing an order, you agree to the following delivery terms:</p>
+      <ul>
+        <li><strong>Delivery Address:</strong> You are responsible for providing an accurate and complete delivery address. Orders delivered to an incorrect address provided by the user will not be eligible for a refund or redelivery</li>
+        <li><strong>Estimated Delivery Time:</strong> Delivery time estimates provided on the platform are approximate and not guaranteed. Actual delivery times may vary due to weather, traffic, restaurant preparation times, or high order volumes</li>
+        <li><strong>Delivery Window:</strong> Our standard delivery hours are 11:00 AM to 11:00 PM IST, seven days a week. Extended hours may be available in select locations during special promotions or holidays</li>
+        <li><strong>Unattended Delivery:</strong> If you select the "Leave at Door" option, Savoro and its delivery partners are not liable for theft, tampering, or damage to the order after it has been left at your specified location</li>
+        <li><strong>Delivery Issues:</strong> If you experience issues with your delivery (wrong items, missing items, damaged packaging), you must report them within 2 hours of delivery through our support channels for investigation and resolution</li>
+        <li><strong>Tipping:</strong> Tipping your delivery partner is entirely optional and at your discretion. Any tip you provide goes directly to the delivery partner and is non-refundable</li>
+      </ul>
+
+      <h2>6. Cancellations</h2>
+      <p>We understand that plans change. Our cancellation policy is designed to balance customer flexibility with the operational needs of our restaurant and delivery partners:</p>
+      <ul>
+        <li><strong>Preparation Not Started:</strong> You may cancel your order without penalty if the restaurant has not yet begun preparing your food. A full refund to your original payment method will be issued within 5–7 business days</li>
+        <li><strong>In Preparation:</strong> If the restaurant has already started preparing your order, a partial cancellation may not be possible. You may contact support to discuss available options, which may include a partial refund or store credit</li>
+        <li><strong>Out for Delivery:</strong> Orders that have already been dispatched for delivery cannot be cancelled. You may refuse delivery when the partner arrives, though a delivery fee may still apply</li>
+        <li><strong>No-Show:</strong> If you are unavailable at the delivery address and the delivery partner is unable to reach you after reasonable attempts, the order will be considered fulfilled. No refund will be issued in such cases</li>
+        <li><strong>Platform-Initiated Cancellation:</strong> We reserve the right to cancel an order due to restaurant closure, inventory shortage, technical issues, or suspected fraudulent activity. In such cases, a full refund will be processed promptly</li>
+      </ul>
+
+      <h2>7. Refund Policy</h2>
+      <p>We strive to ensure every order meets your expectations. If you are dissatisfied with your order, the following refund provisions apply:</p>
+      <ul>
+        <li><strong>Quality Issues:</strong> If your food arrives cold, damaged, spoiled, or significantly different from the menu description, you are eligible for a full or partial refund. Please contact us within 2 hours of delivery with photographic evidence to support your claim</li>
+        <li><strong>Missing Items:</strong> If any items from your order are missing, you may request a refund for those specific items. We will verify the claim with the restaurant and process the refund accordingly</li>
+        <li><strong>Incorrect Orders:</strong> If you receive items you did not order, please do not consume them. Contact our support team immediately and we will arrange for a replacement or full refund</li>
+        <li><strong>Refund Method:</strong> Refunds are processed to the original payment method used for the order. UPI and wallet refunds are typically completed within 3–5 business days, while card refunds may take 7–10 business days depending on your bank</li>
+        <li><strong>Store Credit:</strong> At our discretion, we may offer Savoro account credit in lieu of a monetary refund. Store credit does not expire and can be applied to any future order</li>
+        <li><strong>Refund Limits:</strong> We reserve the right to limit or deny refund requests that we determine to be excessive, fraudulent, or inconsistent with our policies. Accounts showing a pattern of repeated refund abuse may be suspended</li>
+      </ul>
+
+      <h2>8. User Responsibilities</h2>
+      <p>By using the Savoro platform, you agree to the following standards of conduct:</p>
+      <ul>
+        <li><strong>Lawful Use:</strong> You will use the Services only for lawful purposes and in compliance with all applicable local, state, national, and international laws and regulations</li>
+        <li><strong>Accurate Information:</strong> You will provide truthful and accurate information when creating your account, placing orders, and communicating with our support team</li>
+        <li><strong>Respectful Conduct:</strong> You will treat delivery partners, restaurant staff, and customer support representatives with respect. Harassment, abusive language, or discriminatory behavior will not be tolerated</li>
+        <li><strong>Prohibited Activities:</strong> You will not attempt to manipulate the platform through automated tools, exploit promotional offers in bad faith, impersonate other users, reverse-engineer our software, or engage in any activity that could harm the platform or other users</li>
+        <li><strong>Allergen Awareness:</strong> You acknowledge that food items may contain allergens and that it is your responsibility to review ingredient information and communicate any dietary restrictions or allergies when placing an order</li>
+        <li><strong>Feedback:</strong> Any reviews, ratings, or feedback you submit must be honest, genuine, and based on your actual experience. Fake reviews or reviews motivated by competitor relationships are strictly prohibited</li>
+      </ul>
+
+      <h2>9. Intellectual Property</h2>
+      <p>All content, design, graphics, logos, trademarks, trade names, software, and other materials displayed on or comprising the Savoro platform are the exclusive property of Savoro Technologies Pvt. Ltd. or its licensors and are protected by applicable intellectual property laws.</p>
+      <ul>
+        <li><strong>Platform Content:</strong> The Savoro name, logo, tagline, user interface design, and all proprietary technology are owned by Savoro and may not be reproduced, modified, distributed, or used in any manner without prior written consent</li>
+        <li><strong>User Content:</strong> By submitting reviews, photos, ratings, or other content to the platform, you grant Savoro a non-exclusive, worldwide, royalty-free, perpetual license to use, reproduce, modify, display, and distribute such content in connection with the Services</li>
+        <li><strong>Restaurant Content:</strong> Menu descriptions, photographs, and branding materials displayed on restaurant pages are provided by the respective restaurant partners and remain their intellectual property</li>
+        <li><strong>Third-Party Materials:</strong> The platform may include content licensed from third parties. Such content is subject to the intellectual property rights of the respective licensors</li>
+      </ul>
+      <p>If you believe that any content on the Savoro platform infringes upon your intellectual property rights, please contact us at <strong>avimm079@gmail.com</strong> with sufficient details for us to investigate your claim.</p>
+
+      <h2>10. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by applicable law, Savoro Technologies Pvt. Ltd., its directors, employees, partners, and affiliates shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of the Services.</p>
+      <ul>
+        <li><strong>Service Availability:</strong> We do not guarantee uninterrupted or error-free operation of the platform. We are not liable for any temporary unavailability, system downtime, or technical disruptions beyond our reasonable control</li>
+        <li><strong>Food Quality and Safety:</strong> While we partner with vetted restaurants, Savoro is not the food producer and cannot guarantee the quality, freshness, or safety of food items prepared by third-party restaurant partners. Any food safety concerns should be reported to us and the relevant food safety authority</li>
+        <li><strong>Delivery Delays:</strong> We are not responsible for delays caused by circumstances beyond our reasonable control, including severe weather, natural disasters, civil unrest, road closures, or public health emergencies</li>
+        <li><strong>Third-Party Actions:</strong> Savoro is not liable for the acts, omissions, or negligence of independent delivery partners or restaurant vendors in the performance of their services</li>
+        <li><strong>Maximum Liability:</strong> In any event, Savoro's total aggregate liability to you for any claims arising from or related to the Services shall not exceed the total amount paid by you to Savoro in the twelve (12) months immediately preceding the event giving rise to the claim</li>
+      </ul>
+
+      <h2>11. Termination of Service</h2>
+      <p>Either party may terminate the relationship under these Terms at any time and for any reason:</p>
+      <ul>
+        <li><strong>User-Initiated Termination:</strong> You may close your account at any time by navigating to your account settings and selecting "Delete Account," or by contacting our support team. Closure of your account does not automatically entitle you to a refund of any unused store credit or promotional balances</li>
+        <li><strong>Savoro-Initiated Termination:</strong> We reserve the right to suspend or permanently terminate your account and access to the Services if you breach any provision of these Terms, engage in conduct that is harmful to other users or the platform, or if required by law</li>
+        <li><strong>Effect of Termination:</strong> Upon termination, your right to access and use the Services ceases immediately. We may retain certain data as required by law or for legitimate business purposes, including fraud prevention, record-keeping, and dispute resolution</li>
+        <li><strong>Survival:</strong> The provisions of these Terms relating to intellectual property, limitation of liability, indemnification, governing law, and any other provisions that by their nature should survive termination, shall remain in full force and effect</li>
+      </ul>
+
+      <h2>12. Governing Law</h2>
+      <p>These Terms of Service and any dispute arising out of or in connection with the Services shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
+      <p>Any dispute, controversy, or claim arising out of or relating to these Terms, or the breach, termination, or invalidity thereof, shall first be attempted to be resolved through good-faith negotiation between the parties. If the dispute cannot be resolved through negotiation within thirty (30) days, it shall be submitted to the exclusive jurisdiction of the courts of competent jurisdiction in Chittagong, Bangladesh.</p>
+      <p>Notwithstanding the foregoing, either party may seek interim injunctive relief in any court of competent jurisdiction to prevent irreparable harm pending the resolution of a dispute through the mechanisms described above.</p>
+
+      <h2>13. Contact Information</h2>
+      <p>If you have any questions, concerns, or feedback regarding these Terms of Service, please contact us through the following channels:</p>
+      <ul>
+        <li><strong>Email:</strong> avimm079@gmail.com</li>
+        <li><strong>Phone:</strong> +8801537418504</li>
+        <li><strong>Address:</strong> Badurtola, Boro garage, Chittagong, Bangladesh</li>
+      </ul>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo" aria-label="Savoro home">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" fill="url(#footer-logo-grad)"/>
+            <path d="M13 26c0-4 3-7 7-7s7 3 7 7" stroke="#1A1614" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="20" cy="15" r="3" fill="#1A1614"/>
+            <defs>
+              <linearGradient id="footer-logo-grad" x1="2" y1="2" x2="38" y2="38">
+                <stop stop-color="#C4432B"/>
+                <stop offset="1" stop-color="#E8A33D"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span>Savoro</span>
+        </a>
+        <p class="footer__desc">Premium food delivery crafted with care. Fresh ingredients, bold flavors, and restaurant-quality dishes delivered to your door.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Quick Links</h4>
+        <ul class="footer__links">
+          <li><a href="menu.html" class="footer__link">Our Menu</a></li>
+          <li><a href="categories.html" class="footer__link">Categories</a></li>
+          <li><a href="offers.html" class="footer__link">Special Offers</a></li>
+          <li><a href="about.html" class="footer__link">About Us</a></li>
+          <li><a href="blog.html" class="footer__link">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Support</h4>
+        <ul class="footer__links">
+          <li><a href="contact.html" class="footer__link">Contact Us</a></li>
+          <li><a href="faqs.html" class="footer__link">FAQs</a></li>
+          <li><a href="delivery-info.html" class="footer__link">Delivery Info</a></li>
+          <li><a href="return-policy.html" class="footer__link">Return Policy</a></li>
+          <li><a href="track-order.html" class="footer__link">Track Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Stay Updated</h4>
+        <p style="font-size: var(--fs-small); color: var(--text-muted); margin-bottom: var(--space-4);">Get exclusive deals and menu updates straight to your inbox.</p>
+        <form class="footer__newsletter" onsubmit="return false;">
+          <div class="form-group">
+            <input type="email" class="form-input" placeholder="Your email address" aria-label="Email for newsletter" style="margin-bottom: var(--space-3);">
+            <button type="submit" class="btn btn-primary btn-sm w-full">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">&copy; 2026 Savoro. All rights reserved.<br><span style="font-size:0.75rem;opacity:0.6;font-weight:400;">Made by Abhishek Mohajan</span></p>
+      <div class="footer__bottom-links">
+        <a href="privacy-policy.html" class="footer__bottom-link">Privacy Policy</a>
+        <a href="terms-of-service.html" class="footer__bottom-link">Terms of Service</a>
+        <a href="cookie-policy.html" class="footer__bottom-link">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="../assets/js/cart.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

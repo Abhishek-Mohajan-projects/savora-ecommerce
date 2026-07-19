@@ -398,6 +398,7 @@
         <li><a href="about.html" class="navbar__link">About</a></li>
         <li><a href="blog.html" class="navbar__link">Blog</a></li>
         <li><a href="contact.html" class="navbar__link">Contact</a></li>
+        <li><a href="reservation.html" class="navbar__link">Reservation</a></li>
       </ul>
       <div class="navbar__actions">
         <a href="search.html" class="navbar__action-btn" aria-label="Search">
@@ -448,6 +449,10 @@
       <a href="contact.html" class="navbar__mobile-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Contact
+      </a>
+      <a href="reservation.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Reservation
       </a>
       <a href="profile.html" class="navbar__mobile-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -916,6 +921,996 @@
         </div>
       </div>
 
+      <div class="food-card" data-name="Pepperoni Pizza" data-category="pizza">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #b22222, #d4a017);">
+          <span class="food-card__emoji">&#x1F355;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Pizza</p>
+          <h3 class="food-card__name">Pepperoni Pizza</h3>
+          <p class="food-card__desc">Classic pepperoni layered over mozzarella and tangy marinara on a hand-tossed crust.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$15.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="pepperoni-pizza" data-name="Pepperoni Pizza" data-price="15.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="pepperoni-pizza" data-name="Pepperoni Pizza" data-price="15.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="BBQ Chicken Pizza" data-category="pizza">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #8b4513, #cd853f);">
+          <span class="food-card__emoji">&#x1F355;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Pizza</p>
+          <h3 class="food-card__name">BBQ Chicken Pizza</h3>
+          <p class="food-card__desc">Smoky BBQ sauce, grilled chicken, red onions, cilantro, and gouda on a smoky crust.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$16.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="bbq-chicken-pizza" data-name="BBQ Chicken Pizza" data-price="16.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="bbq-chicken-pizza" data-name="BBQ Chicken Pizza" data-price="16.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Four Cheese Pizza" data-category="pizza">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #d4a017, #f5e6c8);">
+          <span class="food-card__emoji">&#x1F355;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Pizza</p>
+          <h3 class="food-card__name">Four Cheese Pizza</h3>
+          <p class="food-card__desc">A rich blend of mozzarella, parmesan, gorgonzola, and fontina on a garlic butter crust.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$17.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="four-cheese-pizza" data-name="Four Cheese Pizza" data-price="17.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="four-cheese-pizza" data-name="Four Cheese Pizza" data-price="17.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Crispy Fried Chicken" data-category="chicken">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #8b4513, #daa520);">
+          <span class="food-card__emoji">&#x1F357;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Chicken</p>
+          <h3 class="food-card__name">Crispy Fried Chicken</h3>
+          <p class="food-card__desc">Juicy chicken thighs coated in a seasoned flour crust and fried to golden perfection.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$13.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="crispy-fried-chicken" data-name="Crispy Fried Chicken" data-price="13.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="crispy-fried-chicken" data-name="Crispy Fried Chicken" data-price="13.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Grilled Chicken" data-category="chicken">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #556b2f, #8fbc8f);">
+          <span class="food-card__emoji">&#x1F357;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Chicken</p>
+          <h3 class="food-card__name">Grilled Chicken</h3>
+          <p class="food-card__desc">Herb-marinated chicken breast grilled over open flame, served with roasted vegetables.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$14.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="grilled-chicken" data-name="Grilled Chicken" data-price="14.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="grilled-chicken" data-name="Grilled Chicken" data-price="14.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Chicken Bucket" data-category="chicken">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #b22222, #cd853f);">
+          <span class="food-card__emoji">&#x1F357;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Chicken</p>
+          <h3 class="food-card__name">Chicken Bucket</h3>
+          <p class="food-card__desc">Eight pieces of signature fried chicken with coleslaw, biscuits, and dipping sauces.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$24.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="chicken-bucket" data-name="Chicken Bucket" data-price="24.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="chicken-bucket" data-name="Chicken Bucket" data-price="24.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Chicken Alfredo Pasta" data-category="pasta">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #f5e6c8, #d4a017);">
+          <span class="food-card__emoji">&#x1F35D;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Pasta</p>
+          <h3 class="food-card__name">Chicken Alfredo Pasta</h3>
+          <p class="food-card__desc">Grilled chicken breast over fettuccine tossed in a creamy garlic parmesan alfredo sauce.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$15.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="chicken-alfredo-pasta" data-name="Chicken Alfredo Pasta" data-price="15.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="chicken-alfredo-pasta" data-name="Chicken Alfredo Pasta" data-price="15.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Spaghetti Bolognese" data-category="pasta">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #b22222, #8b4513);">
+          <span class="food-card__emoji">&#x1F35D;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Pasta</p>
+          <h3 class="food-card__name">Spaghetti Bolognese</h3>
+          <p class="food-card__desc">Slow-simmered beef and pork ragu with San Marzano tomatoes over al dente spaghetti.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$14.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="spaghetti-bolognese" data-name="Spaghetti Bolognese" data-price="14.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="spaghetti-bolognese" data-name="Spaghetti Bolognese" data-price="14.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Carbonara Pasta" data-category="pasta">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #f5e6c8, #8b7355);">
+          <span class="food-card__emoji">&#x1F35D;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Pasta</p>
+          <h3 class="food-card__name">Carbonara Pasta</h3>
+          <p class="food-card__desc">Crispy pancetta, pecorino romano, egg yolk, and black pepper tossed through rigatoni.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$16.49</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="carbonara-pasta" data-name="Carbonara Pasta" data-price="16.49" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="carbonara-pasta" data-name="Carbonara Pasta" data-price="16.49" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Chicken Chow Mein" data-category="noodles">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #daa520, #8b4513);">
+          <span class="food-card__emoji">&#x1F35C;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Noodles</p>
+          <h3 class="food-card__name">Chicken Chow Mein</h3>
+          <p class="food-card__desc">Stir-fried egg noodles with tender chicken, bell peppers, and savory soy-ginger sauce.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$13.49</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="chicken-chow-mein" data-name="Chicken Chow Mein" data-price="13.49" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="chicken-chow-mein" data-name="Chicken Chow Mein" data-price="13.49" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Spicy Ramen" data-category="noodles">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #b22222, #daa520);">
+          <span class="food-card__emoji">&#x1F35C;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Noodles</p>
+          <h3 class="food-card__name">Spicy Ramen</h3>
+          <p class="food-card__desc">Rich tonkotsu broth with chili oil, soft-boiled egg, chashu pork, and fresh scallions.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$14.49</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="spicy-ramen" data-name="Spicy Ramen" data-price="14.49" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="spicy-ramen" data-name="Spicy Ramen" data-price="14.49" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Hakka Noodles" data-category="noodles">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #556b2f, #daa520);">
+          <span class="food-card__emoji">&#x1F35C;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Noodles</p>
+          <h3 class="food-card__name">Hakka Noodles</h3>
+          <p class="food-card__desc">Indo-Chinese style noodles wok-fried with vegetables, soy sauce, and aromatic spices.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$12.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="hakka-noodles" data-name="Hakka Noodles" data-price="12.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="hakka-noodles" data-name="Hakka Noodles" data-price="12.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Club Sandwich" data-category="sandwiches">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #d4a017, #8b7355);">
+          <span class="food-card__emoji">&#x1F96A;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Sandwiches</p>
+          <h3 class="food-card__name">Club Sandwich</h3>
+          <p class="food-card__desc">Triple-decker with turkey, bacon, lettuce, tomato, and mayo on toasted sourdough.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$13.49</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="club-sandwich" data-name="Club Sandwich" data-price="13.49" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="club-sandwich" data-name="Club Sandwich" data-price="13.49" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Chicken Sandwich" data-category="sandwiches">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #8b4513, #cd853f);">
+          <span class="food-card__emoji">&#x1F96A;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Sandwiches</p>
+          <h3 class="food-card__name">Chicken Sandwich</h3>
+          <p class="food-card__desc">Crispy buttermilk chicken fillet with pickles and spicy mayo on a brioche bun.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$12.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="chicken-sandwich" data-name="Chicken Sandwich" data-price="12.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="chicken-sandwich" data-name="Chicken Sandwich" data-price="12.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Tuna Melt" data-category="sandwiches">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #4682b4, #87ceeb);">
+          <span class="food-card__emoji">&#x1F96A;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Sandwiches</p>
+          <h3 class="food-card__name">Tuna Melt</h3>
+          <p class="food-card__desc">Creamy tuna salad with melted cheddar and tomato on griddled multigrain bread.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$11.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="tuna-melt" data-name="Tuna Melt" data-price="11.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="tuna-melt" data-name="Tuna Melt" data-price="11.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Chicken Wrap" data-category="wraps">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #daa520, #8b4513);">
+          <span class="food-card__emoji">&#x1F32F;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Wraps</p>
+          <h3 class="food-card__name">Chicken Wrap</h3>
+          <p class="food-card__desc">Grilled chicken, hummus, roasted peppers, and mixed greens rolled in a warm tortilla.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$11.49</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="chicken-wrap" data-name="Chicken Wrap" data-price="11.49" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="chicken-wrap" data-name="Chicken Wrap" data-price="11.49" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Beef Wrap" data-category="wraps">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #8b0000, #cd853f);">
+          <span class="food-card__emoji">&#x1F32F;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Wraps</p>
+          <h3 class="food-card__name">Beef Wrap</h3>
+          <p class="food-card__desc">Seasoned ground beef, onions, lettuce, tomato, and garlic sauce in a toasted lavash.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$12.49</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="beef-wrap" data-name="Beef Wrap" data-price="12.49" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="beef-wrap" data-name="Beef Wrap" data-price="12.49" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Falafel Wrap" data-category="wraps">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #556b2f, #8fbc8f);">
+          <span class="food-card__emoji">&#x1F32F;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Wraps</p>
+          <h3 class="food-card__name">Falafel Wrap</h3>
+          <p class="food-card__desc">Crispy falafel, tahini, pickled turnips, and fresh herbs wrapped in warm pita.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$10.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="falafel-wrap" data-name="Falafel Wrap" data-price="10.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+               <button class="add-to-cart-btn" data-id="falafel-wrap" data-name="Falafel Wrap" data-price="10.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Caesar Salad" data-category="salads">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #556b2f, #9acd32);">
+          <span class="food-card__emoji">&#x1F957;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Salads</p>
+          <h3 class="food-card__name">Caesar Salad</h3>
+          <p class="food-card__desc">Crisp romaine, parmesan shavings, croutons, and house-made Caesar dressing.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$10.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="caesar-salad" data-name="Caesar Salad" data-price="10.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="caesar-salad" data-name="Caesar Salad" data-price="10.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Greek Salad" data-category="salads">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #2e8b57, #8fbc8f);">
+          <span class="food-card__emoji">&#x1F957;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Salads</p>
+          <h3 class="food-card__name">Greek Salad</h3>
+          <p class="food-card__desc">Tomatoes, cucumber, olives, red onion, and feta cheese with olive oil vinaigrette.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$11.49</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="greek-salad" data-name="Greek Salad" data-price="11.49" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="greek-salad" data-name="Greek Salad" data-price="11.49" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Chicken Avocado Salad" data-category="salads">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #6b8e23, #daa520);">
+          <span class="food-card__emoji">&#x1F957;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Salads</p>
+          <h3 class="food-card__name">Chicken Avocado Salad</h3>
+          <p class="food-card__desc">Grilled chicken, ripe avocado, cherry tomatoes, corn, and lime cilantro dressing.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$13.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="chicken-avocado-salad" data-name="Chicken Avocado Salad" data-price="13.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="chicken-avocado-salad" data-name="Chicken Avocado Salad" data-price="13.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Chocolate Brownie" data-category="desserts">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #3e1f0d, #6b3a2a);">
+          <span class="food-card__emoji">&#x1F36B;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Desserts</p>
+          <h3 class="food-card__name">Chocolate Brownie</h3>
+          <p class="food-card__desc">Warm, fudgy brownie with a crackly top, served with a scoop of vanilla ice cream.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$8.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="chocolate-brownie" data-name="Chocolate Brownie" data-price="8.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="chocolate-brownie" data-name="Chocolate Brownie" data-price="8.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Molten Lava Cake" data-category="desserts">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #4a2c2a, #8b0000);">
+          <span class="food-card__emoji">&#x1F370;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Desserts</p>
+          <h3 class="food-card__name">Molten Lava Cake</h3>
+          <p class="food-card__desc">Rich dark chocolate cake with a warm, gooey center, dusted with powdered sugar.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$10.49</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="molten-lava-cake" data-name="Molten Lava Cake" data-price="10.49" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="molten-lava-cake" data-name="Molten Lava Cake" data-price="10.49" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="New York Cheesecake" data-category="desserts">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #f5e6c8, #d4a017);">
+          <span class="food-card__emoji">&#x1F370;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Desserts</p>
+          <h3 class="food-card__name">New York Cheesecake</h3>
+          <p class="food-card__desc">Creamy baked cheesecake on a graham cracker crust with a berry compote topping.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$9.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="new-york-cheesecake" data-name="New York Cheesecake" data-price="9.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="new-york-cheesecake" data-name="New York Cheesecake" data-price="9.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Espresso" data-category="coffee">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #3e1f0d, #6b3a2a);">
+          <span class="food-card__emoji">&#x2615;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Coffee</p>
+          <h3 class="food-card__name">Espresso</h3>
+          <p class="food-card__desc">Double shot of rich, aromatic espresso pulled from single-origin beans.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$3.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="espresso" data-name="Espresso" data-price="3.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="espresso" data-name="Espresso" data-price="3.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Cappuccino" data-category="coffee">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #5c3a28, #8b6f4e);">
+          <span class="food-card__emoji">&#x2615;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Coffee</p>
+          <h3 class="food-card__name">Cappuccino</h3>
+          <p class="food-card__desc">Espresso with steamed milk and a thick layer of velvety microfoam.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$5.49</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="cappuccino" data-name="Cappuccino" data-price="5.49" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="cappuccino" data-name="Cappuccino" data-price="5.49" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Café Latte" data-category="coffee">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #6b3a2a, #a0826d);">
+          <span class="food-card__emoji">&#x2615;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Coffee</p>
+          <h3 class="food-card__name">Café Latte</h3>
+          <p class="food-card__desc">Smooth espresso with steamed milk and a thin layer of foam, served in a tall cup.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$4.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="cafe-latte" data-name="Café Latte" data-price="4.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="cafe-latte" data-name="Café Latte" data-price="4.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Oreo Milkshake" data-category="milkshakes">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #2c2c2c, #6b6b6b);">
+          <span class="food-card__emoji">&#x1F95B;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Milkshakes</p>
+          <h3 class="food-card__name">Oreo Milkshake</h3>
+          <p class="food-card__desc">Creamy vanilla ice cream blended with crushed Oreo cookies and topped with whipped cream.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$7.49</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="oreo-milkshake" data-name="Oreo Milkshake" data-price="7.49" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="oreo-milkshake" data-name="Oreo Milkshake" data-price="7.49" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Chocolate Milkshake" data-category="milkshakes">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #4a2c1a, #7b4f2e);">
+          <span class="food-card__emoji">&#x1F95B;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Milkshakes</p>
+          <h3 class="food-card__name">Chocolate Milkshake</h3>
+          <p class="food-card__desc">Thick and velvety milkshake made with premium cocoa, vanilla ice cream, and a drizzle of chocolate syrup.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$6.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="chocolate-milkshake" data-name="Chocolate Milkshake" data-price="6.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="chocolate-milkshake" data-name="Chocolate Milkshake" data-price="6.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Strawberry Milkshake" data-category="milkshakes">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #c0392b, #e74c3c);">
+          <span class="food-card__emoji">&#x1F95B;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Milkshakes</p>
+          <h3 class="food-card__name">Strawberry Milkshake</h3>
+          <p class="food-card__desc">Fresh strawberry puree blended with creamy ice cream and finished with a swirl of whipped cream.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$6.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="strawberry-milkshake" data-name="Strawberry Milkshake" data-price="6.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="strawberry-milkshake" data-name="Strawberry Milkshake" data-price="6.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Blue Lagoon" data-category="mocktails">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #1a6fb5, #3498db);">
+          <span class="food-card__emoji">&#x1F377;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Mocktails</p>
+          <h3 class="food-card__name">Blue Lagoon</h3>
+          <p class="food-card__desc">Refreshing blend of blue curaçao syrup, lemonade, and Sprite, garnished with a cherry and orange slice.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$5.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="blue-lagoon" data-name="Blue Lagoon" data-price="5.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="blue-lagoon" data-name="Blue Lagoon" data-price="5.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Virgin Mojito" data-category="mocktails">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #27ae60, #6fcf97);">
+          <span class="food-card__emoji">&#x1F377;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Mocktails</p>
+          <h3 class="food-card__name">Virgin Mojito</h3>
+          <p class="food-card__desc">Classic mojito without the rum — fresh mint, lime juice, sugar, and soda water over crushed ice.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$5.49</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="virgin-mojito" data-name="Virgin Mojito" data-price="5.49" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="virgin-mojito" data-name="Virgin Mojito" data-price="5.49" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Tropical Punch" data-category="mocktails">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #e67e22, #f39c12);">
+          <span class="food-card__emoji">&#x1F377;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Mocktails</p>
+          <h3 class="food-card__name">Tropical Punch</h3>
+          <p class="food-card__desc">Exotic blend of pineapple, mango, and passion fruit juices with a splash of coconut water.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$5.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="tropical-punch" data-name="Tropical Punch" data-price="5.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="tropical-punch" data-name="Tropical Punch" data-price="5.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Mozzarella Sticks" data-category="snacks">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #d4a04a, #f0c75e);">
+          <span class="food-card__emoji">&#x1F9C0;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Snacks</p>
+          <h3 class="food-card__name">Mozzarella Sticks</h3>
+          <p class="food-card__desc">Golden-fried mozzarella sticks with a crispy breadcrumb coating, served with marinara dipping sauce.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$8.49</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="mozzarella-sticks" data-name="Mozzarella Sticks" data-price="8.49" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="mozzarella-sticks" data-name="Mozzarella Sticks" data-price="8.49" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Onion Rings" data-category="snacks">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #c4883a, #e8a33d);">
+          <span class="food-card__emoji">&#x1F9C5;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Snacks</p>
+          <h3 class="food-card__name">Onion Rings</h3>
+          <p class="food-card__desc">Thick-cut onion rings in a light, crispy batter, deep-fried to a perfect golden brown.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$6.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="onion-rings" data-name="Onion Rings" data-price="6.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="onion-rings" data-name="Onion Rings" data-price="6.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Chicken Nuggets" data-category="snacks">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #b87333, #daa520);">
+          <span class="food-card__emoji">&#x1F96A;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Snacks</p>
+          <h3 class="food-card__name">Chicken Nuggets</h3>
+          <p class="food-card__desc">Tender chicken breast pieces coated in seasoned breadcrumbs, fried until crispy and served with dipping sauces.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$7.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="chicken-nuggets" data-name="Chicken Nuggets" data-price="7.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="chicken-nuggets" data-name="Chicken Nuggets" data-price="7.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Chicken Biryani" data-category="rice-biryani">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #d4a017, #f5c518);">
+          <span class="food-card__emoji">&#x1F35B;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Rice &amp; Biryani</p>
+          <h3 class="food-card__name">Chicken Biryani</h3>
+          <p class="food-card__desc">Fragrant basmati rice layered with tender spiced chicken, saffron, and caramelized onions, slow-cooked to perfection.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$14.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="chicken-biryani" data-name="Chicken Biryani" data-price="14.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="chicken-biryani" data-name="Chicken Biryani" data-price="14.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Beef Biryani" data-category="rice-biryani">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #8b4513, #c4883a);">
+          <span class="food-card__emoji">&#x1F35B;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Rice &amp; Biryani</p>
+          <h3 class="food-card__name">Beef Biryani</h3>
+          <p class="food-card__desc">Richly spiced beef chunks nestled between layers of aromatic rice, infused with rose water and whole spices.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$16.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="beef-biryani" data-name="Beef Biryani" data-price="16.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="beef-biryani" data-name="Beef Biryani" data-price="16.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Fried Rice" data-category="rice-biryani">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #e8a33d, #f5d280);">
+          <span class="food-card__emoji">&#x1F35A;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Rice &amp; Biryani</p>
+          <h3 class="food-card__name">Fried Rice</h3>
+          <p class="food-card__desc">Wok-fried jasmine rice with mixed vegetables, scrambled egg, soy sauce, and a hint of sesame oil.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$10.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="fried-rice" data-name="Fried Rice" data-price="10.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="fried-rice" data-name="Fried Rice" data-price="10.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Pancakes" data-category="breakfast">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #c4883a, #f0c75e);">
+          <span class="food-card__emoji">&#x1F95E;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Breakfast</p>
+          <h3 class="food-card__name">Pancakes</h3>
+          <p class="food-card__desc">Fluffy buttermilk pancakes stacked high, drizzled with maple syrup and topped with fresh berries.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$9.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="pancakes" data-name="Pancakes" data-price="9.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="pancakes" data-name="Pancakes" data-price="9.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="French Toast" data-category="breakfast">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #b8860b, #daa520);">
+          <span class="food-card__emoji">&#x1F95E;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Breakfast</p>
+          <h3 class="food-card__name">French Toast</h3>
+          <p class="food-card__desc">Thick brioche slices soaked in cinnamon-vanilla egg batter, golden-fried and dusted with powdered sugar.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$8.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="french-toast" data-name="French Toast" data-price="8.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="french-toast" data-name="French Toast" data-price="8.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Avocado Toast" data-category="breakfast">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #568203, #8fbc3a);">
+          <span class="food-card__emoji">&#x1F951;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Breakfast</p>
+          <h3 class="food-card__name">Avocado Toast</h3>
+          <p class="food-card__desc">Sourdough toast topped with smashed avocado, cherry tomatoes, feta cheese, and a drizzle of chili oil.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$10.49</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="avocado-toast" data-name="Avocado Toast" data-price="10.49" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="avocado-toast" data-name="Avocado Toast" data-price="10.49" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Burger + Fries + Coke" data-category="combo-deals">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #c4432b, #e8a33d);">
+          <span class="food-card__emoji">&#x1F381;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Combo Deals</p>
+          <h3 class="food-card__name">Burger + Fries + Coke</h3>
+          <p class="food-card__desc">Classic beef burger with crispy golden fries and a refreshing Coca-Cola — the ultimate combo.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$13.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="burger-fries-coke" data-name="Burger + Fries + Coke" data-price="13.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="burger-fries-coke" data-name="Burger + Fries + Coke" data-price="13.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Pizza + Garlic Bread + Pepsi" data-category="combo-deals">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #8b0000, #c4432b);">
+          <span class="food-card__emoji">&#x1F381;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Combo Deals</p>
+          <h3 class="food-card__name">Pizza + Garlic Bread + Pepsi</h3>
+          <p class="food-card__desc">One large pepperoni pizza with garlic bread and a Pepsi — perfect for sharing.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$19.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="pizza-garlic-pepsi" data-name="Pizza + Garlic Bread + Pepsi" data-price="19.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="pizza-garlic-pepsi" data-name="Pizza + Garlic Bread + Pepsi" data-price="19.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card" data-name="Chicken Bucket + Fries" data-category="combo-deals">
+        <div class="food-card__img" style="background: linear-gradient(135deg, #a0522d, #cd853f);">
+          <span class="food-card__emoji">&#x1F381;</span>
+        </div>
+        <div class="food-card__body">
+          <p class="food-card__category">Combo Deals</p>
+          <h3 class="food-card__name">Chicken Bucket + Fries</h3>
+          <p class="food-card__desc">8-piece fried chicken bucket with a generous portion of golden fries — feed the whole crew.</p>
+          <div class="food-card__footer">
+            <span class="food-card__price">$22.99</span>
+            <div class="food-card__actions">
+              <button class="wishlist-btn" data-id="chicken-bucket-fries" data-name="Chicken Bucket + Fries" data-price="22.99" aria-label="Add to wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="add-to-cart-btn" data-id="chicken-bucket-fries" data-name="Chicken Bucket + Fries" data-price="22.99" aria-label="Add to cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 
@@ -959,10 +1954,10 @@
         <h4 class="footer__heading">Support</h4>
         <ul class="footer__links">
           <li><a href="contact.html" class="footer__link">Contact Us</a></li>
-          <li><a href="#" class="footer__link">FAQs</a></li>
-          <li><a href="#" class="footer__link">Delivery Info</a></li>
-          <li><a href="#" class="footer__link">Return Policy</a></li>
-          <li><a href="#" class="footer__link">Track Order</a></li>
+          <li><a href="faqs.html" class="footer__link">FAQs</a></li>
+          <li><a href="delivery-info.html" class="footer__link">Delivery Info</a></li>
+          <li><a href="return-policy.html" class="footer__link">Return Policy</a></li>
+          <li><a href="track-order.html" class="footer__link">Track Order</a></li>
         </ul>
       </div>
       <div>

@@ -556,6 +556,7 @@
         <li><a href="about.html" class="navbar__link">About</a></li>
         <li><a href="blog.html" class="navbar__link">Blog</a></li>
         <li><a href="contact.html" class="navbar__link">Contact</a></li>
+        <li><a href="reservation.html" class="navbar__link">Reservation</a></li>
       </ul>
 
       <div class="navbar__actions">
@@ -610,6 +611,10 @@
       <a href="contact.html" class="navbar__mobile-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Contact
+      </a>
+      <a href="reservation.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Reservation
       </a>
       <a href="profile.html" class="navbar__mobile-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -704,10 +709,10 @@
         <h4 class="footer__heading">Support</h4>
         <ul class="footer__links">
           <li><a href="contact.html" class="footer__link">Contact Us</a></li>
-          <li><a href="#" class="footer__link">FAQs</a></li>
-          <li><a href="#" class="footer__link">Delivery Info</a></li>
-          <li><a href="#" class="footer__link">Return Policy</a></li>
-          <li><a href="#" class="footer__link">Track Order</a></li>
+          <li><a href="faqs.html" class="footer__link">FAQs</a></li>
+          <li><a href="delivery-info.html" class="footer__link">Delivery Info</a></li>
+          <li><a href="return-policy.html" class="footer__link">Return Policy</a></li>
+          <li><a href="track-order.html" class="footer__link">Track Order</a></li>
         </ul>
       </div>
 
@@ -764,6 +769,55 @@
         "salad-1":  "\uD83E\uDD57",
         "chicken-1":"\uD83C\uDF57",
         "wing-1":   "\uD83C\uDF57",
+        "classic-smash-burger": "\uD83C\uDF54",
+        "margherita-pizza":     "\uD83C\uDF55",
+        "crispy-chicken-wings": "\uD83C\uDF57",
+        "loaded-fries":         "\uD83C\uDF5F",
+        "pepperoni-pizza":      "\uD83C\uDF55",
+        "bbq-chicken-pizza":    "\uD83C\uDF55",
+        "four-cheese-pizza":    "\uD83C\uDF55",
+        "crispy-fried-chicken": "\uD83C\uDF57",
+        "grilled-chicken":      "\uD83C\uDF57",
+        "chicken-bucket":       "\uD83C\uDF57",
+        "chicken-alfredo-pasta": "\uD83C\uDF5D",
+        "spaghetti-bolognese":  "\uD83C\uDF5D",
+        "carbonara-pasta":      "\uD83C\uDF5D",
+        "chicken-chow-mein":    "\uD83C\uDF5C",
+        "spicy-ramen":          "\uD83C\uDF5C",
+        "hakka-noodles":         "\uD83C\uDF5C",
+        "club-sandwich":        "\uD83E\uDD6A",
+        "chicken-sandwich":     "\uD83E\uDD6A",
+        "tuna-melt":            "\uD83E\uDD6A",
+        "chicken-wrap":         "\uD83E\uDD5F",
+        "beef-wrap":            "\uD83E\uDD5F",
+        "falafel-wrap":         "\uD83E\uDD5F",
+        "caesar-salad":         "\uD83E\uDD57",
+        "greek-salad":          "\uD83E\uDD57",
+        "chicken-avocado-salad": "\uD83E\uDD57",
+        "chocolate-brownie":    "\uD83C\uDF6B",
+        "molten-lava-cake":     "\uD83C\uDF70",
+        "new-york-cheesecake":  "\uD83C\uDF70",
+        "espresso":             "\u2615",
+        "cappuccino":           "\u2615",
+        "cafe-latte":           "\u2615",
+        "oreo-milkshake":       "\uD83E\uDD5B",
+        "chocolate-milkshake":  "\uD83E\uDD5B",
+        "strawberry-milkshake": "\uD83E\uDD5B",
+        "blue-lagoon":          "\uD83C\uDF77",
+        "virgin-mojito":        "\uD83C\uDF77",
+        "tropical-punch":       "\uD83C\uDF77",
+        "mozzarella-sticks":    "\uD83E\uDDC0",
+        "onion-rings":          "\uD83E\uDDC5",
+        "chicken-nuggets":      "\uD83E\uDD6A",
+        "chicken-biryani":      "\uD83C\uDF5B",
+        "beef-biryani":         "\uD83C\uDF5B",
+        "fried-rice":           "\uD83C\uDF5A",
+        "pancakes":             "\uD83E\uDD5E",
+        "french-toast":         "\uD83E\uDD5E",
+        "avocado-toast":        "\uD83E\uDD51",
+        "burger-fries-coke":    "\uD83C\uDF54",
+        "pizza-garlic-pepsi":   "\uD83C\uDF55",
+        "chicken-bucket-fries": "\uD83C\uDF57",
         "default":  "\uD83C\uDF7D\uFE0F"
       };
 
@@ -943,7 +997,29 @@
               window.location.href = "profile.html";
               return;
             }
+            var cartItems = window.Cart.getAll();
+            if (!cartItems || cartItems.length === 0) return;
+            var subtotal = window.Cart.getTotal();
+            var deliveryFee = subtotal >= FREE_DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE;
+            var discount = promoApplied ? subtotal * PROMO_DISCOUNT : 0;
+            var total = subtotal + deliveryFee - discount;
             var orderId = "SAV-" + Math.floor(100000 + Math.random() * 900000);
+            var order = {
+              id: orderId,
+              items: cartItems.map(function (i) { return { id: i.id, name: i.name, price: i.price, quantity: i.quantity }; }),
+              subtotal: subtotal,
+              deliveryFee: deliveryFee,
+              discount: discount,
+              total: total,
+              date: new Date().toISOString(),
+              status: "Preparing",
+              userEmail: user.email
+            };
+            var orders = [];
+            try { orders = JSON.parse(localStorage.getItem("savoro_orders")) || []; } catch (e) {}
+            orders.push(order);
+            localStorage.setItem("savoro_orders", JSON.stringify(orders));
+            window.Cart.clear();
             document.getElementById("order-id").textContent = orderId;
             document.getElementById("order-success").classList.add("open");
           });

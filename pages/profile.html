@@ -228,6 +228,12 @@
       font-weight: var(--fw-bold);
       margin-bottom: var(--space-6);
     }
+    .profile-panel__subtitle {
+      font-family: var(--font-display);
+      font-size: var(--fs-body);
+      font-weight: var(--fw-bold);
+      margin-bottom: var(--space-4);
+    }
     .profile-panel.hidden { display: none; }
 
     /* ─── Forms ─── */
@@ -275,20 +281,32 @@
     }
     .profile-stat {
       text-align: center;
-      padding: var(--space-5);
+      padding: var(--space-6) var(--space-4);
       background: var(--surface-input);
+      border: 1px solid var(--border);
       border-radius: var(--radius-lg);
+      transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+    }
+    .profile-stat:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
     }
     .profile-stat__number {
       font-family: var(--font-display);
       font-size: var(--fs-h3);
       font-weight: var(--fw-bold);
-      color: var(--color-ember-end);
+      background: var(--gradient-ember);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .profile-stat__label {
       font-size: var(--fs-caption);
       color: var(--text-muted);
-      margin-top: var(--space-1);
+      margin-top: var(--space-2);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      font-weight: var(--fw-semibold);
     }
 
     /* ─── Orders ─── */
@@ -298,71 +316,124 @@
       gap: var(--space-4);
     }
     .order-card {
-      display: flex;
-      align-items: center;
-      gap: var(--space-5);
-      padding: var(--space-5);
       background: var(--surface-input);
+      border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      transition: transform var(--duration-fast) var(--ease-out);
+      overflow: hidden;
+      transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+      border-left: 3px solid var(--color-ember-start);
     }
-    .order-card:hover { transform: translateY(-2px); }
-    .order-card__icon {
-      width: 48px;
-      height: 48px;
-      border-radius: var(--radius-lg);
-      background: var(--gradient-ember);
+    .order-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .order-card__header {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      flex-shrink: 0;
+      justify-content: space-between;
+      padding: var(--space-4) var(--space-5);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-card);
     }
-    .order-card__info { flex: 1; min-width: 0; }
     .order-card__name {
-      font-weight: var(--fw-semibold);
+      font-family: var(--font-mono);
+      font-weight: var(--fw-bold);
       font-size: var(--fs-small);
-      margin-bottom: var(--space-1);
-    }
-    .order-card__meta {
-      font-size: var(--fs-caption);
-      color: var(--text-muted);
+      color: var(--text-primary);
+      letter-spacing: var(--ls-wide);
     }
     .order-card__status {
       padding: var(--space-1) var(--space-3);
       border-radius: var(--radius-full);
       font-size: var(--fs-caption);
       font-weight: var(--fw-semibold);
-      flex-shrink: 0;
+      letter-spacing: var(--ls-wide);
+      text-transform: uppercase;
     }
     .order-card__status--delivered {
-      background: rgba(76, 175, 80, 0.15);
-      color: #4caf50;
+      background: var(--success-soft);
+      color: var(--success);
     }
     .order-card__status--preparing {
-      background: rgba(255, 193, 7, 0.15);
-      color: #ffc107;
+      background: var(--warning-soft);
+      color: var(--warning);
     }
     .order-card__status--transit {
-      background: rgba(33, 150, 243, 0.15);
-      color: #2196f3;
+      background: var(--info-soft);
+      color: var(--info);
+    }
+    .order-card__body {
+      padding: var(--space-4) var(--space-5);
+    }
+    .order-card__body p {
+      font-size: var(--fs-small);
+      color: var(--text-secondary);
+      line-height: var(--lh-normal);
+    }
+    .order-card__body p + p {
+      margin-top: var(--space-1);
+    }
+    .order-card__items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-2);
+    }
+    .order-card__item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: var(--space-1) var(--space-3);
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      font-size: var(--fs-caption);
+      color: var(--text-primary);
+    }
+    .order-card__item-qty {
+      color: var(--text-muted);
+      font-weight: var(--fw-semibold);
+    }
+    .order-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-3) var(--space-5);
+      border-top: 1px solid var(--border);
+      background: var(--surface-card);
     }
     .order-card__total {
       font-family: var(--font-display);
       font-weight: var(--fw-bold);
+      font-size: var(--fs-body);
       color: var(--color-ember-end);
-      flex-shrink: 0;
+    }
+    .order-card__actions {
+      display: flex;
+      gap: var(--space-2);
+    }
+    .order-card__meta {
+      font-size: var(--fs-caption);
+      color: var(--text-muted);
     }
     .order-empty {
       text-align: center;
       padding: var(--space-10) var(--space-4);
       background: var(--surface-input);
       border-radius: var(--radius-lg);
+      border: 1px dashed var(--border);
     }
-    .order-card__actions {
-      display: flex;
-      gap: var(--space-2);
-      flex-shrink: 0;
+    .order-empty__icon {
+      font-size: 2.5rem;
+      margin-bottom: var(--space-3);
+    }
+    .order-empty__title {
+      font-weight: var(--fw-semibold);
+      margin-bottom: var(--space-1);
+    }
+    .order-empty__text {
+      font-size: var(--fs-small);
+      color: var(--text-muted);
     }
     .order-btn {
       padding: var(--space-2) var(--space-3);
@@ -375,25 +446,25 @@
       transition: all var(--duration-fast) var(--ease-out);
     }
     .order-btn--edit {
-      background: rgba(33, 150, 243, 0.15);
-      color: #2196f3;
+      background: var(--info-soft);
+      color: var(--info);
     }
     .order-btn--edit:hover {
-      background: rgba(33, 150, 243, 0.3);
+      background: rgba(91, 155, 213, 0.25);
     }
     .order-btn--delete {
-      background: rgba(239, 68, 68, 0.15);
-      color: #ef4444;
+      background: var(--danger-soft);
+      color: var(--danger);
     }
     .order-btn--delete:hover {
-      background: rgba(239, 68, 68, 0.3);
+      background: rgba(224, 82, 82, 0.25);
     }
     .order-btn--save {
-      background: rgba(76, 175, 80, 0.15);
-      color: #4caf50;
+      background: var(--success-soft);
+      color: var(--success);
     }
     .order-btn--save:hover {
-      background: rgba(76, 175, 80, 0.3);
+      background: rgba(122, 139, 111, 0.25);
     }
     .order-btn--cancel {
       background: rgba(156, 163, 175, 0.15);
@@ -411,7 +482,7 @@
       font-family: var(--font-body);
       font-size: var(--fs-small);
       color: var(--text-primary);
-      width: 100%;
+    }
     }
     .order-card input:focus,
     .order-card select:focus {
@@ -525,26 +596,91 @@
     /* ─── Toast ─── */
     .profile-toast {
       position: fixed;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%) translateY(120%);
-      background: #2d8a4e;
-      color: #fff;
-      padding: 0.9rem 1.75rem;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      top: calc(var(--navbar-height) + var(--announcement-height) + var(--space-4));
+      right: var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-5);
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
       z-index: 9999;
-      transition: transform 0.35s ease, visibility 0.35s ease, opacity 0.35s ease;
-      pointer-events: none;
-      visibility: hidden;
+      transform: translateX(calc(100% + var(--space-4)));
       opacity: 0;
+      transition: transform 0.4s var(--ease-spring), opacity 0.4s var(--ease-out);
+      pointer-events: none;
+      max-width: 360px;
     }
     .profile-toast.show {
-      transform: translateX(-50%) translateY(0);
-      visibility: visible;
+      transform: translateX(0);
       opacity: 1;
+      pointer-events: auto;
+    }
+    .profile-toast__icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.95rem;
+    }
+    .profile-toast--success .profile-toast__icon {
+      background: var(--success-soft);
+      color: var(--success);
+    }
+    .profile-toast--success {
+      border-left: 3px solid var(--success);
+    }
+    .profile-toast--error .profile-toast__icon {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+    .profile-toast--error {
+      border-left: 3px solid var(--danger);
+    }
+    .profile-toast--info .profile-toast__icon {
+      background: var(--info-soft);
+      color: var(--info);
+    }
+    .profile-toast--info {
+      border-left: 3px solid var(--info);
+    }
+    .profile-toast--warning .profile-toast__icon {
+      background: var(--warning-soft);
+      color: var(--warning);
+    }
+    .profile-toast--warning {
+      border-left: 3px solid var(--warning);
+    }
+    .profile-toast__content {
+      flex: 1;
+      min-width: 0;
+    }
+    .profile-toast__msg {
+      font-size: var(--fs-small);
+      font-weight: var(--fw-medium);
+      color: var(--text-primary);
+      line-height: var(--lh-snug);
+    }
+    .profile-toast__progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      animation: toastProgress 2.5s linear forwards;
+    }
+    .profile-toast--success .profile-toast__progress { background: var(--success); }
+    .profile-toast--error .profile-toast__progress { background: var(--danger); }
+    .profile-toast--info .profile-toast__progress { background: var(--info); }
+    .profile-toast--warning .profile-toast__progress { background: var(--warning); }
+    @keyframes toastProgress {
+      from { width: 100%; }
+      to { width: 0%; }
     }
 
     /* ─── Mobile ─── */
@@ -561,8 +697,10 @@
       .profile-stats {
         grid-template-columns: 1fr;
       }
-      .order-card {
+      .order-card__header,
+      .order-card__footer {
         flex-wrap: wrap;
+        gap: var(--space-2);
       }
       .admin-actions {
         flex-direction: column;
@@ -659,6 +797,7 @@
         <li><a href="about.html" class="navbar__link">About</a></li>
         <li><a href="blog.html" class="navbar__link">Blog</a></li>
         <li><a href="contact.html" class="navbar__link">Contact</a></li>
+        <li><a href="reservation.html" class="navbar__link">Reservation</a></li>
       </ul>
       <div class="navbar__actions">
         <a href="search.html" class="navbar__action-btn" aria-label="Search">
@@ -709,6 +848,10 @@
       <a href="contact.html" class="navbar__mobile-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Contact
+      </a>
+      <a href="reservation.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Reservation
       </a>
       <a href="profile.html" class="navbar__mobile-link active">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -842,13 +985,13 @@
             <div class="profile-stat__label">Reward Points</div>
           </div>
         </div>
-        <h3 style="font-family:var(--font-display);font-size:var(--fs-body);font-weight:var(--fw-bold);margin-bottom:var(--space-4);">Recent Orders</h3>
+        <h3 class="profile-panel__subtitle">Recent Orders</h3>
         <div class="order-list" id="recentOrders">
         </div>
         <div class="order-empty" id="recentOrdersEmpty">
-          <p style="font-size:2rem;margin-bottom:var(--space-3);">&#x1F6D2;</p>
-          <p style="font-weight:var(--fw-semibold);margin-bottom:var(--space-1);">No orders yet</p>
-          <p style="font-size:var(--fs-small);color:var(--text-muted);">Your recent orders will appear here after you place one.</p>
+          <div class="order-empty__icon">&#x1F6D2;</div>
+          <p class="order-empty__title">No orders yet</p>
+          <p class="order-empty__text">Your recent orders will appear here after you place one.</p>
         </div>
       </div>
 
@@ -858,9 +1001,9 @@
         <div class="order-list" id="allOrders">
         </div>
         <div class="order-empty" id="allOrdersEmpty">
-          <p style="font-size:2rem;margin-bottom:var(--space-3);">&#x1F4CB;</p>
-          <p style="font-weight:var(--fw-semibold);margin-bottom:var(--space-1);">No orders yet</p>
-          <p style="font-size:var(--fs-small);color:var(--text-muted);">When you place an order, it will appear here for easy tracking.</p>
+          <div class="order-empty__icon">&#x1F4CB;</div>
+          <p class="order-empty__title">No orders yet</p>
+          <p class="order-empty__text">When you place an order, it will appear here for easy tracking.</p>
         </div>
       </div>
 
@@ -1005,10 +1148,10 @@
         <h4 class="footer__heading">Support</h4>
         <ul class="footer__links">
           <li><a href="contact.html" class="footer__link">Contact Us</a></li>
-          <li><a href="#" class="footer__link">FAQs</a></li>
-          <li><a href="#" class="footer__link">Delivery Info</a></li>
-          <li><a href="#" class="footer__link">Return Policy</a></li>
-          <li><a href="#" class="footer__link">Track Order</a></li>
+          <li><a href="faqs.html" class="footer__link">FAQs</a></li>
+          <li><a href="delivery-info.html" class="footer__link">Delivery Info</a></li>
+          <li><a href="return-policy.html" class="footer__link">Return Policy</a></li>
+          <li><a href="track-order.html" class="footer__link">Track Order</a></li>
         </ul>
       </div>
       <div>
@@ -1037,7 +1180,13 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
 
-  <div class="profile-toast" id="profileToast"></div>
+  <div class="profile-toast" id="profileToast">
+    <span class="profile-toast__icon" id="profileToastIcon"></span>
+    <div class="profile-toast__content">
+      <div class="profile-toast__msg" id="profileToastMsg"></div>
+    </div>
+    <div class="profile-toast__progress" id="profileToastProgress"></div>
+  </div>
 
   <script src="../assets/js/cart.js"></script>
   <script src="../assets/js/main.js"></script>
@@ -1081,11 +1230,24 @@
         return div.innerHTML;
       }
 
-      function showToast(msg) {
+      var toastTimer = null;
+      function showToast(msg, type) {
         var toast = document.getElementById("profileToast");
-        toast.textContent = msg;
+        var iconEl = document.getElementById("profileToastIcon");
+        var msgEl = document.getElementById("profileToastMsg");
+        var progressEl = document.getElementById("profileToastProgress");
+        if (toastTimer) { clearTimeout(toastTimer); toast.classList.remove("show"); }
+        toast.className = "profile-toast";
+        var t = type || "success";
+        toast.classList.add("profile-toast--" + t);
+        var icons = { success: "\u2713", error: "\u2717", info: "\u2139", warning: "\u26A0" };
+        iconEl.textContent = icons[t] || icons.success;
+        msgEl.textContent = msg;
+        progressEl.style.animation = "none";
+        void progressEl.offsetWidth;
+        progressEl.style.animation = "";
         toast.classList.add("show");
-        setTimeout(function () { toast.classList.remove("show"); }, 2500);
+        toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2800);
       }
 
       /* ─── Seed default admin if no users exist ─── */
@@ -1161,7 +1323,7 @@
         authScreen.style.display = "none";
         mainContent.style.display = "";
         loadDashboard();
-        showToast("Welcome back, " + found.name + "!");
+        showToast("Welcome back, " + found.name + "!", "success");
       });
 
       /* Signup */
@@ -1201,7 +1363,7 @@
         authScreen.style.display = "none";
         mainContent.style.display = "";
         loadDashboard();
-        showToast("Account created! Welcome, " + name + "!");
+        showToast("Account created! Welcome, " + name + "!", "success");
       });
 
       /* Logout */
@@ -1222,6 +1384,62 @@
         signupForm.classList.add("hidden");
       });
 
+      /* ─── Render orders ─── */
+      function renderOrders(orders) {
+        var statusClassMap = {
+          "Delivered": "order-card__status--delivered",
+          "Preparing": "order-card__status--preparing",
+          "In Transit": "order-card__status--transit"
+        };
+        var recentEl = document.getElementById("recentOrders");
+        var allEl = document.getElementById("allOrders");
+        var recentEmpty = document.getElementById("recentOrdersEmpty");
+        var allEmpty = document.getElementById("allOrdersEmpty");
+
+        function buildOrderCard(order) {
+          var dateStr = new Date(order.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+          var timeStr = new Date(order.date).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
+          var itemsHTML = order.items.map(function (i) {
+            return '<span class="order-card__item">' + escapeHTML(i.name) + ' <span class="order-card__item-qty">x' + i.quantity + '</span></span>';
+          }).join("");
+          var statusClass = statusClassMap[order.status] || "order-card__status--preparing";
+          return '<div class="order-card" data-order-id="' + order.id + '">' +
+            '<div class="order-card__header">' +
+              '<span class="order-card__name">' + order.id + '</span>' +
+              '<span class="order-card__status ' + statusClass + '">' + order.status + '</span>' +
+            '</div>' +
+            '<div class="order-card__body">' +
+              '<p class="order-card__meta">' + dateStr + ' at ' + timeStr + '</p>' +
+              '<div class="order-card__items">' + itemsHTML + '</div>' +
+            '</div>' +
+            '<div class="order-card__footer">' +
+              '<span class="order-card__total">$' + order.total.toFixed(2) + '</span>' +
+              '<div class="order-card__actions">' +
+                '<button class="order-btn order-btn--edit" onclick="editOrder(this)">Edit</button>' +
+                '<button class="order-btn order-btn--delete" onclick="deleteOrder(this)">Delete</button>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        }
+
+        if (orders.length === 0) {
+          recentEl.innerHTML = "";
+          allEl.innerHTML = "";
+          recentEmpty.style.display = "";
+          allEmpty.style.display = "";
+        } else {
+          recentEmpty.style.display = "none";
+          allEmpty.style.display = "none";
+          var recentHTML = "";
+          var recent = orders.slice().reverse().slice(0, 5);
+          recent.forEach(function (o) { recentHTML += buildOrderCard(o); });
+          recentEl.innerHTML = recentHTML;
+          var allHTML = "";
+          orders.slice().reverse().forEach(function (o) { allHTML += buildOrderCard(o); });
+          allEl.innerHTML = allHTML;
+        }
+      }
+
       /* ─── Dashboard ─── */
       function loadDashboard() {
         if (!user) return;
@@ -1241,12 +1459,14 @@
           document.getElementById("adminNavBtn").style.display = "none";
         }
 
-        var cartItems = window.Cart ? window.Cart.getAll() : [];
-        var totalSpent = cartItems.reduce(function (s, i) { return s + (i.price * i.quantity); }, 0);
-        var totalItems = cartItems.reduce(function (s, i) { return s + i.quantity; }, 0);
-        document.getElementById("statOrders").textContent = totalItems || 0;
+        var allOrders = [];
+        try { allOrders = JSON.parse(localStorage.getItem("savoro_orders")) || []; } catch (e) {}
+        var userOrders = allOrders.filter(function (o) { return o.userEmail === user.email; });
+        var totalSpent = userOrders.reduce(function (s, o) { return s + o.total; }, 0);
+        document.getElementById("statOrders").textContent = userOrders.length || 0;
         document.getElementById("statSpent").textContent = "$" + totalSpent.toFixed(2);
         document.getElementById("statPoints").textContent = Math.floor(totalSpent * 10) || 0;
+        renderOrders(userOrders);
       }
 
       /* ─── Panel switching ─── */
@@ -1291,7 +1511,7 @@
         document.getElementById("userName").textContent = updated.name || "User";
         document.getElementById("userEmail").textContent = updated.email || "";
         document.getElementById("userAvatar").textContent = (updated.name || "U").charAt(0).toUpperCase();
-        showToast("Settings saved successfully!");
+        showToast("Settings saved successfully!", "success");
       });
 
       /* ─── Create account (admin) ─── */
@@ -1303,14 +1523,14 @@
         var role = document.getElementById("newRole").value;
 
         if (!name || !email || !password) {
-          showToast("Please fill in all fields.");
+          showToast("Please fill in all fields.", "warning");
           return;
         }
 
         var users = getUsers();
         var exists = users.some(function (u) { return u.email === email; });
         if (exists) {
-          showToast("An account with this email already exists.");
+          showToast("An account with this email already exists.", "error");
           return;
         }
 
@@ -1326,7 +1546,7 @@
         document.getElementById("newRole").value = "customer";
 
         renderAdminTable();
-        showToast("Account created for " + name + "!");
+        showToast("Account created for " + name + "!", "success");
       });
 
       /* ─── Admin table with Edit / Delete ─── */
@@ -1405,7 +1625,7 @@
         }
 
         renderAdminTable();
-        showToast("User updated successfully!");
+        showToast("User updated successfully!", "success");
       };
 
       /* Delete user */
@@ -1416,7 +1636,7 @@
         /* Prevent deleting yourself */
         var cu = getCurrentUser();
         if (cu && cu.email === u.email) {
-          showToast("You cannot delete your own account.");
+          showToast("You cannot delete your own account.", "warning");
           return;
         }
 
@@ -1425,7 +1645,7 @@
         users.splice(idx, 1);
         saveUsers(users);
         renderAdminTable();
-        showToast("Account deleted.");
+        showToast("Account deleted.", "error");
       };
 
       /* ─── Order Edit / Delete ─── */
@@ -1440,9 +1660,9 @@
         var currentTotal = totalEl.textContent.replace("$", "");
         var currentStatus = statusEl.textContent;
 
-        nameEl.innerHTML = '<input type="text" value="' + escapeHTML(currentName) + '">';
+        nameEl.innerHTML = '<input type="text" value="' + escapeHTML(currentName) + '" style="width:120px;">';
         totalEl.innerHTML = '<input type="text" value="' + escapeHTML(currentTotal) + '" style="width:80px;">';
-        statusEl.outerHTML = '<select class="order-card__status">'
+        statusEl.outerHTML = '<select class="order-card__status" style="text-transform:none;">'
           + '<option value="Delivered"' + (currentStatus === "Delivered" ? " selected" : "") + '>Delivered</option>'
           + '<option value="Preparing"' + (currentStatus === "Preparing" ? " selected" : "") + '>Preparing</option>'
           + '<option value="In Transit"' + (currentStatus === "In Transit" ? " selected" : "") + '>In Transit</option>'
@@ -1454,6 +1674,7 @@
 
       window.saveOrder = function (btn) {
         var card = btn.closest(".order-card");
+        var orderId = card.getAttribute("data-order-id");
         var nameInput = card.querySelector(".order-card__name input");
         var statusSelect = card.querySelector(".order-card__status");
         var totalInput = card.querySelector(".order-card__total input");
@@ -1473,7 +1694,17 @@
           '<button class="order-btn order-btn--edit" onclick="editOrder(this)">Edit</button>'
           + '<button class="order-btn order-btn--delete" onclick="deleteOrder(this)">Delete</button>';
 
-        showToast("Order updated!");
+        var allOrders = [];
+        try { allOrders = JSON.parse(localStorage.getItem("savoro_orders")) || []; } catch (e) {}
+        for (var i = 0; i < allOrders.length; i++) {
+          if (allOrders[i].id === orderId) {
+            allOrders[i].status = newStatus;
+            allOrders[i].total = parseFloat(newTotal) || allOrders[i].total;
+            break;
+          }
+        }
+        localStorage.setItem("savoro_orders", JSON.stringify(allOrders));
+        showToast("Order updated!", "success");
       };
 
       window.cancelEditOrder = function (btn, origName, origStatus, origTotal) {
@@ -1495,12 +1726,17 @@
 
       window.deleteOrder = function (btn) {
         var card = btn.closest(".order-card");
-        var name = card.querySelector(".order-card__name").textContent;
-        if (!confirm("Delete order for " + name + "?")) return;
+        var orderId = card.getAttribute("data-order-id");
+        if (!confirm("Delete order " + orderId + "?")) return;
+        var allOrders = [];
+        try { allOrders = JSON.parse(localStorage.getItem("savoro_orders")) || []; } catch (e) {}
+        allOrders = allOrders.filter(function (o) { return o.id !== orderId; });
+        localStorage.setItem("savoro_orders", JSON.stringify(allOrders));
         var list = card.closest(".order-list");
         card.remove();
         toggleEmptyState(list);
-        showToast("Order deleted.");
+        loadDashboard();
+        showToast("Order deleted.", "error");
       };
 
       function toggleEmptyState(list) {

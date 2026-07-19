@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Table Reservation | Savoro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/variables.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <style>
+    .reservation-hero {
+      text-align: center;
+      padding: 5rem 1.5rem 3.5rem;
+      background: linear-gradient(135deg, #1a0a00 0%, #2d1600 50%, #1a0a00 100%);
+      color: #f5e6d3;
+    }
+    .reservation-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      color: #f5e6d3;
+    }
+    .reservation-hero p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.15rem;
+      color: #bfa88a;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .reservation-form-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 4rem;
+    }
+    .reservation-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .form-group label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #f5e6d3;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: #2E2824;
+      border: 1px solid rgba(255,200,100,0.15);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #f5e6d3;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(191,168,138,0.5);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(255,200,100,0.4);
+      box-shadow: 0 0 0 3px rgba(255,200,100,0.08);
+    }
+    .form-group input.error,
+    .form-group select.error,
+    .form-group textarea.error {
+      border-color: #dc4a2a;
+      box-shadow: 0 0 0 3px rgba(220,74,42,0.15);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .form-group select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23bfa88a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    .form-group select option {
+      background: #2E2824;
+      color: #f5e6d3;
+    }
+    .form-group .error-message {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: #dc4a2a;
+      display: none;
+    }
+    .form-group .error-message.visible {
+      display: block;
+    }
+
+    .seating-options {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .seating-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+    .seating-option input[type="radio"] {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255,200,100,0.3);
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .seating-option input[type="radio"]:checked {
+      border-color: #E8A33D;
+      background: radial-gradient(circle, #E8A33D 40%, transparent 45%);
+    }
+    .seating-option span {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #bfa88a;
+      cursor: pointer;
+    }
+    .seating-option input[type="radio"]:checked + span {
+      color: #f5e6d3;
+    }
+
+    .btn-reserve {
+      background: linear-gradient(135deg, #C4432B, #E8A33D);
+      color: #1A1614;
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 14px;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 0.5rem;
+    }
+    .btn-reserve:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(228,163,61,0.25);
+    }
+    .btn-reserve:active {
+      transform: translateY(0);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      padding: 1.5rem;
+    }
+    .modal-overlay.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal {
+      background: linear-gradient(145deg, #2d1600, #1a0a00);
+      border: 1px solid rgba(255,200,100,0.15);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      transform: scale(0.9) translateY(20px);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .modal-overlay.visible .modal {
+      transform: scale(1) translateY(0);
+    }
+    .modal__checkmark {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #C4432B, #E8A33D);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: modalPulse 0.6s ease;
+    }
+    .modal__checkmark svg {
+      width: 40px;
+      height: 40px;
+      stroke: #1A1614;
+      stroke-width: 3;
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: checkDraw 0.5s 0.3s ease forwards;
+    }
+    @keyframes modalPulse {
+      0% { transform: scale(0.5); opacity: 0; }
+      60% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes checkDraw {
+      to { stroke-dashoffset: 0; }
+    }
+    .modal__title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #f5e6d3;
+      margin-bottom: 0.5rem;
+    }
+    .modal__id {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #daa520;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.25rem;
+    }
+    .modal__summary {
+      text-align: left;
+      margin-bottom: 1.75rem;
+      padding: 1.25rem;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,200,100,0.08);
+    }
+    .modal__summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.45rem 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+    }
+    .modal__summary-row:not(:last-child) {
+      border-bottom: 1px solid rgba(255,200,100,0.06);
+    }
+    .modal__summary-label {
+      color: #bfa88a;
+    }
+    .modal__summary-value {
+      color: #f5e6d3;
+      font-weight: 500;
+      text-align: right;
+    }
+    .modal__done {
+      background: linear-gradient(135deg, #C4432B, #E8A33D);
+      color: #1A1614;
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      padding: 0.85rem 2.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .modal__done:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(228,163,61,0.25);
+    }
+
+    @media (max-width: 768px) {
+      .reservation-hero {
+        padding: 3.5rem 1.25rem 2.5rem;
+      }
+      .reservation-form-container {
+        padding: 2.5rem 1.25rem 3rem;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+      .seating-options {
+        gap: 1rem;
+      }
+      .modal {
+        padding: 2.5rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__scene">
+      <div class="preloader__plate"></div>
+      <div class="preloader__orbit">
+        <span class="preloader__food">&#x1F354;</span>
+        <span class="preloader__food">&#x1F355;</span>
+        <span class="preloader__food">&#x1F370;</span>
+        <span class="preloader__food">&#x1F353;</span>
+        <span class="preloader__food">&#x1F96A;</span>
+        <span class="preloader__food">&#x1F366;</span>
+      </div>
+      <div class="preloader__logo">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="30" fill="url(#prelogo-grad)"/>
+          <path d="M20 42c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="#1A1614" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="32" cy="24" r="5" fill="#1A1614"/>
+          <defs>
+            <linearGradient id="prelogo-grad" x1="4" y1="4" x2="60" y2="60">
+              <stop stop-color="#C4432B"/>
+              <stop offset="1" stop-color="#E8A33D"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+    <div class="preloader__text">
+      <div class="preloader__brand">Savoro</div>
+      <div class="preloader__tagline">Preparing Your Delicious Experience...</div>
+      <div class="preloader__progress">
+        <div class="preloader__progress-bar" id="preloaderBar"></div>
+      </div>
+      <div class="preloader__dots">
+        <span class="preloader__dot"></span>
+        <span class="preloader__dot"></span>
+        <span class="preloader__dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" role="region" aria-label="Announcements">
+    <div class="announcement-bar__track">
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Free delivery on your first order — Use code <strong>&nbsp;SAVORO25&nbsp;</strong> at checkout
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Limited time — <span class="discount">20% OFF</span> all family platters this weekend only
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Fresh daily — Our chefs prepare every dish from scratch each morning
+      </div>
+      <div class="announcement-bar__slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        New menu alert — Try our <span class="discount">15% OFF</span> summer specials today
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo" aria-label="Savoro home">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" fill="url(#logo-grad)"/>
+          <path d="M13 26c0-4 3-7 7-7s7 3 7 7" stroke="#1A1614" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="20" cy="15" r="3" fill="#1A1614"/>
+          <defs>
+            <linearGradient id="logo-grad" x1="2" y1="2" x2="38" y2="38">
+              <stop stop-color="#C4432B"/>
+              <stop offset="1" stop-color="#E8A33D"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>Savoro</span>
+      </a>
+      <ul class="navbar__links">
+        <li><a href="../index.html" class="navbar__link">Home</a></li>
+        <li><a href="menu.html" class="navbar__link">Menu</a></li>
+        <li><a href="categories.html" class="navbar__link">Categories</a></li>
+        <li><a href="offers.html" class="navbar__link">Offers</a></li>
+        <li><a href="about.html" class="navbar__link">About</a></li>
+        <li><a href="blog.html" class="navbar__link">Blog</a></li>
+        <li><a href="contact.html" class="navbar__link">Contact</a></li>
+        <li><a href="reservation.html" class="navbar__link active">Reservation</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="search.html" class="navbar__action-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <a href="wishlist.html" class="navbar__action-btn" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="navbar__badge" data-badge="wishlist">0</span>
+        </a>
+        <a href="cart.html" class="navbar__action-btn" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="navbar__badge" data-badge="cart">0</span>
+        </a>
+        <a href="profile.html" class="navbar__action-btn hide-mobile" aria-label="Profile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <button class="navbar__action-btn theme-toggle" aria-label="Toggle theme"></button>
+        <button class="navbar__hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="navbar__mobile-menu" aria-hidden="true">
+      <a href="../index.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <a href="menu.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        Menu
+      </a>
+      <a href="categories.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Categories
+      </a>
+      <a href="offers.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        Offers
+      </a>
+      <a href="about.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        About
+      </a>
+      <a href="blog.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Blog
+      </a>
+      <a href="contact.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact
+      </a>
+      <a href="reservation.html" class="navbar__mobile-link active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Reservation
+      </a>
+      <a href="profile.html" class="navbar__mobile-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Profile
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="reservation-hero">
+    <h1>Reserve Your Table</h1>
+    <p>Experience fine dining at its best — book your spot and let us create an unforgettable evening for you.</p>
+  </section>
+
+  <!-- Reservation Form -->
+  <main id="main-content">
+    <div class="reservation-form-container">
+      <form class="reservation-form" id="reservationForm" novalidate>
+        <div class="form-group">
+          <label for="resName">Full Name</label>
+          <input type="text" id="resName" name="name" placeholder="Enter your full name" required />
+          <span class="error-message" id="errName">Please enter your full name.</span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="resPhone">Phone Number</label>
+            <input type="tel" id="resPhone" name="phone" placeholder="e.g. 5551234567" required />
+            <span class="error-message" id="errPhone">Please enter a valid phone number (at least 7 digits).</span>
+          </div>
+          <div class="form-group">
+            <label for="resEmail">Email Address</label>
+            <input type="email" id="resEmail" name="email" placeholder="you@example.com" required />
+            <span class="error-message" id="errEmail">Please enter a valid email address.</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="resGuests">Number of Guests</label>
+            <select id="resGuests" name="guests" required>
+              <option value="" disabled selected>Select guests</option>
+              <option value="1">1 Guest</option>
+              <option value="2">2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5">5 Guests</option>
+              <option value="6">6 Guests</option>
+              <option value="7">7 Guests</option>
+              <option value="8">8 Guests</option>
+              <option value="9">9 Guests</option>
+              <option value="10">10 Guests</option>
+              <option value="11">11 Guests</option>
+              <option value="12">12 Guests</option>
+            </select>
+            <span class="error-message" id="errGuests">Please select the number of guests.</span>
+          </div>
+          <div class="form-group">
+            <label for="resDate">Reservation Date</label>
+            <input type="date" id="resDate" name="date" required />
+            <span class="error-message" id="errDate">Please select a valid date (today or later).</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="resTime">Reservation Time</label>
+            <select id="resTime" name="time" required>
+              <option value="" disabled selected>Select a time</option>
+              <option value="11:00 AM">11:00 AM</option>
+              <option value="11:30 AM">11:30 AM</option>
+              <option value="12:00 PM">12:00 PM</option>
+              <option value="12:30 PM">12:30 PM</option>
+              <option value="1:00 PM">1:00 PM</option>
+              <option value="1:30 PM">1:30 PM</option>
+              <option value="2:00 PM">2:00 PM</option>
+              <option value="2:30 PM">2:30 PM</option>
+              <option value="3:00 PM">3:00 PM</option>
+              <option value="3:30 PM">3:30 PM</option>
+              <option value="4:00 PM">4:00 PM</option>
+              <option value="4:30 PM">4:30 PM</option>
+              <option value="5:00 PM">5:00 PM</option>
+              <option value="5:30 PM">5:30 PM</option>
+              <option value="6:00 PM">6:00 PM</option>
+              <option value="6:30 PM">6:30 PM</option>
+              <option value="7:00 PM">7:00 PM</option>
+              <option value="7:30 PM">7:30 PM</option>
+              <option value="8:00 PM">8:00 PM</option>
+              <option value="8:30 PM">8:30 PM</option>
+              <option value="9:00 PM">9:00 PM</option>
+              <option value="9:30 PM">9:30 PM</option>
+              <option value="10:00 PM">10:00 PM</option>
+            </select>
+            <span class="error-message" id="errTime">Please select a time slot.</span>
+          </div>
+          <div class="form-group">
+            <label>Seating Preference</label>
+            <div class="seating-options">
+              <label class="seating-option">
+                <input type="radio" name="seating" value="Indoor" checked />
+                <span>Indoor</span>
+              </label>
+              <label class="seating-option">
+                <input type="radio" name="seating" value="Outdoor" />
+                <span>Outdoor</span>
+              </label>
+              <label class="seating-option">
+                <input type="radio" name="seating" value="Window" />
+                <span>Window</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="resRequests">Special Requests (optional)</label>
+          <textarea id="resRequests" name="requests" placeholder="Any dietary restrictions, celebrations, or special arrangements..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-reserve">Reserve Table</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal">
+      <div class="modal__checkmark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2 class="modal__title">Reservation Confirmed!</h2>
+      <div class="modal__id" id="modalResId"></div>
+      <div class="modal__summary" id="modalSummary"></div>
+      <button class="modal__done" id="modalDone">Done</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo" aria-label="Savoro home">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" fill="url(#footer-logo-grad)"/>
+            <path d="M13 26c0-4 3-7 7-7s7 3 7 7" stroke="#1A1614" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="20" cy="15" r="3" fill="#1A1614"/>
+            <defs>
+              <linearGradient id="footer-logo-grad" x1="2" y1="2" x2="38" y2="38">
+                <stop stop-color="#C4432B"/>
+                <stop offset="1" stop-color="#E8A33D"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span>Savoro</span>
+        </a>
+        <p class="footer__desc">Premium food delivery crafted with care. Fresh ingredients, bold flavors, and restaurant-quality dishes delivered to your door.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" class="footer__social-link" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__heading">Quick Links</h4>
+        <ul class="footer__links">
+          <li><a href="menu.html" class="footer__link">Our Menu</a></li>
+          <li><a href="categories.html" class="footer__link">Categories</a></li>
+          <li><a href="offers.html" class="footer__link">Special Offers</a></li>
+          <li><a href="about.html" class="footer__link">About Us</a></li>
+          <li><a href="blog.html" class="footer__link">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Support</h4>
+        <ul class="footer__links">
+          <li><a href="contact.html" class="footer__link">Contact Us</a></li>
+          <li><a href="faqs.html" class="footer__link">FAQs</a></li>
+          <li><a href="delivery-info.html" class="footer__link">Delivery Info</a></li>
+          <li><a href="return-policy.html" class="footer__link">Return Policy</a></li>
+          <li><a href="track-order.html" class="footer__link">Track Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Stay Updated</h4>
+        <p style="font-size: var(--fs-small); color: var(--text-muted); margin-bottom: var(--space-4);">Get exclusive deals and menu updates straight to your inbox.</p>
+        <form class="footer__newsletter" onsubmit="return false;">
+          <div class="form-group">
+            <input type="email" class="form-input" placeholder="Your email address" aria-label="Email for newsletter" style="margin-bottom: var(--space-3);">
+            <button type="submit" class="btn btn-primary btn-sm w-full">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">&copy; 2026 Savoro. All rights reserved.<br><span style="font-size:0.75rem;opacity:0.6;font-weight:400;">Made by Abhishek Mohajan</span></p>
+      <div class="footer__bottom-links">
+        <a href="#" class="footer__bottom-link">Privacy Policy</a>
+        <a href="#" class="footer__bottom-link">Terms of Service</a>
+        <a href="#" class="footer__bottom-link">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="../assets/js/cart.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function() {
+      const form = document.getElementById('reservationForm');
+      const modal = document.getElementById('successModal');
+      const modalDone = document.getElementById('modalDone');
+
+      // Set min date to today
+      const dateInput = document.getElementById('resDate');
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      dateInput.min = yyyy + '-' + mm + '-' + dd;
+
+      function generateId() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let id = 'SAV-';
+        for (let i = 0; i < 5; i++) {
+          id += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return id;
+      }
+
+      function clearErrors() {
+        document.querySelectorAll('.error-message').forEach(function(el) {
+          el.classList.remove('visible');
+        });
+        document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(function(el) {
+          el.classList.remove('error');
+        });
+      }
+
+      function showError(inputId, errorId) {
+        var input = document.getElementById(inputId);
+        var error = document.getElementById(errorId);
+        if (input) input.classList.add('error');
+        if (error) error.classList.add('visible');
+      }
+
+      function validateEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        clearErrors();
+
+        var valid = true;
+        var name = document.getElementById('resName').value.trim();
+        var phone = document.getElementById('resPhone').value.trim();
+        var email = document.getElementById('resEmail').value.trim();
+        var guests = document.getElementById('resGuests').value;
+        var date = document.getElementById('resDate').value;
+        var time = document.getElementById('resTime').value;
+        var seating = form.querySelector('input[name="seating"]:checked').value;
+        var requests = document.getElementById('resRequests').value.trim();
+
+        if (!name) {
+          showError('resName', 'errName');
+          valid = false;
+        }
+        if (!phone || phone.replace(/\D/g, '').length < 7) {
+          showError('resPhone', 'errPhone');
+          valid = false;
+        }
+        if (!email || !validateEmail(email)) {
+          showError('resEmail', 'errEmail');
+          valid = false;
+        }
+        if (!guests) {
+          showError('resGuests', 'errGuests');
+          valid = false;
+        }
+        if (!date) {
+          showError('resDate', 'errDate');
+          valid = false;
+        } else {
+          var selectedDate = new Date(date + 'T00:00:00');
+          var todayStart = new Date();
+          todayStart.setHours(0, 0, 0, 0);
+          if (selectedDate < todayStart) {
+            showError('resDate', 'errDate');
+            valid = false;
+          }
+        }
+        if (!time) {
+          showError('resTime', 'errTime');
+          valid = false;
+        }
+
+        if (!valid) return;
+
+        var reservationId = generateId();
+        var reservation = {
+          id: reservationId,
+          name: name,
+          phone: phone,
+          email: email,
+          guests: guests,
+          date: date,
+          time: time,
+          seating: seating,
+          requests: requests,
+          createdAt: new Date().toISOString()
+        };
+
+        // Save to localStorage
+        var existing = [];
+        try {
+          var stored = localStorage.getItem('savoro_reservations');
+          if (stored) {
+            existing = JSON.parse(stored);
+          }
+        } catch (err) {
+          existing = [];
+        }
+        existing.push(reservation);
+        localStorage.setItem('savoro_reservations', JSON.stringify(existing));
+
+        // Populate modal
+        document.getElementById('modalResId').textContent = reservationId;
+        var summaryHtml = '';
+        summaryHtml += '<div class="modal__summary-row"><span class="modal__summary-label">Name</span><span class="modal__summary-value">' + name + '</span></div>';
+        summaryHtml += '<div class="modal__summary-row"><span class="modal__summary-label">Date</span><span class="modal__summary-value">' + date + '</span></div>';
+        summaryHtml += '<div class="modal__summary-row"><span class="modal__summary-label">Time</span><span class="modal__summary-value">' + time + '</span></div>';
+        summaryHtml += '<div class="modal__summary-row"><span class="modal__summary-label">Guests</span><span class="modal__summary-value">' + guests + '</span></div>';
+        summaryHtml += '<div class="modal__summary-row"><span class="modal__summary-label">Seating</span><span class="modal__summary-value">' + seating + '</span></div>';
+        if (requests) {
+          summaryHtml += '<div class="modal__summary-row"><span class="modal__summary-label">Requests</span><span class="modal__summary-value">' + requests + '</span></div>';
+        }
+        document.getElementById('modalSummary').innerHTML = summaryHtml;
+
+        // Show modal
+        modal.classList.add('visible');
+
+        // Reset form
+        form.reset();
+        form.querySelector('input[name="seating"][value="Indoor"]').checked = true;
+      });
+
+      modalDone.addEventListener('click', function() {
+        modal.classList.remove('visible');
+      });
+
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          modal.classList.remove('visible');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

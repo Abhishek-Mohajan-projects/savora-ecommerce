@@ -1,342 +1,178 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us | Savoro</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/variables.css">
-  <link rel="stylesheet" href="../assets/css/base.css">
-  <link rel="stylesheet" href="../assets/css/components.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Return & Refund Policy | Savoro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/variables.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
   <style>
-    .contact-hero {
+    .policy-hero {
       text-align: center;
-      padding: 6rem 1.5rem 3rem;
-      background: linear-gradient(180deg, var(--color-charcoal-soft) 0%, var(--surface) 100%);
+      padding: 5rem 1.5rem 3.5rem;
+      background: linear-gradient(135deg, #1a0a00 0%, #2d1600 50%, #1a0a00 100%);
+      color: #f5e6d3;
     }
-
-    .contact-hero h1 {
+    .policy-hero h1 {
       font-family: 'Fraunces', serif;
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      color: var(--text-primary);
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
       margin-bottom: 0.75rem;
+      color: #f5e6d3;
     }
-
-    .contact-hero p {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      max-width: 520px;
-      margin: 0 auto;
-    }
-
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 3rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem;
-    }
-
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .contact-form .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .contact-form label {
-      font-weight: 600;
-      font-size: 0.85rem;
-      color: var(--text-primary);
-    }
-
-    .contact-form input,
-    .contact-form select,
-    .contact-form textarea {
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
+    .policy-hero p {
       font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      color: var(--text-primary);
-      background: var(--surface-input);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      font-size: 1.15rem;
+      color: #bfa88a;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
-
-    .contact-form input:focus,
-    .contact-form select:focus,
-    .contact-form textarea:focus {
-      outline: none;
-      border-color: var(--color-ember-start);
-      box-shadow: 0 0 0 3px rgba(196, 67, 43, 0.15);
-    }
-
-    .contact-form textarea {
-      resize: vertical;
-      min-height: 140px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-
-    .btn-submit {
-      padding: 0.85rem 2rem;
-      background: var(--gradient-ember);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      align-self: flex-start;
-    }
-
-    .btn-submit:hover {
-      background: var(--gradient-ember-hover);
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-glow-ember);
-    }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .info-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1.25rem;
-      background: var(--surface-card);
-      border: 1px solid var(--border-card);
-      border-radius: 10px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .info-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .info-card .icon {
-      font-size: 1.5rem;
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(196, 67, 43, 0.12);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .info-card .label {
-      font-weight: 600;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-    }
-
-    .info-card .value {
-      font-size: 0.95rem;
-      color: var(--text-primary);
-      margin-top: 2px;
-      line-height: 1.5;
-    }
-
-    .info-card .value a {
-      color: var(--text-link);
-      text-decoration: none;
-    }
-
-    .info-card .value a:hover {
-      text-decoration: underline;
-    }
-
-    .map-section {
-      max-width: 1100px;
-      margin: 0 auto 3rem;
-      padding: 0 1.5rem;
-    }
-
-    .map-container {
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
-    }
-
-    .map-container iframe {
-      display: block;
-      width: 100%;
-      height: 340px;
-      border: none;
-    }
-
-    .map-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 1rem;
-      background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
-    }
-
-    .map-info {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      color: #fff;
-      font-size: 0.9rem;
-    }
-
-    .map-info__icon {
-      font-size: 1.6rem;
-    }
-
-    .map-info strong {
-      display: block;
-      font-size: 1rem;
-    }
-
-    .map-info span {
-      font-size: 0.82rem;
-      opacity: 0.85;
-    }
-
-    .map-info__btn {
-      margin-left: auto;
-      padding: 0.45rem 1rem;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.18);
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-decoration: none;
-      backdrop-filter: blur(6px);
-      transition: background 0.2s;
-    }
-
-    .map-info__btn:hover {
-      background: rgba(255, 255, 255, 0.32);
-    }
-
-    .faq-section {
-      max-width: 800px;
+    .policy-content {
+      max-width: 900px;
       margin: 0 auto;
       padding: 3rem 1.5rem 4rem;
     }
-
-    .faq-section h2 {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: var(--text-primary);
+    .policy-section {
+      background: linear-gradient(145deg, #2d1600, #1a0a00);
+      border: 1px solid rgba(255,200,100,0.1);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
-    .faq-item {
-      border: 1px solid var(--border);
-      border-radius: 10px;
+    .policy-section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    .policy-section__icon {
+      font-size: 2rem;
       margin-bottom: 0.75rem;
-      overflow: hidden;
-      background: var(--surface-card);
     }
-
-    .faq-question {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 1.25rem;
-      background: none;
-      border: none;
+    .policy-section__title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #f5e6d3;
+      margin-bottom: 1rem;
+    }
+    .policy-section__text {
       font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      cursor: pointer;
-      text-align: left;
-    }
-
-    .faq-question:hover {
-      color: var(--color-ember-start);
-    }
-
-    .faq-question .arrow {
-      font-size: 0.7rem;
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-      margin-left: 1rem;
-    }
-
-    .faq-item.active .faq-question .arrow {
-      transform: rotate(180deg);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease;
-    }
-
-    .faq-answer p {
-      padding: 0 1.25rem 1rem;
       font-size: 0.95rem;
-      line-height: 1.65;
-      color: var(--text-secondary);
+      line-height: 1.7;
+      color: #bfa88a;
+      margin-bottom: 0.75rem;
     }
-
-    .faq-item.active .faq-answer {
-      max-height: 200px;
+    .policy-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0;
     }
-
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%) translateY(120%);
-      background: #2d8a4e;
-      color: #fff;
-      padding: 0.9rem 1.75rem;
+    .policy-list li {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.93rem;
+      line-height: 1.6;
+      color: #bfa88a;
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .policy-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #daa520;
+      font-weight: 700;
+    }
+    .policy-list--cross li::before {
+      content: '✕';
+      color: #C4432B;
+    }
+    .policy-callout {
+      background: rgba(122,139,111,0.1);
+      border-left: 3px solid #7A8B6F;
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+    }
+    .policy-callout p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #bfa88a;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .policy-warning {
+      background: rgba(196,67,43,0.08);
+      border-left: 3px solid #C4432B;
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+    }
+    .policy-warning p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #bfa88a;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .policy-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(196,67,43,0.15), rgba(232,163,61,0.15));
+      border: 1px solid rgba(232,163,61,0.2);
       border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      z-index: 9999;
-      transition: transform 0.35s ease;
-      pointer-events: none;
+      padding: 0.25rem 0.75rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #daa520;
+      margin: 0.25rem 0.25rem 0.25rem 0;
     }
-
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
+    .policy-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 0;
     }
-
+    .policy-table th,
+    .policy-table td {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #bfa88a;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,200,100,0.08);
+    }
+    .policy-table th {
+      font-weight: 600;
+      color: #f5e6d3;
+    }
+    .policy-effective {
+      text-align: center;
+      padding: 2rem 1.5rem 3rem;
+    }
+    .policy-effective p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: rgba(191,168,138,0.5);
+    }
     @media (max-width: 768px) {
-      .contact-layout {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
+      .policy-hero {
+        padding: 3.5rem 1.25rem 2.5rem;
       }
-
-      .form-row {
-        grid-template-columns: 1fr;
+      .policy-content {
+        padding: 2rem 1rem 3rem;
+      }
+      .policy-section {
+        padding: 1.75rem 1.25rem;
+      }
+      .policy-table th,
+      .policy-table td {
+        padding: 0.6rem 0.75rem;
+        font-size: 0.82rem;
       }
     }
   </style>
@@ -383,6 +219,7 @@
     </div>
   </div>
 
+  <!-- Announcement Bar -->
   <div class="announcement-bar" role="region" aria-label="Announcements">
     <div class="announcement-bar__track">
       <div class="announcement-bar__slide">
@@ -404,6 +241,7 @@
     </div>
   </div>
 
+  <!-- Navbar -->
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="navbar__inner">
       <a href="../index.html" class="navbar__logo" aria-label="Savoro home">
@@ -427,7 +265,7 @@
         <li><a href="offers.html" class="navbar__link">Offers</a></li>
         <li><a href="about.html" class="navbar__link">About</a></li>
         <li><a href="blog.html" class="navbar__link">Blog</a></li>
-        <li><a href="contact.html" class="navbar__link active">Contact</a></li>
+        <li><a href="contact.html" class="navbar__link">Contact</a></li>
         <li><a href="reservation.html" class="navbar__link">Reservation</a></li>
       </ul>
       <div class="navbar__actions">
@@ -476,7 +314,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         Blog
       </a>
-      <a href="contact.html" class="navbar__mobile-link active">
+      <a href="contact.html" class="navbar__mobile-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Contact
       </a>
@@ -491,148 +329,175 @@
     </div>
   </nav>
 
-  <section class="contact-hero">
-    <h1>Get in Touch</h1>
-    <p>Have a question, feedback, or just want to say hello? We'd love to hear from you.</p>
-  </section>
+  <main id="main-content">
 
-  <section class="contact-layout">
-    <form class="contact-form" id="contactForm">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name" required>
+    <!-- Hero -->
+    <section class="policy-hero">
+      <h1>Return & Refund Policy</h1>
+      <p>Your satisfaction matters to us. Here's how we handle returns and refunds.</p>
+    </section>
+
+    <!-- Content -->
+    <div class="policy-content">
+
+      <!-- Our Commitment -->
+      <section class="policy-section">
+        <div class="policy-section__icon">🤝</div>
+        <h2 class="policy-section__title">Our Commitment</h2>
+        <p class="policy-section__text">At Savoro, your satisfaction is our top priority. We take every order seriously and stand behind the quality of every dish we prepare. If something isn't right, we'll make it right.</p>
+      </section>
+
+      <!-- Eligible Refund Cases -->
+      <section class="policy-section">
+        <div class="policy-section__icon">✅</div>
+        <h2 class="policy-section__title">Eligible Refund Cases</h2>
+        <p class="policy-section__text">You may request a refund if any of the following apply to your order:</p>
+        <ul class="policy-list">
+          <li>Order delivered with incorrect items</li>
+          <li>Items significantly different from the menu description</li>
+          <li>Food quality not meeting our stated standards</li>
+          <li>Order delivered cold or in poor condition</li>
+          <li>Missing items from your order</li>
+          <li>Duplicate charges on your payment method</li>
+          <li>Order cancelled by Savoro but not refunded automatically</li>
+        </ul>
+      </section>
+
+      <!-- How to Request a Refund -->
+      <section class="policy-section">
+        <div class="policy-section__icon">📝</div>
+        <h2 class="policy-section__title">How to Request a Refund</h2>
+        <p class="policy-section__text">Follow these simple steps to request a refund:</p>
+        <ul class="policy-list">
+          <li>Contact our support team within 1 hour of delivery via phone, email, or live chat</li>
+          <li>Provide your Order ID and a brief description of the issue</li>
+          <li>Attach photos if applicable (for damaged or incorrect items)</li>
+          <li>Our team will review and respond within 24 hours</li>
+          <li>Approved refunds are processed within 5–7 business days</li>
+        </ul>
+      </section>
+
+      <!-- Incorrect or Damaged Orders -->
+      <section class="policy-section">
+        <div class="policy-section__icon">📦</div>
+        <h2 class="policy-section__title">Incorrect or Damaged Orders</h2>
+        <p class="policy-section__text">If you receive the wrong order or items are damaged during transit:</p>
+        <ul class="policy-list">
+          <li>Do not discard the items</li>
+          <li>Contact us immediately with your Order ID</li>
+          <li>We will arrange a replacement or full refund within 24 hours</li>
+          <li>In some cases, we may ask you to return the items (we'll cover return shipping)</li>
+        </ul>
+      </section>
+
+      <!-- Missing Items -->
+      <section class="policy-section">
+        <div class="policy-section__icon">🔍</div>
+        <h2 class="policy-section__title">Missing Items</h2>
+        <p class="policy-section__text">If any items are missing from your order:</p>
+        <ul class="policy-list">
+          <li>Report within 1 hour of delivery</li>
+          <li>We will either deliver the missing items or issue a refund for them</li>
+          <li>No need to return anything for missing item claims</li>
+        </ul>
+      </section>
+
+      <!-- Cancellation Policy -->
+      <section class="policy-section">
+        <div class="policy-section__icon">❌</div>
+        <h2 class="policy-section__title">Cancellation Policy</h2>
+        <p class="policy-section__text">Our cancellation and refund terms based on timing:</p>
+        <ul class="policy-list">
+          <li>Within 5 minutes of placing: Full refund, no questions asked</li>
+          <li>5–15 minutes after placing: 50% refund if preparation hasn't started</li>
+          <li>After preparation has started: No refund available</li>
+          <li>Order rejected by restaurant: Full refund within 24 hours</li>
+        </ul>
+        <div class="policy-callout">
+          <p>To cancel, go to My Orders in your profile or contact support immediately.</p>
         </div>
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </section>
+
+      <!-- Refund Processing Time -->
+      <section class="policy-section">
+        <div class="policy-section__icon">⏳</div>
+        <h2 class="policy-section__title">Refund Processing Time</h2>
+        <p class="policy-section__text">Refund timelines vary depending on your payment method:</p>
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>Payment Method</th>
+              <th>Refund Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Credit/Debit Card</td>
+              <td>5–7 business days</td>
+            </tr>
+            <tr>
+              <td>UPI / Digital Wallets</td>
+              <td>24–48 hours</td>
+            </tr>
+            <tr>
+              <td>Net Banking</td>
+              <td>5–10 business days</td>
+            </tr>
+            <tr>
+              <td>Cash on Delivery</td>
+              <td>Savoro account credit (instant)</td>
+            </tr>
+            <tr>
+              <td>Promo code discounts</td>
+              <td>Returned as account credit</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Non-Refundable Situations -->
+      <section class="policy-section">
+        <div class="policy-section__icon">⚠️</div>
+        <h2 class="policy-section__title">Non-Refundable Situations</h2>
+        <p class="policy-section__text">The following situations are not eligible for a refund:</p>
+        <ul class="policy-list policy-list--cross">
+          <li>Change of mind after order preparation has started</li>
+          <li>Requests made more than 1 hour after delivery</li>
+          <li>Minor variations in taste or seasoning preferences</li>
+          <li>Orders placed with incorrect address details</li>
+          <li>Promotional or combo orders (refund limited to paid amount)</li>
+          <li>Items consumed partially without prior complaint</li>
+        </ul>
+        <div class="policy-warning">
+          <p>Refund requests outside the stated timeframes may be reviewed on a case-by-case basis at Savoro's discretion.</p>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="subject">Subject</label>
-        <select id="subject" name="subject" required>
-          <option value="" disabled selected>Select a subject</option>
-          <option value="general">General Inquiry</option>
-          <option value="order">Order Issue</option>
-          <option value="partnership">Partnership</option>
-          <option value="feedback">Feedback</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
-      </div>
-      <button type="submit" class="btn-submit">Send Message</button>
-    </form>
+      </section>
 
-    <div class="contact-info">
-      <div class="info-card">
-        <div class="icon">📞</div>
-        <div>
-          <div class="label">Phone</div>
-          <div class="value"><a href="tel:+8801537418504">+880 1537-418504</a></div>
+      <!-- Contact for Refund Requests -->
+      <section class="policy-section">
+        <div class="policy-section__icon">📞</div>
+        <h2 class="policy-section__title">Contact for Refund Requests</h2>
+        <p class="policy-section__text">Need help with a refund? Reach out to us:</p>
+        <ul class="policy-list">
+          <li>Phone: +8801537418504 (Mon–Sun, 10 AM – 11 PM)</li>
+          <li>Email: refunds@savoro.com</li>
+          <li>Live chat on the website during business hours</li>
+        </ul>
+        <div class="policy-callout">
+          <p>Please have your Order ID ready for faster assistance.</p>
         </div>
-      </div>
-      <div class="info-card">
-        <div class="icon">✉️</div>
-        <div>
-          <div class="label">Email</div>
-          <div class="value"><a href="mailto:avimm079@gmail.com">avimm079@gmail.com</a></div>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="icon">📍</div>
-        <div>
-          <div class="label">Address</div>
-          <div class="value">Badurtola, Boro Garage, Chittagong, Bangladesh</div>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="icon">🕐</div>
-        <div>
-          <div class="label">Hours</div>
-          <div class="value">Mon–Sat: 10 AM – 10 PM<br>Sun: 11 AM – 9 PM</div>
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <section class="map-section">
-    <div class="map-container">
-      <iframe
-        src="https://www.openstreetmap.org/export/embed.html?bbox=91.70%2C22.26%2C92.10%2C22.48&layer=mapnik&marker=22.3569%2C91.8340"
-        loading="lazy"
-        referrerpolicy="no-referrer"
-        title="Savoro Location – Chittagong, Bangladesh"
-      ></iframe>
-      <div class="map-overlay">
-        <div class="map-info">
-          <div class="map-info__icon">📍</div>
-          <div>
-            <strong>Savoro – Chittagong</strong>
-            <span>Agrabad, Chittagong 4100, Bangladesh</span>
-          </div>
-          <a href="https://www.openstreetmap.org/?mlat=22.3569&mlon=91.8340#map=14/22.3569/91.8340" target="_blank" rel="noopener" class="map-info__btn">Open in Maps</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="faq-section">
-    <h2>Frequently Asked Questions</h2>
-
-    <div class="faq-item">
-      <button class="faq-question">
-        How long does delivery take?
-        <span class="arrow">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p>Standard delivery takes 30-45 minutes. Express delivery (available for select areas) takes 20-30 minutes for an additional $2.99.</p>
-      </div>
     </div>
 
-    <div class="faq-item">
-      <button class="faq-question">
-        Can I modify my order after placing it?
-        <span class="arrow">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p>You can modify your order within 5 minutes of placing it. After that, please contact our support team.</p>
-      </div>
+    <!-- Effective Date -->
+    <div class="policy-effective">
+      <p>This policy is effective as of January 1, 2026 and applies to all orders placed through Savoro.</p>
     </div>
 
-    <div class="faq-item">
-      <button class="faq-question">
-        Do you offer catering services?
-        <span class="arrow">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p>Yes! We offer catering for events of all sizes. Contact us at catering@savoro.com for a custom quote.</p>
-      </div>
-    </div>
+  </main>
 
-    <div class="faq-item">
-      <button class="faq-question">
-        What is your refund policy?
-        <span class="arrow">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p>If you're not satisfied with your order, contact us within 2 hours and we'll make it right with a full refund or replacement.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">
-        Do you accommodate dietary restrictions?
-        <span class="arrow">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p>Absolutely! Many of our items are available in vegetarian, vegan, gluten-free, and nut-free options. Check our menu filters for details.</p>
-      </div>
-    </div>
-  </section>
-
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer__grid">
       <div class="footer__brand">
@@ -699,58 +564,11 @@
     </div>
   </footer>
 
+  <!-- Back to Top -->
   <button class="back-to-top" aria-label="Back to top">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
 
-  <div class="toast" id="toast" style="display:none;">Message sent successfully! We'll get back to you soon.</div>
-
-  <script>
-    // FAQ accordion
-    document.querySelectorAll('.faq-question').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var item = this.parentElement;
-        var isActive = item.classList.contains('active');
-
-        // Close all
-        document.querySelectorAll('.faq-item').forEach(function(el) {
-          el.classList.remove('active');
-        });
-
-        // Toggle clicked
-        if (!isActive) {
-          item.classList.add('active');
-        }
-      });
-    });
-
-    // Form submission
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var toast = document.getElementById('toast');
-      toast.style.display = 'flex';
-      toast.classList.add('show');
-      setTimeout(function() {
-        toast.classList.remove('show');
-        toast.style.display = 'none';
-      }, 3500);
-      this.reset();
-    });
-
-    // Back to top
-    document.querySelectorAll('.back-to-top').forEach(function(btn) {
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 400) {
-          btn.classList.add('visible');
-        } else {
-          btn.classList.remove('visible');
-        }
-      });
-      btn.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    });
-  </script>
   <script src="../assets/js/cart.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
