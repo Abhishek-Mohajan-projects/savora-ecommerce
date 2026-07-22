@@ -173,12 +173,14 @@
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #8b5e2b, #daa520);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.4rem;
+      overflow: hidden;
       margin: 0 auto 1rem;
+    }
+    .team-card__avatar img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .team-card__name {
       font-family: 'Fraunces', serif;
@@ -531,25 +533,33 @@
   <section>
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-card__avatar">👨‍🍳</div>
+        <div class="team-card__avatar">
+          <img src="../assets/image/Chef Marco.jpg" alt="Chef Marco">
+        </div>
         <h3 class="team-card__name">Chef Marco</h3>
         <p class="team-card__role">Head Chef</p>
         <p class="team-card__bio">Two-star Michelin background. Brings 15 years of fine dining craft to every Savoro dish.</p>
       </div>
       <div class="team-card">
-        <div class="team-card__avatar">👩‍🔬</div>
+        <div class="team-card__avatar">
+          <img src="../assets/image/Dr. Sarah Chen.jfif" alt="Dr. Sarah Chen">
+        </div>
         <h3 class="team-card__name">Dr. Sarah Chen</h3>
         <p class="team-card__role">Nutrition Director</p>
         <p class="team-card__bio">PhD in Nutritional Science. Ensures every meal balances indulgence with genuine wellness.</p>
       </div>
       <div class="team-card">
-        <div class="team-card__avatar">👩‍💼</div>
+        <div class="team-card__avatar">
+          <img src="../assets/image/Priya Sharma.jfif" alt="Priya Sharma">
+        </div>
         <h3 class="team-card__name">Priya Sharma</h3>
         <p class="team-card__role">Operations Lead</p>
         <p class="team-card__bio">Logistics expert who built our 30-minute average delivery network from the ground up.</p>
       </div>
       <div class="team-card">
-        <div class="team-card__avatar">🧑‍💻</div>
+        <div class="team-card__avatar">
+          <img src="../assets/image/James Okafor.jpg" alt="James Okafor">
+        </div>
         <h3 class="team-card__name">James Okafor</h3>
         <p class="team-card__role">Head of Marketing</p>
         <p class="team-card__bio">Brand storyteller who grew Savoro from a local secret to a citywide favorite.</p>

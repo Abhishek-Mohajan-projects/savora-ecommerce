@@ -95,14 +95,19 @@
     .card-image {
       position: relative;
       height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
+      background: #f0f0f0;
     }
-    .card-image .emoji {
-      font-size: 5rem;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+    .card-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .blog-card:hover .card-image img,
+    .blog-featured:hover .card-image img {
+      transform: scale(1.05);
     }
     .card-badge {
       position: absolute;
@@ -200,7 +205,6 @@
       }
       .blog-featured .card-image { height: 220px; }
       .card-image { height: 180px; }
-      .card-image .emoji { font-size: 4rem; }
     }
 
     @media (max-width: 400px) {
@@ -383,9 +387,9 @@
 
     <!-- Featured Post -->
     <article class="blog-featured" data-category="recipes">
-      <div class="card-image" style="background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);">
+      <div class="card-image">
         <span class="card-badge">Recipes</span>
-        <span class="emoji">🍞</span>
+        <img src="../assets/image/The Art of Sourdough From Starter to Table.png" alt="The Art of Sourdough">
       </div>
       <div class="card-body">
         <h3>The Art of Sourdough: From Starter to Table</h3>
@@ -403,9 +407,9 @@
 
     <!-- Post 2 -->
     <article class="blog-card" data-category="health">
-      <div class="card-image" style="background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);">
+      <div class="card-image">
         <span class="card-badge">Health</span>
-        <span class="emoji">🥦</span>
+        <img src="../assets/image/10 Superfoods You Should Be Eating Daily.jpg" alt="10 Superfoods">
       </div>
       <div class="card-body">
         <h3>10 Superfoods You Should Be Eating Daily</h3>
@@ -423,9 +427,9 @@
 
     <!-- Post 3 -->
     <article class="blog-card" data-category="behind-the-scenes">
-      <div class="card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+      <div class="card-image">
         <span class="card-badge">Behind the Scenes</span>
-        <span class="emoji">🌾</span>
+        <img src="../assets/image/Behind the Scenes How We Source Our Ingredients.png" alt="Behind the Scenes">
       </div>
       <div class="card-body">
         <h3>Behind the Scenes: How We Source Our Ingredients</h3>
@@ -443,9 +447,9 @@
 
     <!-- Post 4 -->
     <article class="blog-card" data-category="drinks">
-      <div class="card-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fdfcfb 100%);">
+      <div class="card-image">
         <span class="card-badge">Drinks</span>
-        <span class="emoji">🍹</span>
+        <img src="../assets/image/Summer Cocktail Recipes with Fresh Fruits.png" alt="Summer Cocktails">
       </div>
       <div class="card-body">
         <h3>Summer Cocktail Recipes with Fresh Fruits</h3>
@@ -463,9 +467,9 @@
 
     <!-- Post 5 -->
     <article class="blog-card" data-category="trends">
-      <div class="card-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+      <div class="card-image">
         <span class="card-badge">Trends</span>
-        <span class="emoji">🌱</span>
+        <img src="../assets/image/The Rise of Plant-Based Dining in 2026.png" alt="Plant-Based Dining">
       </div>
       <div class="card-body">
         <h3>The Rise of Plant-Based Dining in 2026</h3>
@@ -483,9 +487,9 @@
 
     <!-- Post 6 -->
     <article class="blog-card" data-category="guide">
-      <div class="card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+      <div class="card-image">
         <span class="card-badge">Guide</span>
-        <span class="emoji">🍷</span>
+        <img src="../assets/image/A Guide to Pairing Wine with Your Meal.png" alt="Wine Pairing Guide">
       </div>
       <div class="card-body">
         <h3>A Guide to Pairing Wine with Your Meal</h3>

@@ -187,18 +187,18 @@
       position: relative;
       width: 100%;
       aspect-ratio: 4 / 3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
+      background: var(--surface-card);
     }
-    .food-card__emoji {
-      font-size: clamp(3rem, 2rem + 3vw, 5rem);
-      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+    .food-card__photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       transition: transform var(--duration-normal) var(--ease-out);
     }
-    .food-card:hover .food-card__emoji {
-      transform: scale(1.1) rotate(-3deg);
+    .food-card:hover .food-card__photo {
+      transform: scale(1.05);
     }
     .food-card__badge {
       position: absolute;
@@ -482,8 +482,8 @@
     <div class="search-grid" id="searchGrid">
 
       <div class="food-card" data-name="Chocolate Truffle Cake" data-category="cakes">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #4a2c2a, #8b4513);">
-          <span class="food-card__emoji">&#x1F370;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Chocolate-Truffle-Cake.jpg" alt="Chocolate Truffle Cake" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Cakes</p>
@@ -504,8 +504,8 @@
       </div>
 
       <div class="food-card" data-name="Red Velvet Delight" data-category="cakes">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #8b2252, #ff6b6b);">
-          <span class="food-card__emoji">&#x1F382;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Red-Velvet-Delight.webp" alt="Red Velvet Delight" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Cakes</p>
@@ -526,8 +526,8 @@
       </div>
 
       <div class="food-card" data-name="Tiramisu Classic" data-category="cakes">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #8b6914, #deb887);">
-          <span class="food-card__emoji">&#x1F370;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Tiramisu Classic.jpg" alt="Tiramisu Classic" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Cakes</p>
@@ -548,8 +548,8 @@
       </div>
 
       <div class="food-card" data-name="Mango Cheesecake" data-category="cakes">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #f4a460, #ffd700);">
-          <span class="food-card__emoji">&#x1F370;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Mango Cheesecake.jpg" alt="Mango Cheesecake" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Cakes</p>
@@ -570,8 +570,8 @@
       </div>
 
       <div class="food-card" data-name="Mango Bliss" data-category="juices">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #e88a1a, #ffd700);">
-          <span class="food-card__emoji">&#x1F9C3;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Mango Bliss.webp" alt="Mango Bliss" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Juices</p>
@@ -592,8 +592,8 @@
       </div>
 
       <div class="food-card" data-name="Green Detox" data-category="juices">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #2d5016, #6b8e23);">
-          <span class="food-card__emoji">&#x1F33F;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Green Detox.jpg" alt="Green Detox" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Juices</p>
@@ -614,8 +614,8 @@
       </div>
 
       <div class="food-card" data-name="Berry Blast" data-category="juices">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #8b0000, #ff4500);">
-          <span class="food-card__emoji">&#x1FAD0;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Berry Blast.jpg" alt="Berry Blast" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Juices</p>
@@ -636,8 +636,8 @@
       </div>
 
       <div class="food-card" data-name="Citrus Sunrise" data-category="juices">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #ff8c00, #ffdb58);">
-          <span class="food-card__emoji">&#x1F34A;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Citrus Sunrise.jpg" alt="Citrus Sunrise" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Juices</p>
@@ -658,8 +658,8 @@
       </div>
 
       <div class="food-card" data-name="Classic Smash Burger" data-category="fast-food">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #b8860b, #cd853f);">
-          <span class="food-card__emoji">&#x1F354;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Classic Smash Burger.webp" alt="Classic Smash Burger" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Fast Food</p>
@@ -680,8 +680,8 @@
       </div>
 
       <div class="food-card" data-name="Margherita Pizza" data-category="fast-food">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #b22222, #e8a33d);">
-          <span class="food-card__emoji">&#x1F355;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Margherita Pizza.jpg" alt="Margherita Pizza" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Fast Food</p>
@@ -702,8 +702,8 @@
       </div>
 
       <div class="food-card" data-name="Crispy Chicken Wings" data-category="fast-food">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #8b4513, #cd853f);">
-          <span class="food-card__emoji">&#x1F357;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Crispy Chicken Wings.jpg" alt="Crispy Chicken Wings" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Fast Food</p>
@@ -724,8 +724,8 @@
       </div>
 
       <div class="food-card" data-name="Loaded Fries" data-category="fast-food">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #d4a017, #f0c040);">
-          <span class="food-card__emoji">&#x1F9C6;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Loaded Fries.jfif" alt="Loaded Fries" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Fast Food</p>
@@ -746,8 +746,8 @@
       </div>
 
       <div class="food-card" data-name="Iced Caramel Latte" data-category="cold-drinks">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #5c3317, #d2a679);">
-          <span class="food-card__emoji">&#x2615;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Iced Caramel Latte.webp" alt="Iced Caramel Latte" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Cold Drinks</p>
@@ -768,8 +768,8 @@
       </div>
 
       <div class="food-card" data-name="Fresh Lemonade" data-category="cold-drinks">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #c8d84e, #f0e130);">
-          <span class="food-card__emoji">&#x1F34B;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Fresh Lemonade.webp" alt="Fresh Lemonade" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Cold Drinks</p>
@@ -790,8 +790,8 @@
       </div>
 
       <div class="food-card" data-name="Sparkling Cola" data-category="cold-drinks">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #2f1b14, #5c3a28);">
-          <span class="food-card__emoji">&#x1F366;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Sparkling Cola.jpg" alt="Sparkling Cola" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Cold Drinks</p>
@@ -812,8 +812,8 @@
       </div>
 
       <div class="food-card" data-name="Iced Matcha" data-category="cold-drinks">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #556b2f, #9acd32);">
-          <span class="food-card__emoji">&#x1F375;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Iced Matcha.jpg" alt="Iced Matcha" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Cold Drinks</p>
@@ -834,8 +834,8 @@
       </div>
 
       <div class="food-card" data-name="Vanilla Bean" data-category="ice-cream">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #f5f5dc, #daa520);">
-          <span class="food-card__emoji">&#x1F366;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Vanilla Bean.webp" alt="Vanilla Bean" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Ice Cream</p>
@@ -856,8 +856,8 @@
       </div>
 
       <div class="food-card" data-name="Chocolate Fudge" data-category="ice-cream">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #3c1a0a, #6b3a2a);">
-          <span class="food-card__emoji">&#x1F36B;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Chocolate Fudge.jpg" alt="Chocolate Fudge" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Ice Cream</p>
@@ -878,8 +878,8 @@
       </div>
 
       <div class="food-card" data-name="Mango Sorbet" data-category="ice-cream">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #e88a1a, #ffc107);">
-          <span class="food-card__emoji">&#x1F366;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Mango Sorbet.jpg" alt="Mango Sorbet" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Ice Cream</p>
@@ -900,8 +900,8 @@
       </div>
 
       <div class="food-card" data-name="Salted Caramel" data-category="ice-cream">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #8b5e3c, #c4a265);">
-          <span class="food-card__emoji">&#x1F366;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Salted Caramel.jpg" alt="Salted Caramel" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Ice Cream</p>
@@ -922,8 +922,8 @@
       </div>
 
       <div class="food-card" data-name="Pepperoni Pizza" data-category="pizza">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #b22222, #d4a017);">
-          <span class="food-card__emoji">&#x1F355;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Pepperoni Pizza.jpg" alt="Pepperoni Pizza" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Pizza</p>
@@ -944,8 +944,8 @@
       </div>
 
       <div class="food-card" data-name="BBQ Chicken Pizza" data-category="pizza">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #8b4513, #cd853f);">
-          <span class="food-card__emoji">&#x1F355;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/BBQ Chicken Pizza.jpg" alt="BBQ Chicken Pizza" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Pizza</p>
@@ -966,8 +966,8 @@
       </div>
 
       <div class="food-card" data-name="Four Cheese Pizza" data-category="pizza">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #d4a017, #f5e6c8);">
-          <span class="food-card__emoji">&#x1F355;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Four Cheese.png" alt="Four Cheese Pizza" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Pizza</p>
@@ -988,8 +988,8 @@
       </div>
 
       <div class="food-card" data-name="Crispy Fried Chicken" data-category="chicken">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #8b4513, #daa520);">
-          <span class="food-card__emoji">&#x1F357;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Crispy Fried Chicken.webp" alt="Crispy Fried Chicken" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Chicken</p>
@@ -1010,8 +1010,8 @@
       </div>
 
       <div class="food-card" data-name="Grilled Chicken" data-category="chicken">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #556b2f, #8fbc8f);">
-          <span class="food-card__emoji">&#x1F357;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Grilled Chicken.webp" alt="Grilled Chicken" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Chicken</p>
@@ -1032,8 +1032,8 @@
       </div>
 
       <div class="food-card" data-name="Chicken Bucket" data-category="chicken">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #b22222, #cd853f);">
-          <span class="food-card__emoji">&#x1F357;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Chicken Bucket.jpg" alt="Chicken Bucket" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Chicken</p>
@@ -1054,8 +1054,8 @@
       </div>
 
       <div class="food-card" data-name="Chicken Alfredo Pasta" data-category="pasta">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #f5e6c8, #d4a017);">
-          <span class="food-card__emoji">&#x1F35D;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Chicken Alfredo Pasta.jpg" alt="Chicken Alfredo Pasta" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Pasta</p>
@@ -1076,8 +1076,8 @@
       </div>
 
       <div class="food-card" data-name="Spaghetti Bolognese" data-category="pasta">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #b22222, #8b4513);">
-          <span class="food-card__emoji">&#x1F35D;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Spaghetti Bolognese.jpg" alt="Spaghetti Bolognese" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Pasta</p>
@@ -1098,8 +1098,8 @@
       </div>
 
       <div class="food-card" data-name="Carbonara Pasta" data-category="pasta">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #f5e6c8, #8b7355);">
-          <span class="food-card__emoji">&#x1F35D;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Carbonara Pasta.jpg" alt="Carbonara Pasta" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Pasta</p>
@@ -1120,8 +1120,8 @@
       </div>
 
       <div class="food-card" data-name="Chicken Chow Mein" data-category="noodles">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #daa520, #8b4513);">
-          <span class="food-card__emoji">&#x1F35C;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Chicken Chow Mein.png" alt="Chicken Chow Mein" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Noodles</p>
@@ -1142,8 +1142,8 @@
       </div>
 
       <div class="food-card" data-name="Spicy Ramen" data-category="noodles">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #b22222, #daa520);">
-          <span class="food-card__emoji">&#x1F35C;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Spicy Ramen.jpg" alt="Spicy Ramen" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Noodles</p>
@@ -1164,8 +1164,8 @@
       </div>
 
       <div class="food-card" data-name="Hakka Noodles" data-category="noodles">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #556b2f, #daa520);">
-          <span class="food-card__emoji">&#x1F35C;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Hakka Noodles.jpg" alt="Hakka Noodles" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Noodles</p>
@@ -1186,8 +1186,8 @@
       </div>
 
       <div class="food-card" data-name="Club Sandwich" data-category="sandwiches">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #d4a017, #8b7355);">
-          <span class="food-card__emoji">&#x1F96A;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Club Sandwich.jpg" alt="Club Sandwich" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Sandwiches</p>
@@ -1208,8 +1208,8 @@
       </div>
 
       <div class="food-card" data-name="Chicken Sandwich" data-category="sandwiches">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #8b4513, #cd853f);">
-          <span class="food-card__emoji">&#x1F96A;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Chicken Sandwich.jpg" alt="Chicken Sandwich" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Sandwiches</p>
@@ -1230,8 +1230,8 @@
       </div>
 
       <div class="food-card" data-name="Tuna Melt" data-category="sandwiches">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #4682b4, #87ceeb);">
-          <span class="food-card__emoji">&#x1F96A;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Tuna Melt.jpg" alt="Tuna Melt" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Sandwiches</p>
@@ -1252,8 +1252,8 @@
       </div>
 
       <div class="food-card" data-name="Chicken Wrap" data-category="wraps">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #daa520, #8b4513);">
-          <span class="food-card__emoji">&#x1F32F;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Chicken Wrap.jpg" alt="Chicken Wrap" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Wraps</p>
@@ -1274,8 +1274,8 @@
       </div>
 
       <div class="food-card" data-name="Beef Wrap" data-category="wraps">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #8b0000, #cd853f);">
-          <span class="food-card__emoji">&#x1F32F;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Beef Wrap.webp" alt="Beef Wrap" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Wraps</p>
@@ -1296,8 +1296,8 @@
       </div>
 
       <div class="food-card" data-name="Falafel Wrap" data-category="wraps">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #556b2f, #8fbc8f);">
-          <span class="food-card__emoji">&#x1F32F;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Falafel Wrap.jpg" alt="Falafel Wrap" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Wraps</p>
@@ -1318,8 +1318,8 @@
       </div>
 
       <div class="food-card" data-name="Caesar Salad" data-category="salads">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #556b2f, #9acd32);">
-          <span class="food-card__emoji">&#x1F957;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Caesar Salad.jpg" alt="Caesar Salad" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Salads</p>
@@ -1340,8 +1340,8 @@
       </div>
 
       <div class="food-card" data-name="Greek Salad" data-category="salads">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #2e8b57, #8fbc8f);">
-          <span class="food-card__emoji">&#x1F957;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Greek Salad.jpg" alt="Greek Salad" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Salads</p>
@@ -1362,8 +1362,8 @@
       </div>
 
       <div class="food-card" data-name="Chicken Avocado Salad" data-category="salads">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #6b8e23, #daa520);">
-          <span class="food-card__emoji">&#x1F957;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Chicken Avocado Salad.webp" alt="Chicken Avocado Salad" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Salads</p>
@@ -1384,8 +1384,8 @@
       </div>
 
       <div class="food-card" data-name="Chocolate Brownie" data-category="desserts">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #3e1f0d, #6b3a2a);">
-          <span class="food-card__emoji">&#x1F36B;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Chocolate Brownie.jpg" alt="Chocolate Brownie" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Desserts</p>
@@ -1406,8 +1406,8 @@
       </div>
 
       <div class="food-card" data-name="Molten Lava Cake" data-category="desserts">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #4a2c2a, #8b0000);">
-          <span class="food-card__emoji">&#x1F370;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Molten Lava Cake.jpg" alt="Molten Lava Cake" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Desserts</p>
@@ -1428,8 +1428,8 @@
       </div>
 
       <div class="food-card" data-name="New York Cheesecake" data-category="desserts">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #f5e6c8, #d4a017);">
-          <span class="food-card__emoji">&#x1F370;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/New York Cheesecake.webp" alt="New York Cheesecake" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Desserts</p>
@@ -1450,8 +1450,8 @@
       </div>
 
       <div class="food-card" data-name="Espresso" data-category="coffee">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #3e1f0d, #6b3a2a);">
-          <span class="food-card__emoji">&#x2615;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Espresso.jpg" alt="Espresso" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Coffee</p>
@@ -1472,8 +1472,8 @@
       </div>
 
       <div class="food-card" data-name="Cappuccino" data-category="coffee">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #5c3a28, #8b6f4e);">
-          <span class="food-card__emoji">&#x2615;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Cappuccino.jpg" alt="Cappuccino" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Coffee</p>
@@ -1494,8 +1494,8 @@
       </div>
 
       <div class="food-card" data-name="Café Latte" data-category="coffee">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #6b3a2a, #a0826d);">
-          <span class="food-card__emoji">&#x2615;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Café Latte.avif" alt="Café Latte" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Coffee</p>
@@ -1516,8 +1516,8 @@
       </div>
 
       <div class="food-card" data-name="Oreo Milkshake" data-category="milkshakes">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #2c2c2c, #6b6b6b);">
-          <span class="food-card__emoji">&#x1F95B;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Oreo Milkshake.jfif" alt="Oreo Milkshake" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Milkshakes</p>
@@ -1538,8 +1538,8 @@
       </div>
 
       <div class="food-card" data-name="Chocolate Milkshake" data-category="milkshakes">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #4a2c1a, #7b4f2e);">
-          <span class="food-card__emoji">&#x1F95B;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Chocolate Milkshake.avif" alt="Chocolate Milkshake" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Milkshakes</p>
@@ -1560,8 +1560,8 @@
       </div>
 
       <div class="food-card" data-name="Strawberry Milkshake" data-category="milkshakes">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #c0392b, #e74c3c);">
-          <span class="food-card__emoji">&#x1F95B;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Strawberry Milkshake.jpg" alt="Strawberry Milkshake" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Milkshakes</p>
@@ -1582,8 +1582,8 @@
       </div>
 
       <div class="food-card" data-name="Blue Lagoon" data-category="mocktails">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #1a6fb5, #3498db);">
-          <span class="food-card__emoji">&#x1F377;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Blue Lagoon.jpg" alt="Blue Lagoon" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Mocktails</p>
@@ -1604,8 +1604,8 @@
       </div>
 
       <div class="food-card" data-name="Virgin Mojito" data-category="mocktails">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #27ae60, #6fcf97);">
-          <span class="food-card__emoji">&#x1F377;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Virgin Mojito.jpg" alt="Virgin Mojito" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Mocktails</p>
@@ -1626,8 +1626,8 @@
       </div>
 
       <div class="food-card" data-name="Tropical Punch" data-category="mocktails">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #e67e22, #f39c12);">
-          <span class="food-card__emoji">&#x1F377;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Tropical Punch.jpg" alt="Tropical Punch" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Mocktails</p>
@@ -1648,8 +1648,8 @@
       </div>
 
       <div class="food-card" data-name="Mozzarella Sticks" data-category="snacks">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #d4a04a, #f0c75e);">
-          <span class="food-card__emoji">&#x1F9C0;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Mozzarella Sticks.webp" alt="Mozzarella Sticks" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Snacks</p>
@@ -1670,8 +1670,8 @@
       </div>
 
       <div class="food-card" data-name="Onion Rings" data-category="snacks">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #c4883a, #e8a33d);">
-          <span class="food-card__emoji">&#x1F9C5;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Onion Rings.jpg" alt="Onion Rings" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Snacks</p>
@@ -1692,8 +1692,8 @@
       </div>
 
       <div class="food-card" data-name="Chicken Nuggets" data-category="snacks">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #b87333, #daa520);">
-          <span class="food-card__emoji">&#x1F96A;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Chicken Nuggets.jpg" alt="Chicken Nuggets" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Snacks</p>
@@ -1714,8 +1714,8 @@
       </div>
 
       <div class="food-card" data-name="Chicken Biryani" data-category="rice-biryani">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #d4a017, #f5c518);">
-          <span class="food-card__emoji">&#x1F35B;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Chicken Biryani.jpg" alt="Chicken Biryani" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Rice &amp; Biryani</p>
@@ -1736,8 +1736,8 @@
       </div>
 
       <div class="food-card" data-name="Beef Biryani" data-category="rice-biryani">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #8b4513, #c4883a);">
-          <span class="food-card__emoji">&#x1F35B;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Beef Biryani.jpg" alt="Beef Biryani" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Rice &amp; Biryani</p>
@@ -1758,8 +1758,8 @@
       </div>
 
       <div class="food-card" data-name="Fried Rice" data-category="rice-biryani">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #e8a33d, #f5d280);">
-          <span class="food-card__emoji">&#x1F35A;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Fried Rice.webp" alt="Fried Rice" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Rice &amp; Biryani</p>
@@ -1780,8 +1780,8 @@
       </div>
 
       <div class="food-card" data-name="Pancakes" data-category="breakfast">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #c4883a, #f0c75e);">
-          <span class="food-card__emoji">&#x1F95E;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Pancakes.webp" alt="Pancakes" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Breakfast</p>
@@ -1802,8 +1802,8 @@
       </div>
 
       <div class="food-card" data-name="French Toast" data-category="breakfast">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #b8860b, #daa520);">
-          <span class="food-card__emoji">&#x1F95E;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/French Toast.jpg" alt="French Toast" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Breakfast</p>
@@ -1824,8 +1824,8 @@
       </div>
 
       <div class="food-card" data-name="Avocado Toast" data-category="breakfast">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #568203, #8fbc3a);">
-          <span class="food-card__emoji">&#x1F951;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Avocado Toast.jpg" alt="Avocado Toast" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Breakfast</p>
@@ -1846,8 +1846,8 @@
       </div>
 
       <div class="food-card" data-name="Burger + Fries + Coke" data-category="combo-deals">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #c4432b, #e8a33d);">
-          <span class="food-card__emoji">&#x1F381;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Burger + Fries + Coke.jfif" alt="Burger + Fries + Coke" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Combo Deals</p>
@@ -1868,8 +1868,8 @@
       </div>
 
       <div class="food-card" data-name="Pizza + Garlic Bread + Pepsi" data-category="combo-deals">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #8b0000, #c4432b);">
-          <span class="food-card__emoji">&#x1F381;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Pizza + Garlic Bread + Pepsi.jpg" alt="Pizza + Garlic Bread + Pepsi" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Combo Deals</p>
@@ -1890,8 +1890,8 @@
       </div>
 
       <div class="food-card" data-name="Chicken Bucket + Fries" data-category="combo-deals">
-        <div class="food-card__img" style="background: linear-gradient(135deg, #a0522d, #cd853f);">
-          <span class="food-card__emoji">&#x1F381;</span>
+        <div class="food-card__img">
+          <img src="../assets/image/Chicken Bucket + Fries.jpeg" alt="Chicken Bucket + Fries" class="food-card__photo">
         </div>
         <div class="food-card__body">
           <p class="food-card__category">Combo Deals</p>
@@ -2082,7 +2082,7 @@
             id: addBtn.getAttribute("data-id"),
             name: addBtn.getAttribute("data-name"),
             price: parseFloat(addBtn.getAttribute("data-price")),
-            emoji: addBtn.closest(".food-card").querySelector(".food-card__emoji").textContent,
+            img: addBtn.closest(".food-card").querySelector(".food-card__photo") ? addBtn.closest(".food-card").querySelector(".food-card__photo").src : "",
             category: addBtn.getAttribute("data-id").replace(/-/g, " ")
           });
           if (window.showToast) window.showToast("success", "Added to Cart", addBtn.getAttribute("data-name") + " has been added to your cart.");
@@ -2100,7 +2100,7 @@
               id: wishBtn.getAttribute("data-id"),
               name: wishBtn.getAttribute("data-name"),
               price: parseFloat(wishBtn.getAttribute("data-price")),
-              emoji: wishBtn.closest(".food-card").querySelector(".food-card__emoji").textContent,
+              img: wishBtn.closest(".food-card").querySelector(".food-card__photo") ? wishBtn.closest(".food-card").querySelector(".food-card__photo").src : "",
               category: wishBtn.getAttribute("data-id").replace(/-/g, " ")
             });
             wishBtn.classList.add("wishlisted");
